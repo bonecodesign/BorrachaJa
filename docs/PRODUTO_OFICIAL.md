@@ -35,3 +35,21 @@ O projeto está em fase de MVP; deve usar planos gratuitos quando possível, sem
 3. Validar os primeiros prestadores.
 4. Homologar pagamentos e split automático.
 5. Publicar apenas após testes operacionais, legais e de segurança.
+
+## Serviços oficiais e regras comerciais — 12/11/2026
+
+O BorrachaJá! Oficial atende inicialmente motociclistas de Belo Horizonte e Região Metropolitana com três funcionalidades:
+
+1. **📍🛞 Mapa de borracharias físicas:** download, consulta e rotas gratuitos, sem comissão pela simples consulta.
+2. **🛞 Delivery de borracharia:** atendimento para reparo de pneu no local, com solicitação, comunicação, orçamento e pagamento dentro da plataforma; comissão de **15%** sobre o valor efetivamente pago pelo serviço.
+3. **🚚 Reboque de motos:** remoção/transporte com solicitação, comunicação, orçamento e pagamento dentro da plataforma; **a mesma comissão de 15%**.
+
+O prestador pode oferecer uma ou ambas as modalidades pagas em **um único cadastro**, com oferta, preço, disponibilidade e cobertura independentes. O ícone duplo é 🛞🚚.
+
+### Prospecção inicial — BH + Contagem
+
+Levantamento de 12/11/2026: **36 candidatos únicos**, associados a **40 ofertas**; quatro candidatos têm as duas modalidades de socorro, algumas ainda dependentes de confirmação. Fonte de referência pública, sem telefones: `data/prestadores_candidatos_BH_2026-11-12.csv`.
+
+No Supabase `BorrachaJa-Oficial`, os dados internos da prospecção ficam nas tabelas `prestadores_prospeccao`, `ofertas_prospeccao` e `configuracao_comercial`, com RLS e sem acesso direto de `anon` ou `authenticated` nesta etapa. Contatos não são publicados no repositório nem exibidos no aplicativo.
+
+**Nenhum candidato é parceiro homologado ou habilitado para chamados**. Não exibir ofertas, horários 24h ou disponibilidade operacional como confirmados até validação comercial e técnica. Pagamentos reais permanecem desativados enquanto não houver homologação do processador e do split financeiro.
