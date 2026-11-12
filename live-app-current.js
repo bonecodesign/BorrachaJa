@@ -92,7 +92,7 @@
       '<button class="btn outline sm" data-action="reload">Atualizar</button></div>' +
       '<div id="map-canvas" aria-label="Mapa dos prestadores verificados"></div>' +
       (state.directory.length ? '<div class="stack">' + state.directory.map(providerCard).join("") +
-       '</div>' : '<div class="notice">Ainda não há borracharias aprovadas para exibir. Os 36 candidatos em prospecção não são prestadores ativos.</div>');
+       '</div>' : '<div class="notice">Ainda não há borracharias aprovadas para exibir. Candidatos em prospecção não são prestadores ativos.</div>');
   }
   function renderDetail() {
     const p = state.directory.find(row => row.id === state.selected);
@@ -159,7 +159,9 @@
       '<label class="fieldrow"><span class="label">Descrição dos serviços (sem telefone ou link)</span>' +
       '<textarea class="field" name="description" maxlength="300" placeholder="Reparos de pneus de motocicletas"></textarea></label>' +
       label("Endereço do estabelecimento", "text", "address", "Rua e número", false) +
-      '<p class="small muted">Cidade piloto: Belo Horizonte, MG. Coordenadas poderão ser verificadas posteriormente.</p>' +
+      '<label class="fieldrow"><input type="checkbox" name="offer_map" checked> Atendimento no estabelecimento</label>' +
+      '<label class="fieldrow"><input type="checkbox" name="offer_delivery"> Atendimento delivery no local da moto</label>' +
+      '<p class="small muted">Cidade piloto: Belo Horizonte, MG. Os serviços começam desativados até verificação administrativa.</p>' +
       '<button class="btn full" type="submit">Solicitar cadastro</button></form>';
   }
   function renderProfile() {
@@ -237,8 +239,15 @@
     state.directory = (providers.data || []).filter(row => activeIds.has(row.id));
   }
   async function refreshIdentity() {
+    const sessionResult = await db.auth.getSession();
+    if (sessionResult.error) throw sessionResult.error;
+    if (!sessionResult.data?.session) {
+      state.user = null; state.profile = null; state.ownProvider = null;
+      state.orders = []; state.quotes = [];
+      return;
+    }
     const { data, error } = await db.auth.getUser();
-    if (error && error.status !== 400) throw error;
+    if (error) throw error;
     state.user = data?.user || null; state.profile = null; state.ownProvider = null;
     if (!state.user) { state.orders = []; state.quotes = []; return; }
     const [profile, provider] = await Promise.all([
@@ -248,6 +257,13 @@
     if (profile.error) throw profile.error;
     if (provider.error) throw provider.error;
     state.profile = profile.data; state.ownProvider = provider.data;
+    if (!state.profile) {
+      const proposed = String(state.user.user_metadata?.display_name || state.user.email?.split("@")[0] || "Motociclista").trim().slice(0, 100);
+      const validName = proposed.length >= 2 ? proposed : "Motociclista";
+      const created = await db.from("app_profiles").insert({ user_id: state.user.id, display_name: validName });
+      if (created.error) throw created.error;
+      state.profile = { user_id: state.user.id, display_name: validName };
+    }
     const { data: orders, error: ordersError } = await db.from("service_requests")
       .select("id,customer_id,category_id,provider_id,problem_description,status,created_at,updated_at")
       .order("created_at", { ascending: false }).limit(50);
@@ -337,12 +353,22 @@
       const address = String(data.get("address") || "").trim();
       if (name.length < 2 || /https?:|www\.|whats.?app|wa\.me|\b\d[\d\s().-]{8,}\b/i.test(name + " " + description))
         throw new Error("Insira nome comercial válido, sem telefone ou links externos.");
+      const selectedCodes = [];
+      if (data.get("offer_map")) selectedCodes.push("map_borracharia");
+      if (data.get("offer_delivery")) selectedCodes.push("borracharia_delivery");
+      if (!selectedCodes.length) throw new Error("Selecione ao menos um tipo de atendimento.");
       const provider = await db.from("providers").insert({
         owner_id: state.user.id, display_name: name, description, street_address: address || null,
         city: "Belo Horizonte", state_code: "MG", status: "pending", is_active: false
-      });
+      }).select("id").single();
       if (provider.error) throw provider.error;
-      await refreshIdentity(); nav("profile"); state.message = "Cadastro enviado. Aguarde homologação.";
+      const selectedCategories = state.categories.filter(category => selectedCodes.includes(category.code));
+      if (selectedCategories.length !== selectedCodes.length) throw new Error("Categoria de serviço não encontrada.");
+      const services = await db.from("provider_services").insert(selectedCategories.map(category => ({
+        provider_id: provider.data.id, category_id: category.id, is_active: false
+      })));
+      if (services.error) throw services.error;
+      await refreshIdentity(); nav("profile"); state.message = "Cadastro e serviços enviados. Aguarde homologação.";
     });
     if (form.id === "request-form") submitForm(form, async data => {
       if (!state.user) throw new Error("Entre na conta para continuar.");
