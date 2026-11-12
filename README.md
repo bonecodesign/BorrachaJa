@@ -16,7 +16,7 @@ Marketplace de borracharias, borracharia delivery e reboque de motos para motoci
 
 ## Organização
 
-O banco inicial está criado no Supabase `BorrachaJa-Oficial`, com **8 tabelas**, RLS e migrações versionadas em `supabase/migrations/`. O código do aplicativo, os testes e a integração de pagamentos ainda serão desenvolvidos e homologados.
+O banco inicial está criado no Supabase `BorrachaJa-Oficial`, com **8 tabelas centrais e 3 tabelas privadas de prospecção**, RLS e migrações versionadas em `supabase/migrations/`. O código do aplicativo, os testes e a integração de pagamentos ainda serão desenvolvidos e homologados.
 
 Consulte [supabase/README.md](supabase/README.md) para detalhes técnicos e regras de versionamento. **A sincronização automática GitHub ↔ Supabase ainda não está configurada**.
 
