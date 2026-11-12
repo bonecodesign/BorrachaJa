@@ -16,7 +16,7 @@
   const state = {
     page: "home", user: null, profile: null, ownProvider: null, directory: [],
     services: [], categories: [], orders: [], quotes: [], selected: null,
-    mode: "manual", location: null, map: null, loading: false,
+    mode: "manual", location: null, map: null, loading: false, requestKey: null,
     message: "", error: ""
   };
   const esc = value => String(value ?? "").replace(/[&<>"']/g, ch =>
@@ -310,12 +310,12 @@
     if (action === "gps") { locate(); return; }
     if (action === "reload") { await allRefresh(); return; }
     if (action === "detail") { state.selected = id; nav("detail"); return; }
-    if (action === "select-provider") { state.selected = id; state.mode = "manual"; nav("request-form"); return; }
+    if (action === "select-provider") { state.requestKey = null; state.selected = id; state.mode = "manual"; nav("request-form"); return; }
     if (action === "mode") { state.mode = target.dataset.mode; render(); return; }
     if (action === "automatic") {
       const list = available().filter(p => Number.isFinite(distance(p))).sort((a, b) => distance(a) - distance(b));
       if (!list.length) { state.error = "Não há prestadores delivery com coordenadas verificadas próximos para esta simulação."; render(); return; }
-      state.selected = list[0].id; nav("request-form"); return;
+      state.requestKey = null; state.selected = list[0].id; nav("request-form"); return;
     }
     if (action === "logout") {
       const { error } = await db.auth.signOut();
@@ -380,14 +380,22 @@
       const motorcycle = String(data.get("motorcycle") || "").trim();
       const address = String(data.get("address") || "").trim();
       if (!motorcycle || problem.length < 5 || address.length < 6) throw new Error("Preencha os dados do pedido.");
+      if (!state.requestKey) {
+        if (!globalThis.crypto?.randomUUID) throw new Error("Use uma conexão segura (HTTPS ou localhost) para registrar o pedido.");
+        state.requestKey = globalThis.crypto.randomUUID();
+      }
       const inserted = await db.from("service_requests").insert({
+        request_key: state.requestKey,
         customer_id: state.user.id, category_id: category.id,
         provider_id: provider.id, problem_description: motorcycle + " — " + problem,
         address_details: address, latitude: state.location?.lat ?? null, longitude: state.location?.lng ?? null,
         status: "requested"
       });
-      if (inserted.error) throw inserted.error;
-      await refreshIdentity(); nav("orders"); state.message = "Pedido de TESTE registrado, sem pagamento ou despacho real.";
+      if (inserted.error && inserted.error.code !== "23505") throw inserted.error;
+      // No caso de resposta perdida após gravar, a mesma chave não cria um segundo pedido.
+      state.requestKey = null;
+      await refreshIdentity(); nav("orders");
+      state.message = inserted.error ? "Pedido já registrado: confira Meus pedidos." : "Pedido de TESTE registrado, sem pagamento ou despacho real.";
     });
     if (form.classList.contains("quote-form")) submitForm(form, async data => {
       const orderId = form.dataset.id;
