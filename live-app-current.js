@@ -235,7 +235,8 @@
     ]);
     for (const response of [providers, services, categories]) if (response.error) throw response.error;
     state.services = services.data || []; state.categories = categories.data || [];
-    const activeIds = new Set(state.services.map(row => row.provider_id));
+    const relevantCategories = new Set(state.categories.filter(row => row.code === 'map_borracharia' || row.code === 'borracharia_delivery').map(row => row.id));
+    const activeIds = new Set(state.services.filter(row => relevantCategories.has(row.category_id)).map(row => row.provider_id));
     state.directory = (providers.data || []).filter(row => activeIds.has(row.id));
   }
   async function refreshIdentity() {
