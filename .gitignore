@@ -1,0 +1,28 @@
+# Segredos e configurações locais
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets.*
+config.local.js
+config.production.js
+service-account*.json
+
+# Dados privados de fornecedores e usuários
+fornecedores_privados/
+dados_privados/
+*.sqlite
+*.db
+
+# Dependências e arquivos temporários
+node_modules/
+dist/
+build/
+coverage/
+*.log
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+__pycache__/
