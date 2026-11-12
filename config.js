@@ -1,7 +1,7 @@
-// CONFIGURAÇÃO PÚBLICA DO FRONTEND — preencha com a URL e a chave PUBLISHABLE/ANON.
-// NUNCA cole aqui uma service_role, secret key, senha ou token privado.
-// Enquanto estes campos estiverem vazios, o BorrachaJá! abre na demonstração local.
+// Configuração PÚBLICA do piloto BorrachaJá!: URL e publishable key.
+// A chave publishable NÃO é secret/service_role; as permissões dependem do RLS.
+// JAMAIS inserir senhas, service_role ou sb_secret_* neste arquivo.
 window.BJ_CONFIG = {
-  supabaseUrl: '',
-  supabasePublishableKey: ''
+  supabaseUrl: 'https://yivkqyjdeouxnwtwfekc.supabase.co',
+  supabasePublishableKey: 'sb_publishable_SKToaitJDdgDAYUrwChkbg__ntPtZd3'
 };
