@@ -30,6 +30,16 @@ Categorias oficiais:
 
 Todas as oito tabelas têm Row Level Security (RLS) ativado. Aprovação de prestadores, alterações de pedidos e escrita financeira ficam reservadas ao backend com permissões adequadas; nenhuma chave secreta deve ser publicada.
 
+## Prospecção de prestadores em BH e RMBH
+
+Foi incluído um cadastro **privado de prospecção**, separado do cadastro de fornecedores homologados do marketplace:
+
+- `prestadores_prospeccao` — 36 possíveis fornecedores cadastrados para avaliação;
+- `ofertas_prospeccao` — 40 modalidades/ofertas anunciadas ou a confirmar;
+- `configuracao_comercial` — parâmetro comercial de comissão.
+
+As três tabelas têm RLS ativado e **não possuem políticas de acesso público de propósito**; acessos `anon` e `authenticated` foram revogados. Isso produz avisos informativos de RLS sem policy no Advisor, mas não significa exposição de dados. Os possíveis prestadores **não são parceiros homologados nem estão disponíveis no mapa público**.
+
 ## Controle de versões e sincronização
 
 A pasta `supabase/migrations/` contém as migrações aplicadas neste projeto. O histórico no GitHub serve como referência de código para reproduzir o esquema. **Não existe sincronização automática ou implantação contínua configurada** neste momento.
@@ -37,6 +47,7 @@ A pasta `supabase/migrations/` contém as migrações aplicadas neste projeto. O
 Migrações aplicadas:
 1. `20261112201752_initial_borrachaja_mvp_bh.sql`
 2. `20261112201920_indexar_chaves_de_atendimentos.sql`
+3. `20261112201921_iniciar_cadastro_prestadores_bh_20261112.sql`
 
 Procedimento para alterações futuras:
 1. Revisar SQL e impacto em autenticação/RLS.
