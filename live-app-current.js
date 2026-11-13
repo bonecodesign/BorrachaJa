@@ -26,6 +26,14 @@
     requested: "Aguardando orçamento", quoted: "Orçamento recebido", awaiting_payment: "Orçamento aceito — aguardando pagamento", no_provider: "Sem próximo prestador online", accepted: "Aceito",
     in_progress: "Em atendimento", completed: "Concluído", cancelled: "Cancelado"
   })[value] || "Em análise";
+  const quoteStatusLabel = (item, allQuotes) => {
+    if (item.status === "declined") {
+      const number = allQuotes.slice(0, allQuotes.indexOf(item) + 1)
+        .filter(prev => prev.status === "declined" && prev.provider_id === item.provider_id).length;
+      return "Recusa " + number + "/2 nesta solicitação";
+    }
+    return ({ proposed: "Aguardando sua decisão", accepted: "Aceito", expired: "Expirado" })[item.status] || item.status;
+  };
   const deliveryCategory = () => state.categories.find(row => row.code === "borracharia_delivery");
   const deliveryIds = () => {
     const category = deliveryCategory();
@@ -216,8 +224,10 @@
         return '<div class="card"><p><b>' + esc(o.problem_description) + '</b></p><p class="small muted">' +
           esc(statusName(o.status)) + ' · ' + new Date(o.created_at).toLocaleString("pt-BR") + '</p>' +
           '<p>Prestador: ' + esc(provider?.display_name || "Em triagem") + '</p>' +
-          (q.length ? q.map(item => '<p><b>Orçamento:</b> ' + amount(item.amount_cents) +
-              ' · ' + esc(item.details || "") + ' · ' + esc(({proposed:"Aguardando sua decisão",accepted:"Aceito",declined:"Recusado",expired:"Expirado"})[item.status] || item.status) + '</p>').join("") :
+          (q.length ? q.map(item => '<p><b>Orçamento de ' +
+              esc(state.directory.find(p => p.id === item.provider_id)?.display_name || "prestador anterior") +
+              ':</b> ' + amount(item.amount_cents) +
+              ' · ' + esc(item.details || "") + ' · ' + esc(quoteStatusLabel(item, q)) + '</p>').join("") :
             '<p class="small muted">Orçamento ainda não recebido.</p>') +
           (providerOwns(o) && !activeQuote && o.status === "requested" ?
             '<form class="quote-form form" data-id="' + esc(o.id) + '">' +
