@@ -1,6 +1,6 @@
 # FND-08 — Registro mestre de decisões
 
-**Versão 0.1 • Fonte de verdade para decisões de produto e negócio**  
+**Versão 0.2 • Fonte de verdade para decisões de produto e negócio**  
 Aprovado significa **definido pelo responsável do produto**, não necessariamente implementado, homologado juridicamente ou publicado.
 
 ## Decisões expressas consolidadas
@@ -20,7 +20,7 @@ Aprovado significa **definido pelo responsável do produto**, não necessariamen
 | SM-DEC-011 | Contatos telefônicos/WhatsApp de terceiros não ficam publicados para evitar desintermediação | Aprovada |
 | SM-DEC-012 | Pagamentos reais não serão ativados antes de integração, testes e homologação | Aprovada |
 | SM-DEC-013 | Desenvolvimento inicial deve evitar serviços pagos sem autorização, priorizando custo R$ 0 | Aprovada como restrição de projeto |
-| SM-DEC-014 | Comissão de referência: **15% sobre serviços delivery efetivamente pagos** | Hipótese comercial registrada; confirmar instrumento financeiro e contratual |
+| SM-DEC-014 | Comissão de **15% sobre o valor de serviços de borracharia delivery efetivamente pagos pelo aplicativo** | **Aprovada expressamente em 12/11/2026**. Implementação condicionada a contrato, tributação, PSP, split e regras de estorno; sem ativação de cobranças nesta decisão |
 | SM-DEC-015 | Reboque é ideia de expansão futura e não entra no pagamento ativo do MVP | Referência atual documentada; reavaliar antes de expandir |
 | SM-DEC-016 | Foco no mesmo projeto e nas alterações versionadas; migrações só após análise do banco ativo | Aprovada |
 
@@ -37,7 +37,7 @@ Aprovado significa **definido pelo responsável do produto**, não necessariamen
 | ID | Tema pendente | Por que importa |
 | --- | --- | --- |
 | SM-OPEN-001 | Pessoa jurídica, razão social, CNPJ e contatos oficiais | Contratos, notas e canal de atendimento |
-| SM-OPEN-002 | PSP, Pix/cartões, custos de processamento e split | Repasse e margem |
+| SM-OPEN-002 | PSP, Pix/cartões, **quem suporta a tarifa de processamento**, custos e split | Repasse e margem; **próxima decisão comercial** |
 | SM-OPEN-003 | Critérios e documentos exatos para homologar borracheiros | Segurança e legalidade |
 | SM-OPEN-004 | Área de atuação, raio e priorização de prestadores | Chamados viáveis |
 | SM-OPEN-005 | Tempo máximo de resposta e recusa pelo próprio prestador | Evitar pedidos parados |
@@ -49,6 +49,10 @@ Aprovado significa **definido pelo responsável do produto**, não necessariamen
 | SM-OPEN-011 | Política de idade/elegibilidade para contas e geolocalização | Direitos e proteção de dados |
 | SM-OPEN-012 | Critérios de ranking e reputação, prevenção de direcionamento injusto | Transparência |
 | SM-OPEN-013 | Marca/slogan finais, domínio e registro de marca | Identidade e propriedade intelectual |
+
+## Histórico de validação
+
+- **12/11/2026 — SM-DEC-014:** responsável pelo produto aprovou expressamente a comissão de **15% sobre o valor dos serviços delivery efetivamente pagos no Salva Motoca!**. Registro realizado nos documentos FND-02, FND-05 e FND-08; a distribuição da tarifa de processamento e o provedor financeiro permanecem em aberto. Não há autorização para iniciar cobranças reais.
 
 ## Controle de alteração
 
