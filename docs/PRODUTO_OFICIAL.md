@@ -73,7 +73,14 @@ O projeto está em fase de MVP. Deve usar planos gratuitos quando possível, sem
 4. O pagamento é confirmado.
 5. O chat interno é liberado com as restrições de privacidade já definidas.
 
-Retenção e repasse de valores serão definidos antes da ativação de pagamentos reais.
+## Retenção e repasse após conclusão
+
+- Depois do pagamento, o valor fica retido pelo intermediador de pagamentos.
+- Com a confirmação de conclusão pelas duas partes, o repasse ao prestador é liberado.
+- A comissão de 15% incide somente sobre o serviço.
+- Sem confirmação bilateral, não há liberação automática: o caso vai para suporte e mediação.
+- A regra só será ativada com intermediador compatível e validações jurídica, tributária e contratual.
+
 
 ## Dados obrigatórios do pedido
 
