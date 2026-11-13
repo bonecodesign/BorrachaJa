@@ -29,6 +29,7 @@ Aprovado significa **definido pelo responsável do produto**, não necessariamen
 | SM-DEC-020 | Notificação inicial no app/PWA com som/vibração e contagem; lembretes aos 2min e 4min30s; registrar envio, entrega quando possível, abertura e resposta; falha não conta como ausência; sem SMS/WhatsApp nesta fase | **Aprovada expressamente em 13/11/2026**; depende de consentimento, implementação e homologação em dispositivos reais |
 | SM-DEC-021 | Distribuição de chamados prioriza prestadores online mais próximos e amplia progressivamente a área de busca apenas quando necessário | **Aprovada expressamente em 13/11/2026**; parâmetros de distância, etapas e limite operacional serão testados no piloto |
 | SM-DEC-022 | Cada prestador declara e pode atualizar sua própria área de atendimento; chamados só são ofertados dentro dessa área | **Aprovada expressamente em 13/11/2026**; exige interface clara e validação operacional no piloto |
+| SM-DEC-023 | Homologação mínima: nome/razão social, CPF/CNPJ, telefone verificado, endereço/base de atendimento, aceite dos termos e serviços declarados; dados bancários somente com pagamentos reais homologados | **Aprovada expressamente em 13/11/2026**; sujeita a adequação jurídica, privacidade e segurança antes da operação comercial |
 
 ## Definições técnicas adotadas, ajustáveis após testes
 
@@ -44,7 +45,7 @@ Aprovado significa **definido pelo responsável do produto**, não necessariamen
 | --- | --- | --- |
 | SM-OPEN-001 | Pessoa jurídica, razão social, CNPJ e contatos oficiais | Contratos, notas e canal de atendimento |
 | SM-OPEN-002 | PSP, Pix/cartões, custo efetivo, split e regras de liquidação da tarifa já atribuída ao cliente | Implementar sem taxas-surpresa e com transparência |
-| SM-OPEN-003 | Critérios e documentos exatos para homologar borracheiros | Segurança e legalidade |
+| SM-OPEN-003 | Critérios complementares, checagem e guarda segura dos dados de homologação | Segurança, privacidade e legalidade |
 | SM-OPEN-004 | Parâmetros de distância, etapas de expansão, limite operacional e validação da área declarada | Chamados viáveis sem impor deslocamento inviável |
 | SM-OPEN-005 | Implementação, consentimento e homologação em dispositivos reais das notificações | Garantir que o prazo de resposta seja justo e auditável |
 | SM-OPEN-006 | Política de preço mínimo e deslocamento por área | Definir previsibilidade sem criar cobrança automática |
@@ -66,6 +67,7 @@ Aprovado significa **definido pelo responsável do produto**, não necessariamen
 - **13/11/2026 — SM-DEC-020:** alertas no app/PWA com som/vibração, lembretes aos 2min e 4min30s e trilha de auditoria. Falhas não contam como ausência. SMS e WhatsApp ficam fora da primeira fase.
 - **13/11/2026 — SM-DEC-021:** chamados priorizam os prestadores online mais próximos; a área é ampliada gradualmente apenas quando necessário. Distâncias e etapas serão homologadas no piloto.
 - **13/11/2026 — SM-DEC-022:** cada prestador declara e atualiza sua área de atendimento; só recebe chamados dentro dela.
+- **13/11/2026 — SM-DEC-023:** homologação mínima definida com identificação, telefone verificado, base, aceite dos termos e serviços declarados. Dados bancários ficam para a homologação de pagamentos reais.
 
 ## Controle de alteração
 
