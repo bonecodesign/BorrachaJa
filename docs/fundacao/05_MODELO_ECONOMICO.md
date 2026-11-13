@@ -7,7 +7,7 @@
 - **Mapa e consulta:** gratuitos, sem cobrança pela ida direta à oficina.
 - **Borracharia delivery intermediada:** comissão de **15% aprovada internamente em 12/11/2026** sobre o valor do serviço efetivamente pago e liquidado pelo aplicativo (SM-DEC-014). A aplicação prática permanece condicionada a contratos, regras de estorno, tributação e integração financeira homologada.
 - **Reboque:** já está implementado no produto, mas não possui checkout nem cobrança real habilitados; sua ativação comercial depende de homologação.
-- **Preço de serviço:** definido pelo prestador por orçamento; cliente aceita ou recusa.
+- **Preço de serviço:** definido pelo prestador em orçamento discriminado; serviço e deslocamento aparecem separadamente quando aplicável. Cliente aceita ou recusa o total.
 - **Pagamento:** Pix/cartões e split ainda não conectados nem homologados.
 - **Custo inicial de desenvolvimento:** priorizar ferramentas gratuitas quando possível, **não** considerar que a operação real terá custo zero.
 
@@ -22,7 +22,7 @@ Definições (valores em reais):
 - D = perda média esperada com disputas/estornos/fraudes;
 - R = ajustes, reembolsos e repasses reversos.
 
-**Comissão bruta definida para cálculo = P × 0,15.**
+**Comissão bruta definida para cálculo = P × 0,15**, incidindo sobre o valor do serviço aceito, sem incluir deslocamento, tarifa de processamento ou extras não aprovados.
 
 **Resultado de contribuição estimado da plataforma = (P × c) − V − T − D − R.** A tarifa de processamento é cobrada separadamente do cliente e não compõe a comissão do serviço; sua cobrança, liquidação e eventuais reembolsos dependem do PSP homologado.
 
@@ -90,7 +90,7 @@ O valor financeiro líquido do prestador parte do valor do serviço menos a comi
 
 ## Decisões comerciais pendentes
 
-**A comissão de 15% e a tarifa de processamento como encargo do cliente já estão aprovadas; não permanecem como hipóteses.** Ainda é necessário decidir: preço mínimo de serviço; cobrança por deslocamento; eventuais condições promocionais; split automático; calendário de repasses; reserva financeira para contingências; estornos parciais e tratamento de fraudes.
+**A comissão de 15%, a tarifa de processamento como encargo do cliente e a composição transparente do orçamento já estão aprovadas.** Ainda é necessário decidir: preço mínimo de serviço; política de deslocamento por área; eventuais condições promocionais; split automático; calendário de repasses; reserva financeira para contingências; estornos parciais e tratamento de fraudes.
 
 ## Cenários propostos para análise futura
 
