@@ -26,6 +26,7 @@ Aprovado significa **definido pelo responsável do produto**, não necessariamen
 | SM-DEC-017 | Tarifa de processamento de Pix/cartão é encargo do **cliente**, exibida separadamente antes da confirmação; comissão de 15% incide somente sobre o serviço | **Aprovada expressamente em 13/11/2026**; implementação depende de PSP, contrato, impostos, regras de estorno e transparência |
 | SM-DEC-018 | Orçamento deve discriminar serviço e deslocamento quando aplicável; qualquer extra posterior exige novo orçamento e novo aceite; não há acréscimo automático após aceite | **Aprovada expressamente em 13/11/2026**; pagamentos reais continuam desativados |
 | SM-DEC-019 | Prestador online tem 5 minutos para aceitar ou recusar; sem resposta, a solicitação segue ao próximo elegível; 10 ausências em 30 dias entram em revisão administrativa, sem bloqueio automático | **Aprovada expressamente em 13/11/2026**; depende de entrega e registro confiáveis de notificações antes de ativar |
+| SM-DEC-020 | Notificação inicial no app/PWA com som/vibração e contagem; lembretes aos 2min e 4min30s; registrar envio, entrega quando possível, abertura e resposta; falha não conta como ausência; sem SMS/WhatsApp nesta fase | **Aprovada expressamente em 13/11/2026**; depende de consentimento, implementação e homologação em dispositivos reais |
 
 ## Definições técnicas adotadas, ajustáveis após testes
 
@@ -43,7 +44,7 @@ Aprovado significa **definido pelo responsável do produto**, não necessariamen
 | SM-OPEN-002 | PSP, Pix/cartões, custo efetivo, split e regras de liquidação da tarifa já atribuída ao cliente | Implementar sem taxas-surpresa e com transparência |
 | SM-OPEN-003 | Critérios e documentos exatos para homologar borracheiros | Segurança e legalidade |
 | SM-OPEN-004 | Área de atuação, raio e priorização de prestadores | Chamados viáveis |
-| SM-OPEN-005 | Desenho, canais, consentimentos e falhas de notificações | Garantir que o prazo de resposta seja justo e auditável |
+| SM-OPEN-005 | Implementação, consentimento e homologação em dispositivos reais das notificações | Garantir que o prazo de resposta seja justo e auditável |
 | SM-OPEN-006 | Política de preço mínimo e deslocamento por área | Definir previsibilidade sem criar cobrança automática |
 | SM-OPEN-007 | Cancelamento após pagamento, estorno e mediação | Direitos e incidentes |
 | SM-OPEN-008 | Regime de tributação, notas e tratamento contábil | Sustentabilidade legal |
@@ -60,6 +61,7 @@ Aprovado significa **definido pelo responsável do produto**, não necessariamen
 - **13/11/2026 — SM-DEC-015 atualizada:** reboque já está implementado no produto; pagamento e despacho comercial continuam desativados.
 - **13/11/2026 — SM-DEC-018:** orçamento discriminado entre serviço e deslocamento; extras exigem novo aceite. Não há cobrança automática posterior.
 - **13/11/2026 — SM-DEC-019:** prazo de 5 minutos para aceitar/recusar; encaminhamento automático sem resposta; revisão administrativa após 10 ausências em 30 dias, sem bloqueio automático. A regra não será ativada antes da validação das notificações.
+- **13/11/2026 — SM-DEC-020:** alertas no app/PWA com som/vibração, lembretes aos 2min e 4min30s e trilha de auditoria. Falhas não contam como ausência. SMS e WhatsApp ficam fora da primeira fase.
 
 ## Controle de alteração
 
