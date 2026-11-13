@@ -42,6 +42,7 @@ Aprovado significa **definido pelo responsável do produto**, não necessariamen
 | SM-DEC-033 | Ordem obrigatória do fluxo: solicitação com foto e dados da moto; recebimento de orçamentos; aceite de um orçamento; pagamento confirmado; abertura do chat interno sob as restrições já aprovadas | **Aprovada expressamente em 13/11/2026**; retenção e repasse condicionados à decisão SM-DEC-034 |
 | SM-DEC-034 | Após pagamento, valor fica retido pelo intermediador até confirmação bilateral da conclusão; então ocorre repasse ao prestador, descontando 15% somente do serviço; sem confirmação, não há liberação automática e o caso segue para suporte/mediação | **Aprovada expressamente em 13/11/2026**; depende de PSP compatível, validação jurídica, tributária e contratual |
 | SM-DEC-035 | Pós-pagamento: cancelamento pelo prestador gera reembolso integral inclusive tarifa; cancelamento do cliente antes de “em deslocamento” gera reembolso integral; após esse marco, valor fica retido para suporte/mediação, sem repasse automático | **Aprovada expressamente em 13/11/2026**; depende de PSP, transparência prévia no checkout e validação jurídica/tributária |
+| SM-DEC-036 | Após o prestador marcar “em deslocamento”, o app informa seu deslocamento em tempo real ao motociclista até a chegada; compartilhamento limitado à solicitação ativa, sem histórico exposto fora dela | **Aprovada expressamente em 13/11/2026**; exige consentimento, controles de geolocalização, segurança e validação em dispositivos reais |
 
 ## Definições técnicas adotadas, ajustáveis após testes
 
@@ -65,7 +66,7 @@ Aprovado significa **definido pelo responsável do produto**, não necessariamen
 | SM-OPEN-008 | Regime de tributação, notas e tratamento contábil | Sustentabilidade legal |
 | SM-OPEN-009 | Implementação, horários operacionais e escalonamento humano do suporte | Operação real sem promessa indevida |
 | SM-OPEN-010 | Instrumentação e revisão dos resultados do piloto antes de ampliar | Gate de decisão |
-| SM-OPEN-011 | Política de idade/elegibilidade, geolocalização, chat e retenção de dados | Direitos e proteção de dados |
+| SM-OPEN-011 | Implementação de idade/elegibilidade, geolocalização ativa, chat e retenção de dados | Direitos e proteção de dados |
 | SM-OPEN-012 | Implementação de reputação, moderação, alternância em empates e prevenção de direcionamento injusto | Transparência |
 | SM-OPEN-013 | Marca/slogan finais, domínio e registro de marca | Identidade e propriedade intelectual |
 
@@ -92,6 +93,7 @@ Aprovado significa **definido pelo responsável do produto**, não necessariamen
 - **13/11/2026 — SM-DEC-033:** fluxo obrigatório: solicitação com foto/dados → orçamentos → aceite → pagamento confirmado → chat interno.
 - **13/11/2026 — SM-DEC-034:** valor fica retido pelo intermediador após pagamento e é repassado ao prestador após confirmação bilateral; 15% incidem somente sobre o serviço. Pendências seguem para suporte/mediação, sem liberação automática.
 - **13/11/2026 — SM-DEC-035:** prestador que cancela gera reembolso integral inclusive tarifa; cliente que cancela antes de “em deslocamento” também. Depois desse marco, o valor fica retido para mediação.
+- **13/11/2026 — SM-DEC-036:** depois de marcar “em deslocamento”, o prestador tem o deslocamento informado em tempo real ao motociclista até a chegada, limitado à solicitação ativa.
 
 ## Controle de alteração
 
