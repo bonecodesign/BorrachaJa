@@ -1,3 +1,8 @@
+-- ATENÇÃO: teste histórico de uma fase ANTERIOR do piloto. NÃO EXECUTAR novamente.
+-- O banco atual exige presença online e bloqueia INSERT direto de service_quotes.
+-- Para o teste atualizado, use supabase/tests/presenca_orcamentos_rollback.sql.
+-- Conservado apenas como documentação da evolução das regras de segurança.
+
 -- BorrachaJá! — teste de RLS com identidades fictícias.
 -- Executar apenas como admin no SQL Editor de banco autorizado.
 -- Todos os INSERTs abaixo são revertidos via ROLLBACK.
