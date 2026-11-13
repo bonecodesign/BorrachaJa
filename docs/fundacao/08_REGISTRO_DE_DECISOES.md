@@ -31,6 +31,7 @@ Aprovado significa **definido pelo responsável do produto**, não necessariamen
 | SM-DEC-022 | Cada prestador declara e pode atualizar sua própria área de atendimento; chamados só são ofertados dentro dessa área | **Aprovada expressamente em 13/11/2026**; exige interface clara e validação operacional no piloto |
 | SM-DEC-023 | Homologação mínima: nome/razão social, CPF/CNPJ, telefone verificado, endereço/base de atendimento, aceite dos termos e serviços declarados; dados bancários somente com pagamentos reais homologados | **Aprovada expressamente em 13/11/2026**; sujeita a adequação jurídica, privacidade e segurança antes da operação comercial |
 | SM-DEC-024 | No piloto sem pagamentos reais: cliente cancela livremente antes do aceite; após aceite, solicita cancelamento registrado e o prestador é avisado; prestador pode cancelar com motivo e o pedido retorna à busca; sem multas ou cobranças | **Aprovada expressamente em 13/11/2026**; estorno, taxas e regras pós-pagamento continuam pendentes |
+| SM-DEC-025 | Suporte no app com protocolo e histórico; categorias de atendimento, prestador, pagamento futuro e segurança; relatos de segurança suspendem a solicitação para análise humana; sem promessa de suporte 24h no piloto | **Aprovada expressamente em 13/11/2026**; app não substitui serviços de emergência |
 
 ## Definições técnicas adotadas, ajustáveis após testes
 
@@ -52,7 +53,7 @@ Aprovado significa **definido pelo responsável do produto**, não necessariamen
 | SM-OPEN-006 | Política de preço mínimo e deslocamento por área | Definir previsibilidade sem criar cobrança automática |
 | SM-OPEN-007 | Cancelamento após pagamento, estorno, taxas e mediação | Direitos e incidentes |
 | SM-OPEN-008 | Regime de tributação, notas e tratamento contábil | Sustentabilidade legal |
-| SM-OPEN-009 | Disponibilidade de suporte e escalonamento humano | Operação real |
+| SM-OPEN-009 | Implementação, horários operacionais e escalonamento humano do suporte | Operação real sem promessa indevida |
 | SM-OPEN-010 | Metas quantitativas de piloto, lançamento e indicadores | Gate de decisão |
 | SM-OPEN-011 | Política de idade/elegibilidade para contas e geolocalização | Direitos e proteção de dados |
 | SM-OPEN-012 | Critérios de ranking e reputação, prevenção de direcionamento injusto | Transparência |
@@ -70,6 +71,7 @@ Aprovado significa **definido pelo responsável do produto**, não necessariamen
 - **13/11/2026 — SM-DEC-022:** cada prestador declara e atualiza sua área de atendimento; só recebe chamados dentro dela.
 - **13/11/2026 — SM-DEC-023:** homologação mínima definida com identificação, telefone verificado, base, aceite dos termos e serviços declarados. Dados bancários ficam para a homologação de pagamentos reais.
 - **13/11/2026 — SM-DEC-024:** cancelamento sem cobrança no piloto: livre antes do aceite; após aceite, pedido de cancelamento registrado; prestador pode cancelar com motivo e a busca é retomada.
+- **13/11/2026 — SM-DEC-025:** suporte no app com protocolo e histórico; relatos de segurança suspendem a solicitação para análise humana. Não há promessa de atendimento 24h e o app não substitui emergência.
 
 ## Controle de alteração
 
