@@ -66,3 +66,19 @@ Foram verificadas as telas:
 **Interface (`live-app-current.js`) em ambiente JavaScript isolado, com Supabase simulado:** 12 cenários cobrindo lista vazia, ativação de dois prestadores, listagem online, pedido, orçamento, botões de aceite/recusa, encaminhamento ao próximo, nova proposta e aceite, e desativação online. **12/12 PASSARAM.**
 
 **Continua pendente:** teste HTTP/E2E em navegadores independentes com Supabase Auth real e revisão antes de colocar pedidos comerciais em operação.
+
+## Atualização — duas recusas por prestador na mesma rodada
+
+**Regra implementada:** primeira recusa do cliente devolve o profissional à fila da solicitação; após a segunda, fica fora apenas do mesmo pedido. Abrir outra solicitação reinicia a contagem para todos os prestadores.
+
+**Teste SQL real no Supabase com `ROLLBACK`: APROVADO.** Dois profissionais online receberam os mesmos pedidos nesta sequência:
+
+- A (recusa 1) → B (recusa 1) → A novamente (recusa 2) → B novamente (recusa 2) → `no_provider`.
+- Contadores finais registrados para a primeira rodada: A = 2 e B = 2, preservando os quatro orçamentos históricos.
+- O cliente encerrou a primeira rodada por `bj_finish_request`; uma conta de terceiro foi impedida de encerrá-la.
+- Uma segunda solicitação com **outro ID** voltou a permitir A, e sua primeira recusa marcou A = 1/2, sem alterar A = 2/2 da rodada anterior.
+- Nenhum registro temporário persistiu no banco, e nenhum pagamento foi criado.
+
+**Teste de interface em JavaScript isolado com backend simulado: 3/3 APROVADOS.** O motociclista viu o botão **Encerrar esta solicitação**, conseguiu encerrá-la por RPC e recebeu o botão **Criar nova solicitação**, que abre a busca de prestadores.
+
+Arquivo reproduzível: `supabase/tests/duas_recusas_por_rodada_rollback.sql`. Ainda faltam testes completos via navegador/HTTP com Supabase Auth real.
