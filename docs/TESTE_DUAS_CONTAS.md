@@ -1,0 +1,51 @@
+# BorrachaJá! — Plano de homologação com duas contas
+
+**Data:** 12/11/2026 (continuação UTC 13/11)  
+**Ambiente:** Supabase `BorrachaJa` • GitHub `bonecodesign/BorrachaJa` (branch `feat/importar-mvp`)
+
+## O que já foi validado automaticamente
+
+Em transações SQL revertidas (**ROLLBACK**) foi possível simular papéis distintos sem manter usuários, pedidos ou orçamentos reais:
+
+- Visitante `anon` lê somente as colunas comerciais de profissionais e serviços aprovados;
+- Cliente pode ler o próprio pedido e endereço;
+- Borracheiro atribuído lê o pedido e cria um único orçamento proposto;
+- Cliente vê o orçamento e terceiro sem vínculo não o vê;
+- Borracheiro **não** vê endereço exato antes do pagamento;
+- Chat pré-pagamento, autohomologação, pedidos por categoria de reboque e envio de pedidos/orçamentos duplicados foram bloqueados.
+
+**Limitação:** testes SQL simulam o uso do RLS, mas não substituem testes completos por navegador, Supabase Auth, e-mail e rede.
+
+## Como testar o aplicativo
+
+1. Baixe o código da branch `feat/importar-mvp` do repositório autorizado. Não use `supabase/schema.sql` (legado).
+2. Na pasta do app execute `python3 -m http.server 8080`; abra `http://localhost:8080` em navegador com internet.
+3. Use uma janela anônima e outra normal. Cadastre **duas contas controladas por você**, com e-mails distintos, sem compartilhar senhas aqui.
+4. Cliente: entre e consulte o mapa gratuito. A lista ficará vazia enquanto não houver prestador aprovado.
+5. Prestador: entre na outra janela, solicite cadastro como borracharia delivery. O cadastro deve ficar `pending`, com `providers.is_active=false` e `provider_services.is_active=false`.
+6. **Somente após verificar a identidade e o consentimento do prestador**, um administrador autorizado deve aprovar o cadastro e habilitar **a categoria correta** pelo painel do Supabase. Não habilitar reboque nesta fase.
+7. Volte à conta do cliente, recarregue e confira o prestador verificado no mapa. Crie apenas um pedido de teste, com endereço fictício para não divulgar informações pessoais reais.
+8. Na conta do prestador, confira o pedido e envie orçamento de teste. Na conta do cliente, confirme que ele aparece em "Pedidos".
+9. Abra uma terceira sessão sem vínculo: não deve consultar pedidos nem orçamentos alheios.
+10. Teste o bloqueio de compartilhamento de endereço do cliente e a indisponibilidade do chat enquanto o pagamento real não existe.
+
+## Aprovação administrativa provisória
+
+No piloto, a homologação deverá ser **manual por conta com permissão de administrador** no projeto Supabase, com verificação do prestador fora da plataforma. Não criar um endpoint público que altere status/ativação de terceiros; o MVP ainda não tem painel administrativo autorizado por funções backend.
+
+A aprovação não pode ser baseada apenas em endereço ou telefone encontrados na internet. Cadastros na prospecção permanecem privados e separados.
+
+## Critérios para não lançar ainda
+
+- Sem usuários de teste validados por navegadores independentes;
+- Sem prestador homologado voluntariamente;
+- Sem aceite formal de orçamento e mudanças de status protegidas;
+- Sem integração de pagamentos reais/split, webhooks, estornos e conciliação;
+- Sem fluxo operacional de suporte e regras de cancelamento.
+
+## Não fazer
+
+- Não publicar senha, chave `sb_secret_*` ou `service_role` no GitHub;
+- Não marcar `payment_records.status='paid'` manualmente para simular que houve cobrança real;
+- Não divulgar telefones e contatos privados de fornecedores no mapa;
+- Não afirmar que o aplicativo já atende emergências.
