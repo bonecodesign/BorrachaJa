@@ -6,7 +6,7 @@
 - Supabase: `BorrachaJa`, projeto `yivkqyjdeouxnwtwfekc`, região `sa-east-1`
 - O projeto não atende emergências nem processa dinheiro nesta fase.
 
-## Estrutura REAL do banco (revisada em 12/11/2026)
+## Estrutura REAL do banco (auditada em 12–13/11/2026)
 
 O banco já possui o esquema publicado nas migrations do Supabase, diferente do `supabase/schema.sql` de uma versão anterior. **NÃO executar `supabase/schema.sql` neste projeto.**
 
@@ -57,9 +57,17 @@ Abra `http://localhost:8080` com internet. A autenticação do Supabase poderá 
 6. Testar atualização de sessão, confirmação de e-mail e RLS em dois navegadores independentes.
 7. Não habilitar pagamentos reais até implementar webhooks com assinatura, antifraude, split, conciliação e reembolso.
 
+## Proteções adicionais aplicadas no Supabase
+
+- Migration `20261112235714_proteger_pedidos_chat_e_catalogo`: reboque marcado como **não cobrável**, chave `request_key` para idempotência, um orçamento proposto por pedido, chat somente após pagamento confirmado, bloqueio de contatos nos dados comerciais e permissões de leitura pública minimizadas.
+- Migration `20261113000025_separar_leitura_publica_de_servicos_da_leitura_do_prestador`: políticas RLS diferentes para visitantes e prestadores, mantendo o mapa público sem acesso ao identificador da conta proprietária.
+- `live-app-current.js` transmite uma chave UUID estável por tentativa de pedido e indica repetição caso ocorra conflito de chave.
+- Testes SQL com identidades simuladas em transações revertidas verificaram: leitura anônima de prestador e serviço homologado, isolamento de pedidos/orçamentos, acesso ao endereço apenas pelo cliente antes de pagamento, bloqueio de chat antecipado, reboque não cobrável, impossibilidade de autohomologação, duplicação de chave e orçamento.
+- Nenhum usuário ou pedido fictício persistiu no banco após os testes.
+
 ## Alertas e pendências
 
-- O `service_requests` existente ainda não oferece idempotência contra criação duplicada. Implantar antes de pedidos reais.
+- A idempotência por chave UUID reduz duplicações técnicas, mas **ainda não protege contra duas solicitações intencionalmente distintas** nem substitui controle de spam/rate limiting.
 - O esquema de prospecção é isolado sem políticas de consulta pública (comportamento desejado).
 - É necessário criar ferramenta de homologação administrativa segura e definir método de captura de localização correto para o pedido.
 - A busca automática usa distância aproximada: ainda não possui despacho automático confiável.
