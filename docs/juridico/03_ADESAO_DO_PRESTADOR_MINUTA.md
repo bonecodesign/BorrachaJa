@@ -11,7 +11,7 @@
 
 ## 1. Finalidade da parceria
 
-A plataforma poderá divulgar prestadores homologados para consulta no mapa gratuito e, quando a contratação financeira estiver habilitada, intermediar solicitações para reparos de pneus de motocicletas no local. O serviço material é descrito e orçado pelo próprio prestador, observadas as condições legais e operacionais aplicáveis.
+A plataforma poderá divulgar prestadores homologados para consulta no mapa gratuito e, quando a contratação financeira estiver habilitada, intermediar solicitações para **reparos de pneus no local e serviços de reboque/remoção de motocicletas**. A habilitação deverá ser específica para as modalidades e capacidades efetivamente verificadas. O serviço material é descrito e orçado pelo próprio prestador, observadas as condições legais e operacionais aplicáveis.
 
 Este texto não estabelece por si só a natureza trabalhista, civil ou empresarial da relação. A qualificação dependerá das condições reais de trabalho e da legislação, que prevalecerá sobre cláusulas meramente declarativas.
 
@@ -47,7 +47,7 @@ Os critérios de tempo de resposta, cancelamento de chamados, não compareciment
 
 ## 7. Pagamento, comissão e repasse — A DEFINIR
 
-A **decisão comercial interna SM-DEC-014**, aprovada em 12/11/2026, estabelece comissão de **15% sobre o valor dos serviços de borracharia delivery efetivamente pagos pelo aplicativo**. A presente minuta **não transforma essa decisão em obrigação contratual vigente** antes da aprovação final e formalização pelas partes. A base de cálculo, natureza do serviço da plataforma, tarifas de pagamento, impostos, recibos, mecanismo de split, prazo de repasse, estornos e responsabilidade por chargeback deverão ser detalhados em anexo econômico revisado antes de cobranças reais.
+A **decisão comercial interna SM-DEC-014**, aprovada em 12/11/2026, estabelece comissão de **15% sobre os serviços intermediados de borracharia delivery efetivamente pagos pelo aplicativo**; o documento oficial também prevê **15% para serviços de reboque**, sujeitos à integração técnica e à homologação financeira. A presente minuta **não transforma essa decisão em obrigação contratual vigente** antes da aprovação final e formalização pelas partes. A base de cálculo, natureza do serviço da plataforma, tarifas de pagamento, impostos, recibos, mecanismo de split, prazo de repasse, estornos e responsabilidade por chargeback deverão ser detalhados em anexo econômico revisado antes de cobranças reais.
 
 Nenhuma taxa é devida por mera consulta ao mapa ou visita direta à oficina. O sistema de testes não recebe valores e não gera direito a recebimentos reais.
 
