@@ -20,8 +20,8 @@ Aprovado significa **definido pelo responsável do produto**, não necessariamen
 | SM-DEC-011 | Contatos telefônicos/WhatsApp de terceiros não ficam publicados para evitar desintermediação | Aprovada |
 | SM-DEC-012 | Pagamentos reais não serão ativados antes de integração, testes e homologação | Aprovada |
 | SM-DEC-013 | Desenvolvimento inicial deve evitar serviços pagos sem autorização, priorizando custo R$ 0 | Aprovada como restrição de projeto |
-| SM-DEC-014 | Comissão de **15% sobre o valor de serviços de borracharia delivery efetivamente pagos pelo aplicativo** | **Aprovada expressamente em 12/11/2026**. Implementação condicionada a contrato, tributação, PSP, split e regras de estorno; sem ativação de cobranças nesta decisão |
-| SM-DEC-015 | Reboque é ideia de expansão futura e não entra no pagamento ativo do MVP | Referência atual documentada; reavaliar antes de expandir |
+| SM-DEC-014 | Comissão de **15%** sobre os serviços de borracharia delivery efetivamente pagos e, conforme a especificação oficial, também sobre os serviços intermediados de **reboque de motos** | Percentual expressamente aprovado em 12/11/2026; inclusão do reboque no modelo comercial já consta de `docs/PRODUTO_OFICIAL.md`. Implementação condicionada a contrato, tributação, PSP, split e estornos; sem ativação de cobranças nesta decisão |
+| SM-DEC-015 | **Reboque de motocicletas integra o escopo oficial do Salva Motoca!**, com orçamento do prestador e comissão prevista de 15%, além da borracharia delivery | Escopo reafirmado pelo responsável pelo produto em 12/11/2026. Categoria existe no banco e no documento oficial; fluxo E2E e pagamento ainda não estão operacionais, e o banco ativo mantém cobrança do reboque desativada |
 | SM-DEC-016 | Foco no mesmo projeto e nas alterações versionadas; migrações só após análise do banco ativo | Aprovada |
 
 ## Definições técnicas adotadas, ajustáveis após testes
@@ -53,6 +53,10 @@ Aprovado significa **definido pelo responsável do produto**, não necessariamen
 ## Histórico de validação
 
 - **12/11/2026 — SM-DEC-014:** responsável pelo produto aprovou expressamente a comissão de **15% sobre o valor dos serviços delivery efetivamente pagos no Salva Motoca!**. Registro realizado nos documentos FND-02, FND-05 e FND-08; a distribuição da tarifa de processamento e o provedor financeiro permanecem em aberto. Não há autorização para iniciar cobranças reais.
+
+## Conciliação da modalidade de reboque
+
+O documento `docs/PRODUTO_OFICIAL.md` inclui **reboque** como modalidade do marketplace, e a migração inicial do Supabase cadastrava `reboque_moto` com 15% e pagamento interno. Migrações posteriores deixaram `paid_in_app=false` e 0% no banco ativo; o front-end conectado atualmente só admite pedido de `borracharia_delivery`. Essa divergência **não altera a decisão de produto** nem autoriza ativação financeira automática: requer implementação técnica versionada, homologação de prestadores, revisão jurídica e testes de pagamento separados.
 
 ## Controle de alteração
 
