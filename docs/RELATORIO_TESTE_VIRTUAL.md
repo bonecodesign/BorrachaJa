@@ -1,0 +1,58 @@
+# BorrachaJá! — Relatório do teste virtual
+
+**Data da execução:** 12/11/2026 (horário de Brasília)  
+**Repositório autorizado:** `bonecodesign/BorrachaJa`, branch `feat/importar-mvp`  
+**Projeto Supabase autorizado:** `BorrachaJa`, ref `yivkqyjdeouxnwtwfekc`
+
+## Objetivo
+
+Simular motociclista, borracheiro e visitante; comprovar criação de pedido de teste, envio de orçamento, isolamento de sessões e proteção de dados, sem pagamentos reais ou contatos com prestadores.
+
+## Parte A — Supabase real (SQL e RLS)
+
+**Resultado: APROVADO.** Uma transação `BEGIN/ROLLBACK` criou identidades fictícias temporárias e simulou:
+
+1. cadastro de borracheiro com status `pending` e serviço inativo;
+2. impossibilidade de o visitante visualizar o prestador pendente;
+3. homologação e ativação feitas somente pelo contexto administrativo do teste;
+4. visibilidade do prestador aprovado ao visitante;
+5. cliente criando pedido de teste com chave de idempotência;
+6. prestador atribuído visualizando o pedido e enviando orçamento proposto;
+7. cliente consultando orçamento e o próprio endereço;
+8. terceiro não vinculado impedido de ler pedido, orçamento ou endereço;
+9. prestador sem pagamento impedido de ler endereço exato;
+10. chat pré-pagamento bloqueado, categoria de reboque não cobrável e duplicações de pedido/orçamento rejeitadas.
+
+A primeira tentativa de simulação falhou porque a identidade autenticada foi mantida ao trocar temporariamente para o papel `anon`. O teste foi corrigido limpando a reivindicação de usuário, e a repetição passou. Isso foi um erro de isolamento do **teste**, não uma vulnerabilidade comprovada.
+
+**Nenhum registro temporário permaneceu no banco:** a transação terminou com `ROLLBACK`.
+
+## Parte B — Aplicativo com Supabase simulado em memória
+
+A versão `live-app-current.js` foi executada em um ambiente JavaScript isolado, com interfaces e consultas de Supabase substituídas por *mocks*. Não foi um navegador real nem usou a API HTTP do Supabase.
+
+Foram verificadas as telas:
+
+| Cenário | Resultado |
+|---|---|
+| Visitante visualiza mapa vazio antes da aprovação | PASSOU |
+| Cadastro de prestador pendente e serviço inativo | PASSOU |
+| Mapa atualizado após homologação simulada | PASSOU |
+| Motociclista cria pedido com UUID de idempotência | PASSOU |
+| Borracheiro visualiza pedido ao abrir “Pedidos” | PASSOU |
+| Borracheiro envia orçamento | PASSOU |
+| Motociclista visualiza orçamento ao abrir “Pedidos” | PASSOU |
+
+**Inicialmente 5/7:** a tela “Pedidos” não atualizava os dados de outra sessão. Foi corrigida em `live-app-current.js`: ao abrir “Pedidos”, o cliente consulta novamente o banco, e há botão “Atualizar pedidos”. **Após a correção: 7/7.**
+
+## Pendências antes de produção
+
+- Criar duas contas de teste de fato pelo Supabase Auth e validar verificação por e-mail.
+- Testar em navegadores ou aparelhos independentes com rede real, inclusive logout e renovação de sessão.
+- Homologar um prestador consentido por um fluxo administrativo protegido; a simulação não constitui homologação operacional.
+- Testar concorrência real de pedidos, mensagens e preços, erros de rede e limites de taxa.
+- Implementar aceite de orçamento, estados de pedido e pagamentos reais com split, webhook, disputas e reembolsos **após homologação**.
+- Revisar a função privilegiada de leitura de localização apontada pelo advisor do Supabase.
+- Publicar apenas após revisão da segurança e operação.
+
+**Conclusão:** o fluxo virtual do backend e das telas passou nos cenários descritos. Não significa aplicativo publicado, pagamentos habilitados ou fluxo end-to-end real de dois dispositivos.
