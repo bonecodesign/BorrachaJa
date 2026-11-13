@@ -32,6 +32,7 @@ Aprovado significa **definido pelo responsável do produto**, não necessariamen
 | SM-DEC-023 | Homologação mínima: nome/razão social, CPF/CNPJ, telefone verificado, endereço/base de atendimento, aceite dos termos e serviços declarados; dados bancários somente com pagamentos reais homologados | **Aprovada expressamente em 13/11/2026**; sujeita a adequação jurídica, privacidade e segurança antes da operação comercial |
 | SM-DEC-024 | No piloto sem pagamentos reais: cliente cancela livremente antes do aceite; após aceite, solicita cancelamento registrado e o prestador é avisado; prestador pode cancelar com motivo e o pedido retorna à busca; sem multas ou cobranças | **Aprovada expressamente em 13/11/2026**; estorno, taxas e regras pós-pagamento continuam pendentes |
 | SM-DEC-025 | Suporte no app com protocolo e histórico; categorias de atendimento, prestador, pagamento futuro e segurança; relatos de segurança suspendem a solicitação para análise humana; sem promessa de suporte 24h no piloto | **Aprovada expressamente em 13/11/2026**; app não substitui serviços de emergência |
+| SM-DEC-026 | Serviço só é concluído após confirmação das duas partes: prestador declara conclusão e motociclista confirma; sem ambas, permanece pendente para acompanhamento/suporte | **Aprovada expressamente em 13/11/2026**; pagamentos e avaliações dependem de implementação posterior |
 
 ## Definições técnicas adotadas, ajustáveis após testes
 
@@ -51,7 +52,7 @@ Aprovado significa **definido pelo responsável do produto**, não necessariamen
 | SM-OPEN-004 | Parâmetros de distância, etapas de expansão, limite operacional e validação da área declarada | Chamados viáveis sem impor deslocamento inviável |
 | SM-OPEN-005 | Implementação, consentimento e homologação em dispositivos reais das notificações | Garantir que o prazo de resposta seja justo e auditável |
 | SM-OPEN-006 | Política de preço mínimo e deslocamento por área | Definir previsibilidade sem criar cobrança automática |
-| SM-OPEN-007 | Cancelamento após pagamento, estorno, taxas e mediação | Direitos e incidentes |
+| SM-OPEN-007 | Cancelamento, confirmação de conclusão, estorno, taxas e mediação após pagamento | Direitos e incidentes |
 | SM-OPEN-008 | Regime de tributação, notas e tratamento contábil | Sustentabilidade legal |
 | SM-OPEN-009 | Implementação, horários operacionais e escalonamento humano do suporte | Operação real sem promessa indevida |
 | SM-OPEN-010 | Metas quantitativas de piloto, lançamento e indicadores | Gate de decisão |
@@ -72,6 +73,7 @@ Aprovado significa **definido pelo responsável do produto**, não necessariamen
 - **13/11/2026 — SM-DEC-023:** homologação mínima definida com identificação, telefone verificado, base, aceite dos termos e serviços declarados. Dados bancários ficam para a homologação de pagamentos reais.
 - **13/11/2026 — SM-DEC-024:** cancelamento sem cobrança no piloto: livre antes do aceite; após aceite, pedido de cancelamento registrado; prestador pode cancelar com motivo e a busca é retomada.
 - **13/11/2026 — SM-DEC-025:** suporte no app com protocolo e histórico; relatos de segurança suspendem a solicitação para análise humana. Não há promessa de atendimento 24h e o app não substitui emergência.
+- **13/11/2026 — SM-DEC-026:** conclusão exige confirmação das duas partes: prestador declara e motociclista confirma. Sem ambas, o serviço fica pendente para acompanhamento.
 
 ## Controle de alteração
 
