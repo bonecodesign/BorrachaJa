@@ -4,7 +4,7 @@
 
 ## A ideia em uma frase
 
-**Salva Motoca! conecta motociclistas que precisam de reparo de pneus a borracharias e borracheiros verificados, com mapa gratuito, orçamento transparente e atendimento delivery intermediado.**
+**Salva Motoca! conecta motociclistas a borracharias, borracheiros delivery e prestadores de reboque de motos, com mapa gratuito, orçamento transparente e serviços intermediados.**
 
 ## O desafio
 
@@ -16,7 +16,7 @@ Uma plataforma simples e acessível:
 
 1. **Mapa gratuito** de borracharias aprovadas para consulta e rota.
 2. **Disponibilidade voluntária**: o prestador habilitado escolhe quando aparece online e recebe novas solicitações.
-3. **Orçamento pelo profissional**: o borracheiro define o valor do reparo e apresenta os detalhes ao solicitante.
+3. **Orçamento pelo profissional**: o prestador de reparo ou reboque define o preço e apresenta os detalhes ao solicitante.
 4. **Decisão pelo motociclista**: o cliente aceita ou recusa; em caso de recusa, o próximo elegível recebe a oportunidade.
 5. **Fila justa por pedido**: após uma recusa, o profissional volta à fila; depois de duas recusas do mesmo solicitante na mesma solicitação, sai daquela rodada. Em novo pedido, começa novamente do zero.
 6. **Pagamento protegido no futuro**: a implantação de Pix, cartões, comissão e repasses depende de homologação. Ainda não existe contratação real no piloto técnico.
@@ -38,7 +38,7 @@ Motociclistas e motoboys de Belo Horizonte, além de borracharias físicas e pro
 
 ## Modelo de sustentabilidade
 
-A consulta ao mapa não gera cobrança. Para reparos delivery pagos pela plataforma, existe **referência de comissão de 15%**. Viabilidade, alocação de taxas financeiras, impostos e repasses ainda serão calculados e pactuados com fornecedores e especialistas.
+A consulta ao mapa não gera cobrança. Para serviços intermediados de **reparo delivery e reboque de motos** efetivamente pagos na plataforma, o modelo comercial oficial prevê **comissão de 15%**. Viabilidade, alocação de taxas financeiras, impostos e repasses ainda serão calculados e pactuados com fornecedores e especialistas.
 
 ## Estágio do projeto
 
