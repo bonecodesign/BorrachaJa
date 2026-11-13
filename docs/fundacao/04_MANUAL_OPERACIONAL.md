@@ -2,13 +2,13 @@
 
 **Versão:** 0.1 — procedimentos internos, não vigentes em atendimento público.  
 **Praça inicial:** Belo Horizonte, MG.  
-**Escopo:** reparo de pneus de motocicletas em borracharia e delivery intermediado.
+**Escopo:** mapa gratuito de borracharias, **reparo de pneus delivery** e **reboque/remoção de motocicletas**, modalidades intermediadas do marketplace. O reboque consta do produto oficial, mas sua operação técnica ponta a ponta ainda depende de implementação e testes.
 
 ## 1. Papéis e responsabilidades operacionais
 
 **Solicitante:** informa dados verídicos sobre o problema e a área, aceita ou recusa a proposta, acompanha estado do pedido e registra eventuais falhas.
 
-**Borracheiro:** mantém cadastro correto, comprova habilitação aplicável, decide status online/offline, informa orçamento compatível com a necessidade relatada, aceita ou não assumir a demanda e atualiza etapas do serviço quando disponibilizadas.
+**Prestador de reparo ou reboque:** mantém cadastro correto, comprova habilitação e capacidade adequadas à modalidade oferecida, decide status online/offline, informa orçamento compatível com a necessidade relatada, aceita ou não assumir a demanda e atualiza etapas do serviço quando disponibilizadas.
 
 **Administração:** realiza validação e aprovação documentada dos prestadores, parametriza áreas e categorias, acompanha incidentes, trata denúncias, implementa controles contra fraude e garante disponibilidade de atendimento de suporte.
 
@@ -31,9 +31,9 @@
 
 **Antes de enviar:** interface informa claramente que mapa é gratuito e que atendimento delivery é serviço pago quando houver integração e disponibilidade. Em teste, exibir aviso inequívoco de que nenhuma assistência real está sendo prestada.
 
-**Dados mínimos do pedido:** categoria, descrição do problema, dados necessários da moto, região aproximada, endereço detalhado protegido e identificador único/idempotente. Não armazenar mais GPS que o necessário.
+**Dados mínimos do pedido:** modalidade (reparo delivery ou reboque), descrição do problema, dados necessários da moto, região aproximada, endereço detalhado protegido e identificador único/idempotente. Para reboque, definir também local de destino, capacidade de transporte, condições de embarque e compatibilidade do veículo; coletar somente o estritamente necessário.
 
-**Elegibilidade:** cadastro aprovado, serviço delivery ativo, toggle online voluntário, heartbeat recente, mesma área de atendimento quando configurada. Se nenhum elegível: informar indisponibilidade, sem cobrar, e oferecer encerrar/retentar depois.
+**Elegibilidade:** cadastro aprovado **na modalidade solicitada**, serviço habilitado, toggle online voluntário, heartbeat recente, área de atuação e equipamento compatíveis. Se nenhum elegível: informar indisponibilidade, sem cobrar, e oferecer encerrar/retentar depois.
 
 ## 4. Fluxo de propostas e fila
 
