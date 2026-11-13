@@ -113,7 +113,7 @@ O projeto está em fase de MVP. Deve usar planos gratuitos quando possível, sem
 - O chat interno é liberado somente após pagamento confirmado.
 - Telefone e WhatsApp não são exibidos entre as partes.
 - Permite mensagens, localização e fotos necessárias ao atendimento.
-- Fecha depois da conclusão ou do cancelamento, mantendo o histórico acessível para suporte e incidentes.
+- Fecha depois da conclusão ou do cancelamento, exceto quando uma divergência for encaminhada ao suporte; nesse caso, permanece aberto até a resolução, mantendo o histórico acessível.
 - Enquanto os pagamentos reais não estiverem homologados, o chat permanece indisponível.
 
 ## Validade do orçamento
@@ -135,6 +135,12 @@ O projeto está em fase de MVP. Deve usar planos gratuitos quando possível, sem
 - O sistema prioriza os mais próximos.
 - Em empate prático de distância, alterna a prioridade para evitar concentração de chamados.
 - Avaliações são informativas para o motociclista, mas não mudam a ordem automática durante o piloto.
+
+## Confirmação e avaliação rápidas
+
+- Após o prestador enviar o resumo do serviço, o motociclista tem **5 minutos** para confirmar no aplicativo.
+- Após confirmar, faz a avaliação do prestador.
+- Se houver divergência, aciona o chat para suporte; o chat permanece aberto até a resolução.
 
 ## Avaliações e reputação
 

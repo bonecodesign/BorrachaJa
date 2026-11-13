@@ -37,7 +37,7 @@ Aprovado significa **definido pelo responsável do produto**, não necessariamen
 | SM-DEC-028 | Ordem automática: prestadores homologados, online e dentro da área declarada; depois proximidade; em empate prático, alternância para evitar concentração; avaliações não mudam a ordem no piloto | **Aprovada expressamente em 13/11/2026**; exige critério técnico auditável para empate e alternância |
 | SM-DEC-029 | Piloto fechado em Belo Horizonte: até 15 prestadores homologados, 50 motociclistas convidados e 30 solicitações de teste; meta interna de 80% com ao menos um orçamento em até 15min e nenhum incidente crítico sem tratamento; expansão só após revisão | **Aprovada expressamente em 13/11/2026**; metas não são promessa pública de atendimento |
 | SM-DEC-030 | Orçamento enviado pelo prestador vale por 5 minutos; sem aceite, expira e o pedido pode avançar para o próximo elegível; qualquer alteração exige novo orçamento e novo aceite | **Aprovada expressamente em 13/11/2026**; exige implementação de cronômetro e trilha de auditoria |
-| SM-DEC-031 | Chat interno é liberado somente após pagamento confirmado; não expõe telefone/WhatsApp; permite mensagens, localização e fotos necessárias; fecha após conclusão ou cancelamento, preservando histórico para suporte e incidentes | **Atualizada expressamente em 13/11/2026**; permanece indisponível enquanto pagamentos reais não forem homologados |
+| SM-DEC-031 | Chat interno é liberado somente após pagamento confirmado; não expõe telefone/WhatsApp; permite mensagens, localização e fotos necessárias; fecha após conclusão ou cancelamento, exceto quando houver divergência encaminhada ao suporte, preservando histórico para suporte e incidentes | **Atualizada expressamente em 13/11/2026**; permanece indisponível enquanto pagamentos reais não forem homologados |
 | SM-DEC-032 | Pedido exige foto do problema e marca, modelo e ano da motocicleta | **Aprovada expressamente em 13/11/2026**; exige orientação de privacidade e validação de campos antes do envio |
 | SM-DEC-033 | Ordem obrigatória do fluxo: solicitação com foto e dados da moto; recebimento de orçamentos; aceite de um orçamento; pagamento confirmado; abertura do chat interno sob as restrições já aprovadas | **Aprovada expressamente em 13/11/2026**; retenção e repasse condicionados à decisão SM-DEC-034 |
 | SM-DEC-034 | Após pagamento, valor fica retido pelo intermediador até confirmação bilateral da conclusão; então ocorre repasse ao prestador, descontando 15% somente do serviço; sem confirmação, não há liberação automática e o caso segue para suporte/mediação | **Aprovada expressamente em 13/11/2026**; depende de PSP compatível, validação jurídica, tributária e contratual |
@@ -45,6 +45,7 @@ Aprovado significa **definido pelo responsável do produto**, não necessariamen
 | SM-DEC-036 | Após o prestador marcar “em deslocamento”, o app informa seu deslocamento em tempo real ao motociclista até a chegada; compartilhamento limitado à solicitação ativa, sem histórico exposto fora dela | **Aprovada expressamente em 13/11/2026**; exige consentimento, controles de geolocalização, segurança e validação em dispositivos reais |
 | SM-DEC-037 | Prestador marca “cheguei”; motociclista é avisado e rastreamento em tempo real é encerrado; divergências sobre a chegada seguem para suporte, sem alterar a confirmação bilateral de conclusão | **Aprovada expressamente em 13/11/2026**; exige registro auditável de data/hora e teste em dispositivos reais |
 | SM-DEC-038 | Antes de declarar o serviço concluído, prestador registra resumo curto obrigatório e pode anexar foto do resultado quando fizer sentido; motociclista vê antes de confirmar/contestar; imagem não deve conter dados desnecessários | **Aprovada expressamente em 13/11/2026**; exige controles de privacidade, segurança e retenção |
+| SM-DEC-039 | Após o resumo do prestador, motociclista tem 5 minutos para confirmar no app e então avalia o prestador; em caso de divergência, aciona o chat para suporte, que permanece aberto até a resolução | **Aprovada expressamente em 13/11/2026**; exige cronômetro, notificações e fluxo de suporte auditável |
 
 ## Definições técnicas adotadas, ajustáveis após testes
 
@@ -66,7 +67,7 @@ Aprovado significa **definido pelo responsável do produto**, não necessariamen
 | SM-OPEN-006 | Política de preço mínimo e deslocamento por área | Definir previsibilidade sem criar cobrança automática |
 | SM-OPEN-007 | Implementação/homologação de cancelamento, estorno, taxas e mediação pós-pagamento | Direitos e incidentes |
 | SM-OPEN-008 | Regime de tributação, notas e tratamento contábil | Sustentabilidade legal |
-| SM-OPEN-009 | Implementação, horários operacionais e escalonamento humano do suporte | Operação real sem promessa indevida |
+| SM-OPEN-009 | Implementação, horários operacionais, chat de divergência e escalonamento humano do suporte | Operação real sem promessa indevida |
 | SM-OPEN-010 | Instrumentação e revisão dos resultados do piloto antes de ampliar | Gate de decisão |
 | SM-OPEN-011 | Implementação de idade/elegibilidade, geolocalização ativa, chegada, imagens, chat e retenção de dados | Direitos e proteção de dados |
 | SM-OPEN-012 | Implementação de reputação, moderação, alternância em empates e prevenção de direcionamento injusto | Transparência |
@@ -98,6 +99,7 @@ Aprovado significa **definido pelo responsável do produto**, não necessariamen
 - **13/11/2026 — SM-DEC-036:** depois de marcar “em deslocamento”, o prestador tem o deslocamento informado em tempo real ao motociclista até a chegada, limitado à solicitação ativa.
 - **13/11/2026 — SM-DEC-037:** prestador marca “cheguei”; motociclista é avisado e o rastreamento é encerrado. Divergências vão para suporte.
 - **13/11/2026 — SM-DEC-038:** antes de concluir, prestador registra resumo obrigatório e pode anexar foto do resultado quando necessária; motociclista vê antes de confirmar/contestar.
+- **13/11/2026 — SM-DEC-039:** motociclista confirma em até 5 minutos e avalia o prestador em seguida. Divergência abre chat para suporte até a resolução.
 
 ## Controle de alteração
 
