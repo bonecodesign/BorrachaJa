@@ -30,6 +30,7 @@ Aprovado significa **definido pelo responsável do produto**, não necessariamen
 | SM-DEC-021 | Distribuição de chamados prioriza prestadores online mais próximos e amplia progressivamente a área de busca apenas quando necessário | **Aprovada expressamente em 13/11/2026**; parâmetros de distância, etapas e limite operacional serão testados no piloto |
 | SM-DEC-022 | Cada prestador declara e pode atualizar sua própria área de atendimento; chamados só são ofertados dentro dessa área | **Aprovada expressamente em 13/11/2026**; exige interface clara e validação operacional no piloto |
 | SM-DEC-023 | Homologação mínima: nome/razão social, CPF/CNPJ, telefone verificado, endereço/base de atendimento, aceite dos termos e serviços declarados; dados bancários somente com pagamentos reais homologados | **Aprovada expressamente em 13/11/2026**; sujeita a adequação jurídica, privacidade e segurança antes da operação comercial |
+| SM-DEC-024 | No piloto sem pagamentos reais: cliente cancela livremente antes do aceite; após aceite, solicita cancelamento registrado e o prestador é avisado; prestador pode cancelar com motivo e o pedido retorna à busca; sem multas ou cobranças | **Aprovada expressamente em 13/11/2026**; estorno, taxas e regras pós-pagamento continuam pendentes |
 
 ## Definições técnicas adotadas, ajustáveis após testes
 
@@ -49,7 +50,7 @@ Aprovado significa **definido pelo responsável do produto**, não necessariamen
 | SM-OPEN-004 | Parâmetros de distância, etapas de expansão, limite operacional e validação da área declarada | Chamados viáveis sem impor deslocamento inviável |
 | SM-OPEN-005 | Implementação, consentimento e homologação em dispositivos reais das notificações | Garantir que o prazo de resposta seja justo e auditável |
 | SM-OPEN-006 | Política de preço mínimo e deslocamento por área | Definir previsibilidade sem criar cobrança automática |
-| SM-OPEN-007 | Cancelamento após pagamento, estorno e mediação | Direitos e incidentes |
+| SM-OPEN-007 | Cancelamento após pagamento, estorno, taxas e mediação | Direitos e incidentes |
 | SM-OPEN-008 | Regime de tributação, notas e tratamento contábil | Sustentabilidade legal |
 | SM-OPEN-009 | Disponibilidade de suporte e escalonamento humano | Operação real |
 | SM-OPEN-010 | Metas quantitativas de piloto, lançamento e indicadores | Gate de decisão |
@@ -68,6 +69,7 @@ Aprovado significa **definido pelo responsável do produto**, não necessariamen
 - **13/11/2026 — SM-DEC-021:** chamados priorizam os prestadores online mais próximos; a área é ampliada gradualmente apenas quando necessário. Distâncias e etapas serão homologadas no piloto.
 - **13/11/2026 — SM-DEC-022:** cada prestador declara e atualiza sua área de atendimento; só recebe chamados dentro dela.
 - **13/11/2026 — SM-DEC-023:** homologação mínima definida com identificação, telefone verificado, base, aceite dos termos e serviços declarados. Dados bancários ficam para a homologação de pagamentos reais.
+- **13/11/2026 — SM-DEC-024:** cancelamento sem cobrança no piloto: livre antes do aceite; após aceite, pedido de cancelamento registrado; prestador pode cancelar com motivo e a busca é retomada.
 
 ## Controle de alteração
 
