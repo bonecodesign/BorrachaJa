@@ -37,6 +37,7 @@ Aprovado significa **definido pelo responsável do produto**, não necessariamen
 | SM-DEC-028 | Ordem automática: prestadores homologados, online e dentro da área declarada; depois proximidade; em empate prático, alternância para evitar concentração; avaliações não mudam a ordem no piloto | **Aprovada expressamente em 13/11/2026**; exige critério técnico auditável para empate e alternância |
 | SM-DEC-029 | Piloto fechado em Belo Horizonte: até 15 prestadores homologados, 50 motociclistas convidados e 30 solicitações de teste; meta interna de 80% com ao menos um orçamento em até 15min e nenhum incidente crítico sem tratamento; expansão só após revisão | **Aprovada expressamente em 13/11/2026**; metas não são promessa pública de atendimento |
 | SM-DEC-030 | Orçamento enviado pelo prestador vale por 5 minutos; sem aceite, expira e o pedido pode avançar para o próximo elegível; qualquer alteração exige novo orçamento e novo aceite | **Aprovada expressamente em 13/11/2026**; exige implementação de cronômetro e trilha de auditoria |
+| SM-DEC-031 | Chat interno é liberado somente após o aceite do orçamento; não expõe telefone/WhatsApp; permite mensagens, localização e fotos necessárias; fecha após conclusão ou cancelamento, preservando histórico para suporte e incidentes | **Aprovada expressamente em 13/11/2026**; exige controles de privacidade, segurança e retenção |
 
 ## Definições técnicas adotadas, ajustáveis após testes
 
@@ -60,7 +61,7 @@ Aprovado significa **definido pelo responsável do produto**, não necessariamen
 | SM-OPEN-008 | Regime de tributação, notas e tratamento contábil | Sustentabilidade legal |
 | SM-OPEN-009 | Implementação, horários operacionais e escalonamento humano do suporte | Operação real sem promessa indevida |
 | SM-OPEN-010 | Instrumentação e revisão dos resultados do piloto antes de ampliar | Gate de decisão |
-| SM-OPEN-011 | Política de idade/elegibilidade para contas e geolocalização | Direitos e proteção de dados |
+| SM-OPEN-011 | Política de idade/elegibilidade, geolocalização, chat e retenção de dados | Direitos e proteção de dados |
 | SM-OPEN-012 | Implementação de reputação, moderação, alternância em empates e prevenção de direcionamento injusto | Transparência |
 | SM-OPEN-013 | Marca/slogan finais, domínio e registro de marca | Identidade e propriedade intelectual |
 
@@ -82,6 +83,7 @@ Aprovado significa **definido pelo responsável do produto**, não necessariamen
 - **13/11/2026 — SM-DEC-028:** ordem de oferta por elegibilidade, proximidade e alternância em empate prático; avaliações não mudam a ordem automática no piloto.
 - **13/11/2026 — SM-DEC-029:** piloto fechado em Belo Horizonte com até 15 prestadores, 50 motociclistas e 30 solicitações; meta interna de 80% de orçamento em até 15min e nenhum incidente crítico sem tratamento.
 - **13/11/2026 — SM-DEC-030:** orçamento vale por 5 minutos; sem aceite, expira e o pedido pode avançar. Alteração de preço exige novo orçamento e novo aceite.
+- **13/11/2026 — SM-DEC-031:** chat interno só após aceite; sem exposição de telefone/WhatsApp; permite mensagens, localização e fotos; fecha após conclusão/cancelamento e mantém histórico para suporte.
 
 ## Controle de alteração
 
