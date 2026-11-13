@@ -73,6 +73,12 @@ O projeto está em fase de MVP. Deve usar planos gratuitos quando possível, sem
 4. O pagamento é confirmado.
 5. O chat interno é liberado com as restrições de privacidade já definidas.
 
+## Acompanhamento do deslocamento
+
+- Após marcar “em deslocamento”, o prestador tem seu deslocamento informado em tempo real ao motociclista até a chegada.
+- O compartilhamento funciona somente durante a solicitação ativa e encerra na chegada, cancelamento ou conclusão.
+- Não há exposição de histórico de deslocamentos fora desse atendimento.
+
 ## Cancelamento após pagamento
 
 - Se o prestador cancelar, o cliente recebe reembolso integral, inclusive da tarifa de processamento.
