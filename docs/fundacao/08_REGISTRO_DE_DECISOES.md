@@ -37,7 +37,8 @@ Aprovado significa **definido pelo responsável do produto**, não necessariamen
 | SM-DEC-028 | Ordem automática: prestadores homologados, online e dentro da área declarada; depois proximidade; em empate prático, alternância para evitar concentração; avaliações não mudam a ordem no piloto | **Aprovada expressamente em 13/11/2026**; exige critério técnico auditável para empate e alternância |
 | SM-DEC-029 | Piloto fechado em Belo Horizonte: até 15 prestadores homologados, 50 motociclistas convidados e 30 solicitações de teste; meta interna de 80% com ao menos um orçamento em até 15min e nenhum incidente crítico sem tratamento; expansão só após revisão | **Aprovada expressamente em 13/11/2026**; metas não são promessa pública de atendimento |
 | SM-DEC-030 | Orçamento enviado pelo prestador vale por 5 minutos; sem aceite, expira e o pedido pode avançar para o próximo elegível; qualquer alteração exige novo orçamento e novo aceite | **Aprovada expressamente em 13/11/2026**; exige implementação de cronômetro e trilha de auditoria |
-| SM-DEC-031 | Chat interno é liberado somente após o aceite do orçamento; não expõe telefone/WhatsApp; permite mensagens, localização e fotos necessárias; fecha após conclusão ou cancelamento, preservando histórico para suporte e incidentes | **Aprovada expressamente em 13/11/2026**; exige controles de privacidade, segurança e retenção |
+| SM-DEC-031 | Chat interno é liberado somente após pagamento confirmado; não expõe telefone/WhatsApp; permite mensagens, localização e fotos necessárias; fecha após conclusão ou cancelamento, preservando histórico para suporte e incidentes | **Atualizada expressamente em 13/11/2026**; permanece indisponível enquanto pagamentos reais não forem homologados |
+| SM-DEC-032 | Pedido exige foto do problema e marca, modelo e ano da motocicleta | **Aprovada expressamente em 13/11/2026**; exige orientação de privacidade e validação de campos antes do envio |
 
 ## Definições técnicas adotadas, ajustáveis após testes
 
@@ -83,7 +84,8 @@ Aprovado significa **definido pelo responsável do produto**, não necessariamen
 - **13/11/2026 — SM-DEC-028:** ordem de oferta por elegibilidade, proximidade e alternância em empate prático; avaliações não mudam a ordem automática no piloto.
 - **13/11/2026 — SM-DEC-029:** piloto fechado em Belo Horizonte com até 15 prestadores, 50 motociclistas e 30 solicitações; meta interna de 80% de orçamento em até 15min e nenhum incidente crítico sem tratamento.
 - **13/11/2026 — SM-DEC-030:** orçamento vale por 5 minutos; sem aceite, expira e o pedido pode avançar. Alteração de preço exige novo orçamento e novo aceite.
-- **13/11/2026 — SM-DEC-031:** chat interno só após aceite; sem exposição de telefone/WhatsApp; permite mensagens, localização e fotos; fecha após conclusão/cancelamento e mantém histórico para suporte.
+- **13/11/2026 — SM-DEC-031 atualizada:** chat interno só após pagamento confirmado; sem exposição de telefone/WhatsApp; permanece indisponível até homologação dos pagamentos reais.
+- **13/11/2026 — SM-DEC-032:** pedido exige foto do problema e identificação da moto por marca, modelo e ano.
 
 ## Controle de alteração
 
