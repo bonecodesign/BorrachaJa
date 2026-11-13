@@ -41,20 +41,20 @@ O pedido passa para **`awaiting_payment` — aguardando pagamento**. O orçament
 A recusa marca a proposta atual como `declined` e o servidor busca o **próximo prestador elegível**, seguindo estas regras:
 
 - Precisa estar homologado, ativo, com entrega de borracharia habilitada, online e com sinal recente.
-- Não pode ser o prestador atual nem alguém que já recebeu aquele mesmo pedido.
+- O prestador que acabou de ser recusado **não recebe imediatamente a mesma proposta**; após uma recusa ele pode voltar mais adiante na mesma fila. Com duas recusas desse cliente **na mesma solicitação**, deixa de ser elegível até a rodada terminar.
 - Nesta versão piloto, a busca fica na **mesma cidade** do prestador anterior (Belo Horizonte). Quando há coordenadas, os candidatos são priorizados por proximidade aproximada; sem coordenadas, seguem a ordem de cadastro.
-- O cliente mantém o mesmo pedido; o novo profissional passa a ser o responsável por fornecer outra cotação.
-- Se não houver outro prestador disponível, o pedido muda para `no_provider` e o aplicativo informa que não há próxima opção online.
+- O cliente mantém o mesmo pedido. Profissionais sem recusas naquela rodada têm preferência sobre os já recusados uma vez; o escolhido pode apresentar um novo orçamento.
+- Se não houver **outro** prestador elegível agora, o pedido muda para `no_provider`; mesmo quem teve só uma recusa não é chamado novamente de forma imediata.
 
 **Importante:** distância de trajeto, raio de cobertura, limite de propostas, tempo máximo para resposta e disparo de notificações em tempo real ainda precisam ser homologados antes de atendimento comercial.
 
 ## 5. Segurança e rastreabilidade
 
 - O encaminhamento acontece em uma função SQL transacional, com autenticação e conferência de titularidade do cliente.
-- `bj_request_attempts` guarda os profissionais já acionados para evitar rodadas repetidas.
+- `bj_request_attempts` mantém `rejection_count` por par **pedido/prestador**. Primeira recusa: continua elegível mais adiante; segunda: fora somente dessa solicitação.
 - Orçamentos anteriores são mantidos para auditoria; cada prestador conserva acesso somente aos orçamentos enviados por ele.
 - A inserção direta de orçamentos foi bloqueada: o valor é registrado pelo procedimento protegido `bj_submit_quote`.
-- O cliente aceita ou recusa pela função protegida `bj_answer_quote`.
+- O cliente aceita ou recusa pela função protegida `bj_answer_quote` e pode encerrar a solicitação pela função `bj_finish_request`. O encerramento do piloto registra `cancelled` e não confirma serviço prestado.
 - As funções de presença `bj_set_presence`, `bj_ping_presence` e `bj_online_providers` não fornecem credenciais privadas.
 - O banco continua com RLS em todas as tabelas públicas novas.
 
@@ -63,3 +63,11 @@ A recusa marca a proposta atual como `declined` e o servidor busca o **próximo 
 **Implementado e simulado:** botão online/offline, presença com expiração, exibição de prestadores online, orçamento do prestador, aceite, recusa e encaminhamento ao seguinte, caso sem novo prestador, bloqueio de acesso indevido.
 
 **Pendente para uso real:** testes em dois navegadores com Supabase Auth e internet, homologação do prestador, georreferenciamento/raio de atendimento, notificações e tempo de resposta, finalização do serviço e pagamentos reais. Nenhuma operação comercial deve ser iniciada somente com essa simulação.
+
+## 7. Encerramento da rodada e início de uma nova
+
+A **rodada** é identificada por `service_requests.id`. Ao encerrar a solicitação, ela fica com status `cancelled` (encerramento do teste, não serviço concluído), preservando a auditoria de orçamentos e recusas.
+
+Se o solicitante abrir **um novo pedido**, ele receberá outro `request_id` e, por isso, **todos os prestadores homologados e online começarão novamente com zero recusas**, inclusive aqueles recusados duas vezes na solicitação anterior. Não existe bloqueio permanente do borracheiro por cliente.
+
+Não há atualização automática de antigas solicitações marcadas `no_provider`: o solicitante pode encerrá-las e criar outra quando desejar.
