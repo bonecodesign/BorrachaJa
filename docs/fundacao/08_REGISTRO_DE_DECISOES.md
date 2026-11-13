@@ -23,6 +23,7 @@ Aprovado significa **definido pelo responsável do produto**, não necessariamen
 | SM-DEC-014 | Comissão de **15%** sobre os serviços de borracharia delivery efetivamente pagos e, conforme a especificação oficial, também sobre os serviços intermediados de **reboque de motos** | Percentual expressamente aprovado em 12/11/2026; inclusão do reboque no modelo comercial já consta de `docs/PRODUTO_OFICIAL.md`. Implementação condicionada a contrato, tributação, PSP, split e estornos; sem ativação de cobranças nesta decisão |
 | SM-DEC-015 | **Reboque de motocicletas integra o escopo oficial do Salva Motoca!**, com orçamento do prestador e comissão prevista de 15%, além da borracharia delivery | Escopo reafirmado pelo responsável pelo produto em 12/11/2026. Categoria existe no banco e no documento oficial; fluxo E2E e pagamento ainda não estão operacionais, e o banco ativo mantém cobrança do reboque desativada |
 | SM-DEC-016 | Foco no mesmo projeto e nas alterações versionadas; migrações só após análise do banco ativo | Aprovada |
+| SM-DEC-017 | A **tarifa de processamento de pagamentos Pix e cartões** é suportada pelo **prestador**, tanto no reparo delivery quanto no reboque, **além da comissão de 15%**. Não adicionar a tarifa automaticamente ao preço aceito pelo solicitante. | **Aprovada expressamente em 12/11/2026 na validação do Plano de Negócios.** Tarifas concretas, PSP, desconto no split e tratamento de cancelamentos continuam pendentes; sem habilitar cobranças |
 
 ## Definições técnicas adotadas, ajustáveis após testes
 
@@ -37,7 +38,7 @@ Aprovado significa **definido pelo responsável do produto**, não necessariamen
 | ID | Tema pendente | Por que importa |
 | --- | --- | --- |
 | SM-OPEN-001 | Pessoa jurídica, razão social, CNPJ e contatos oficiais | Contratos, notas e canal de atendimento |
-| SM-OPEN-002 | PSP, Pix/cartões, **quem suporta a tarifa de processamento**, custos e split | Repasse e margem; **próxima decisão comercial** |
+| SM-OPEN-002 | Escolha do PSP, tarifas efetivas de Pix/cartões, integração e forma de deduzir do prestador a tarifa já aprovada, além de split e conciliação | **Responsável pela tarifa decidido (SM-DEC-017); seleção/integração pendente** |
 | SM-OPEN-003 | Critérios e documentos exatos para homologar borracheiros | Segurança e legalidade |
 | SM-OPEN-004 | Área de atuação, raio e priorização de prestadores | Chamados viáveis |
 | SM-OPEN-005 | Tempo máximo de resposta e recusa pelo próprio prestador | Evitar pedidos parados |
@@ -54,7 +55,8 @@ Aprovado significa **definido pelo responsável do produto**, não necessariamen
 ## Histórico de validação
 
 - **12/11/2026 — SM-DEC-015:** o responsável pelo produto confirmou que **reboque de motocicletas já integra o projeto**, corrigindo o enquadramento equivocado como expansão futura. Documento oficial de produto mantém reboque com orçamento e comissão de 15%. Verificar o fluxo técnico completo antes de liberar pagamentos.
-- **12/11/2026 — SM-DEC-014:** responsável pelo produto aprovou expressamente a comissão de **15% sobre o valor dos serviços delivery efetivamente pagos no Salva Motoca!**. Registro realizado nos documentos FND-02, FND-05 e FND-08; a distribuição da tarifa de processamento e o provedor financeiro permanecem em aberto. Não há autorização para iniciar cobranças reais.
+- **12/11/2026 — SM-DEC-017:** responsável pelo projeto aprovou expressamente que o **prestador suportará as tarifas de processamento de Pix e cartões**, separadas da comissão de 15%, para reparo delivery e reboque. Nenhuma tarifa específica de PSP foi definida e nenhum pagamento real foi ativado.
+- **12/11/2026 — SM-DEC-014:** responsável pelo produto aprovou expressamente a comissão de **15% sobre o valor dos serviços delivery efetivamente pagos no Salva Motoca!**. Registro realizado nos documentos FND-02, FND-05 e FND-08; a alocação da tarifa foi definida posteriormente na SM-DEC-017, mas a escolha do provedor financeiro, suas tarifas e sua integração continuam em aberto. Não há autorização para iniciar cobranças reais.
 
 ## Conciliação da modalidade de reboque
 
@@ -66,4 +68,4 @@ Uma alteração deve receber: ID, enunciado anterior, enunciado novo, razão, da
 
 ## Itens que NÃO estão decididos
 
-Não presumir: tarifa obrigatoriamente suportada por qualquer parte, tempo de chegada garantido, atendimento 24 horas, cobertura de todo município, vínculo trabalhista ou ausência de vínculo, exclusão contratual ampla de responsabilidade, retenção indefinida de dados, habilitação de pagamentos ou autorização automática de candidatos prospectados.
+Não presumir: valor nominal/percentual da tarifa de processamento, condições reais do PSP, tempo de chegada garantido, atendimento 24 horas, cobertura de todo município, vínculo trabalhista ou ausência de vínculo, exclusão contratual ampla de responsabilidade, retenção indefinida de dados, habilitação de pagamentos ou autorização automática de candidatos prospectados.
