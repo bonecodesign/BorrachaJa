@@ -27,11 +27,12 @@ Aprovado significa **definido pelo responsável do produto**, não necessariamen
 | SM-DEC-018 | Orçamento deve discriminar serviço e deslocamento quando aplicável; qualquer extra posterior exige novo orçamento e novo aceite; não há acréscimo automático após aceite | **Aprovada expressamente em 13/11/2026**; pagamentos reais continuam desativados |
 | SM-DEC-019 | Prestador online tem 5 minutos para aceitar ou recusar; sem resposta, a solicitação segue ao próximo elegível; 10 ausências em 30 dias entram em revisão administrativa, sem bloqueio automático | **Aprovada expressamente em 13/11/2026**; depende de entrega e registro confiáveis de notificações antes de ativar |
 | SM-DEC-020 | Notificação inicial no app/PWA com som/vibração e contagem; lembretes aos 2min e 4min30s; registrar envio, entrega quando possível, abertura e resposta; falha não conta como ausência; sem SMS/WhatsApp nesta fase | **Aprovada expressamente em 13/11/2026**; depende de consentimento, implementação e homologação em dispositivos reais |
+| SM-DEC-021 | Distribuição de chamados prioriza prestadores online mais próximos e amplia progressivamente a área de busca apenas quando necessário | **Aprovada expressamente em 13/11/2026**; parâmetros de distância, etapas e limite operacional serão testados no piloto |
 
 ## Definições técnicas adotadas, ajustáveis após testes
 
 - Heartbeat de prestador aproximadamente a cada 30 segundos; presença considerada efetiva com sinal recente, dentro de janela de cerca de 90 segundos.
-- Busca piloto no mesmo município, com proximidade aproximada quando houver coordenadas.
+- Busca piloto no mesmo município: priorizar prestadores online mais próximos e ampliar progressivamente a área quando não houver atendimento; usar proximidade aproximada quando houver coordenadas.
 - Em cada rodada, preferir quem tem zero recusas, depois quem tem uma; nunca devolver imediatamente a proposta ao profissional recém-recusado.
 - Encerrar solicitação de **teste** usa estado cancelado. A conclusão de serviço real exige outra lógica.
 - Cada solicitação tem ID independente e histórico de tentativas próprio.
@@ -43,7 +44,7 @@ Aprovado significa **definido pelo responsável do produto**, não necessariamen
 | SM-OPEN-001 | Pessoa jurídica, razão social, CNPJ e contatos oficiais | Contratos, notas e canal de atendimento |
 | SM-OPEN-002 | PSP, Pix/cartões, custo efetivo, split e regras de liquidação da tarifa já atribuída ao cliente | Implementar sem taxas-surpresa e com transparência |
 | SM-OPEN-003 | Critérios e documentos exatos para homologar borracheiros | Segurança e legalidade |
-| SM-OPEN-004 | Área de atuação, raio e priorização de prestadores | Chamados viáveis |
+| SM-OPEN-004 | Parâmetros de distância, etapas de expansão e limite operacional da busca progressiva | Chamados viáveis sem impor deslocamento inviável |
 | SM-OPEN-005 | Implementação, consentimento e homologação em dispositivos reais das notificações | Garantir que o prazo de resposta seja justo e auditável |
 | SM-OPEN-006 | Política de preço mínimo e deslocamento por área | Definir previsibilidade sem criar cobrança automática |
 | SM-OPEN-007 | Cancelamento após pagamento, estorno e mediação | Direitos e incidentes |
@@ -62,6 +63,7 @@ Aprovado significa **definido pelo responsável do produto**, não necessariamen
 - **13/11/2026 — SM-DEC-018:** orçamento discriminado entre serviço e deslocamento; extras exigem novo aceite. Não há cobrança automática posterior.
 - **13/11/2026 — SM-DEC-019:** prazo de 5 minutos para aceitar/recusar; encaminhamento automático sem resposta; revisão administrativa após 10 ausências em 30 dias, sem bloqueio automático. A regra não será ativada antes da validação das notificações.
 - **13/11/2026 — SM-DEC-020:** alertas no app/PWA com som/vibração, lembretes aos 2min e 4min30s e trilha de auditoria. Falhas não contam como ausência. SMS e WhatsApp ficam fora da primeira fase.
+- **13/11/2026 — SM-DEC-021:** chamados priorizam os prestadores online mais próximos; a área é ampliada gradualmente apenas quando necessário. Distâncias e etapas serão homologadas no piloto.
 
 ## Controle de alteração
 
