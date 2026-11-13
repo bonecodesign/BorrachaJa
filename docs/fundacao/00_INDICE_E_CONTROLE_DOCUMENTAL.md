@@ -23,6 +23,7 @@ Dar identidade, consistência e governança ao projeto: o mesmo serviço descrit
 | FND-06 | 06_MAPA_JURIDICO_E_PRIVACIDADE.md | Inventário de obrigações e decisões pendentes | Minuta |
 | FND-07 | 07_PLANO_DE_IMPLANTACAO.md | Marcos, dependências, aceites e decisões de lançamento | Minuta |
 | FND-08 | 08_REGISTRO_DE_DECISOES.md | Escolhas aprovadas, hipóteses e temas em aberto | Minuta |
+| FND-09 | 09_APRESENTACAO_INSTITUCIONAL.md | Texto de apresentação a parceiros e investidores, sem promessas de operação | Minuta |
 | JUR-01 | ../juridico/01_TERMOS_DE_USO_MINUTA.md | Regras apresentáveis a usuários, após revisão legal | Não vigente |
 | JUR-02 | ../juridico/02_POLITICA_DE_PRIVACIDADE_MINUTA.md | Transparência sobre dados, após validação do inventário | Não vigente |
 | JUR-03 | ../juridico/03_ADESAO_DO_PRESTADOR_MINUTA.md | Relação com borracheiros, após revisão e negociação | Não vigente |
