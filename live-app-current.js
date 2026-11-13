@@ -47,6 +47,17 @@
     state.error = ""; state.message = "";
     render();
     window.scrollTo(0, 0);
+    // Cada sessão obtém as informações atuais ao entrar em Pedidos.
+    if (page === "orders" && state.user) {
+      refreshIdentity()
+        .then(() => { if (state.page === "orders") render(); })
+        .catch(err => {
+          if (state.page === "orders") {
+            state.error = errorText(err);
+            render();
+          }
+        });
+    }
   };
   const owns = order => state.user && order.customer_id === state.user.id;
   const providerOwns = order => state.ownProvider && order.provider_id === state.ownProvider.id;
@@ -179,6 +190,7 @@
     if (!state.user) return header("Meus pedidos", "Entre para ver seus pedidos de teste.") +
       '<button class="btn" data-page="login">Entrar</button>';
     return header("Pedidos e orçamentos", "Ambiente de testes. Nenhuma cobrança ou atendimento real está ativo.") +
+      '<button class="btn outline sm" data-action="reload">Atualizar pedidos</button>' +
       (state.orders.length ? state.orders.map(o => {
         const q = state.quotes.filter(x => x.request_id === o.id);
         const provider = state.directory.find(p => p.id === o.provider_id) || state.ownProvider;
