@@ -58,6 +58,13 @@
           }
         });
     }
+    if (page === "map" || page === "request") {
+      refreshDirectory()
+        .then(() => { if (state.page === page) render(); })
+        .catch(err => {
+          if (state.page === page) { state.error = errorText(err); render(); }
+        });
+    }
   };
   const owns = order => state.user && order.customer_id === state.user.id;
   const providerOwns = order => state.ownProvider && order.provider_id === state.ownProvider.id;
