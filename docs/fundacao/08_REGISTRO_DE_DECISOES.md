@@ -41,6 +41,7 @@ Aprovado significa **definido pelo responsável do produto**, não necessariamen
 | SM-DEC-032 | Pedido exige foto do problema e marca, modelo e ano da motocicleta | **Aprovada expressamente em 13/11/2026**; exige orientação de privacidade e validação de campos antes do envio |
 | SM-DEC-033 | Ordem obrigatória do fluxo: solicitação com foto e dados da moto; recebimento de orçamentos; aceite de um orçamento; pagamento confirmado; abertura do chat interno sob as restrições já aprovadas | **Aprovada expressamente em 13/11/2026**; retenção e repasse condicionados à decisão SM-DEC-034 |
 | SM-DEC-034 | Após pagamento, valor fica retido pelo intermediador até confirmação bilateral da conclusão; então ocorre repasse ao prestador, descontando 15% somente do serviço; sem confirmação, não há liberação automática e o caso segue para suporte/mediação | **Aprovada expressamente em 13/11/2026**; depende de PSP compatível, validação jurídica, tributária e contratual |
+| SM-DEC-035 | Pós-pagamento: cancelamento pelo prestador gera reembolso integral inclusive tarifa; cancelamento do cliente antes de “em deslocamento” gera reembolso integral; após esse marco, valor fica retido para suporte/mediação, sem repasse automático | **Aprovada expressamente em 13/11/2026**; depende de PSP, transparência prévia no checkout e validação jurídica/tributária |
 
 ## Definições técnicas adotadas, ajustáveis após testes
 
@@ -60,7 +61,7 @@ Aprovado significa **definido pelo responsável do produto**, não necessariamen
 | SM-OPEN-004 | Parâmetros de distância, etapas de expansão, limite operacional e validação da área declarada | Chamados viáveis sem impor deslocamento inviável |
 | SM-OPEN-005 | Implementação, consentimento e homologação em dispositivos reais das notificações | Garantir que o prazo de resposta seja justo e auditável |
 | SM-OPEN-006 | Política de preço mínimo e deslocamento por área | Definir previsibilidade sem criar cobrança automática |
-| SM-OPEN-007 | Cancelamento, validade de orçamento, confirmação de conclusão, estorno, taxas e mediação após pagamento | Direitos e incidentes |
+| SM-OPEN-007 | Implementação/homologação de cancelamento, estorno, taxas e mediação pós-pagamento | Direitos e incidentes |
 | SM-OPEN-008 | Regime de tributação, notas e tratamento contábil | Sustentabilidade legal |
 | SM-OPEN-009 | Implementação, horários operacionais e escalonamento humano do suporte | Operação real sem promessa indevida |
 | SM-OPEN-010 | Instrumentação e revisão dos resultados do piloto antes de ampliar | Gate de decisão |
@@ -90,6 +91,7 @@ Aprovado significa **definido pelo responsável do produto**, não necessariamen
 - **13/11/2026 — SM-DEC-032:** pedido exige foto do problema e identificação da moto por marca, modelo e ano.
 - **13/11/2026 — SM-DEC-033:** fluxo obrigatório: solicitação com foto/dados → orçamentos → aceite → pagamento confirmado → chat interno.
 - **13/11/2026 — SM-DEC-034:** valor fica retido pelo intermediador após pagamento e é repassado ao prestador após confirmação bilateral; 15% incidem somente sobre o serviço. Pendências seguem para suporte/mediação, sem liberação automática.
+- **13/11/2026 — SM-DEC-035:** prestador que cancela gera reembolso integral inclusive tarifa; cliente que cancela antes de “em deslocamento” também. Depois desse marco, o valor fica retido para mediação.
 
 ## Controle de alteração
 
