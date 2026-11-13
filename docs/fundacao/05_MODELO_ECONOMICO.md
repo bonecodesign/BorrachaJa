@@ -9,6 +9,7 @@
 - **Reboque:** já está implementado no produto, mas não possui checkout nem cobrança real habilitados; sua ativação comercial depende de homologação.
 - **Preço de serviço:** definido pelo prestador em orçamento discriminado; serviço e deslocamento aparecem separadamente quando aplicável. Cliente aceita ou recusa o total.
 - **Pagamento:** Pix/cartões e split ainda não conectados nem homologados.
+- **Retenção e repasse:** após o aceite, o valor pago fica retido pelo intermediador até a confirmação de conclusão pelas duas partes. Depois, o intermediador realiza o repasse ao prestador conforme regras homologadas; sem confirmação bilateral, não há liberação automática e o caso segue para suporte/mediação. Esta regra depende de PSP compatível e validação jurídica, tributária e contratual.
 - **Custo inicial de desenvolvimento:** priorizar ferramentas gratuitas quando possível, **não** considerar que a operação real terá custo zero.
 
 ## Unidade econômica de uma transação
