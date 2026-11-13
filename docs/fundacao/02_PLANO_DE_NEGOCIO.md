@@ -1,12 +1,12 @@
 # FND-02 — Plano de negócio e modelo de operação
 
-**Versão 0.1 • Planejamento interno • Piloto proposto: Belo Horizonte, MG**
+**Versão 0.2 • Planejamento interno • Piloto proposto: Belo Horizonte, MG**
 
 ## 1. Resumo executivo
 
 O Salva Motoca! é um marketplace em construção para o segmento de reparos de pneus de motocicletas. O produto combina um mapa gratuito de borracharias verificadas com um fluxo de solicitação delivery no local do problema. O prestador recebe chamado quando está homologado, habilitado e online; define seu próprio orçamento; o cliente aceita ou recusa. A plataforma mantém o histórico de ofertas e tenta o próximo elegível quando há recusa.
 
-**Modelo econômico de referência:** comissão prevista de 15% sobre serviços de borracharia delivery efetivamente pagos pelo aplicativo, sujeita a validação jurídica, tributária, contratual e de meios de pagamento. Consulta ao mapa e visita direta ao estabelecimento não geram comissão. Reboque é possibilidade futura, fora do checkout inicial.
+**Modelo econômico aprovado internamente:** comissão de **15% sobre o valor dos serviços de borracharia delivery efetivamente pagos pelo aplicativo**. Decisão comercial aprovada pelo responsável pelo projeto em 12/11/2026 (SM-DEC-014). Sua execução depende de validação jurídica, tributária, contratual e de meios de pagamento. Consulta ao mapa e visita direta ao estabelecimento não geram comissão. Reboque é possibilidade futura, fora do checkout inicial.
 
 ## 2. Problema e oportunidade
 
@@ -60,7 +60,7 @@ O Salva Motoca! é um marketplace em construção para o segmento de reparos de 
 
 ## 8. Fontes de receita e custos
 
-**Receita inicialmente prevista:** comissão de 15% do valor da prestação cobrada e liquidada pela plataforma, descontadas eventuais devoluções. Se o modelo com prestador assumindo a tarifa de processamento for adotado, formalizar claramente sua cobrança e testar a viabilidade de pequenos serviços.
+**Receita comercial aprovada internamente:** comissão de **15% sobre o valor do serviço delivery efetivamente pago e liquidado pelo aplicativo**, sujeita a reversões em estornos e cancelamentos. **A tarifa de processamento de Pix/cartão é uma questão separada e ainda não foi atribuída ao prestador, ao cliente ou à plataforma.** Antes da operação real, formalizar base de cálculo, condições de devolução, transparência comercial, tributos, liquidação e split com apoio jurídico e contábil.
 
 **Custos a apurar:** processamento de pagamentos, infraestrutura, mapas e mensagens, suporte, chargebacks/fraudes, marketing, formalização jurídica, tributos, contabilidade, seguro e eventuais responsabilidades de atendimento.
 
