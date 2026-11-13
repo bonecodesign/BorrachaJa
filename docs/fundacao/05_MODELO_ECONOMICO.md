@@ -5,8 +5,8 @@
 ## Hipóteses aprovadas ou registradas
 
 - **Mapa e consulta:** gratuitos, sem cobrança pela ida direta à oficina.
-- **Borracharia delivery intermediada:** comissão de **15% aprovada internamente em 12/11/2026** sobre o valor do serviço efetivamente pago e liquidado pelo aplicativo (SM-DEC-014). A aplicação prática permanece condicionada a contratos, regras de estorno, tributação e integração financeira homologada.
-- **Reboque:** não gera faturamento no MVP inicial; expansão futura a decidir.
+- **Serviços intermediados de borracharia delivery e reboque de motos:** comissão de **15%** sobre o valor efetivamente pago e liquidado pelo aplicativo, conforme decisão comercial e escopo da especificação oficial (SM-DEC-014 e SM-DEC-015). A aplicação prática permanece condicionada a contratos, regras de estorno, tributação e integração financeira homologada.
+- **Reboque:** já integra o produto oficial, não é expansão futura. Sua categoria existe no banco, mas no Supabase ativo está com `paid_in_app=false` e comissão de 0%; trata-se de uma **lacuna de integração técnica**, não de uma alteração da regra comercial. Não ativar cobrança antes da homologação.
 - **Preço de serviço:** definido pelo prestador por orçamento; cliente aceita ou recusa.
 - **Pagamento:** Pix/cartões e split ainda não conectados nem homologados.
 - **Custo inicial de desenvolvimento:** priorizar ferramentas gratuitas quando possível, **não** considerar que a operação real terá custo zero.
@@ -60,7 +60,9 @@ O valor financeiro líquido do prestador depende da contratação com o processa
 
 **Pedidos liquidados mensais = pedidos iniciados × % com orçamento × % de aceite × % liquidados.**
 
-**Comissão bruta mensal = pedidos liquidados × ticket médio pago dos serviços × 15%.**
+**Comissão bruta mensal = (reparos delivery liquidados × ticket médio de reparo + reboques liquidados × ticket médio de reboque) × 15%.**
+
+Acompanhar conversão, ticket, despesas variáveis e risco separadamente para cada modalidade.
 
 **Margem de contribuição mensal = comissão bruta − custos variáveis da plataforma − devoluções e ajustes associados.**
 
@@ -90,7 +92,7 @@ O valor financeiro líquido do prestador depende da contratação com o processa
 
 ## Decisões comerciais pendentes
 
-**A comissão de 15% já está aprovada; não permanece como hipótese de percentual.** Ainda é necessário decidir: quem absorve a **tarifa de processamento de Pix/cartão** (custo distinto da comissão); preço mínimo de serviço; cobrança por deslocamento; eventuais condições promocionais; split automático; calendário de repasses; reserva financeira para contingências; estornos parciais e tratamento de fraudes.
+**A comissão de 15% já está aprovada como percentual comercial dos serviços intermediados; sua aplicação no reboque precisa ser compatibilizada com banco, interface e contratos.** Ainda é necessário decidir: quem absorve a **tarifa de processamento de Pix/cartão** (custo distinto da comissão); preço mínimo de serviço; cobrança por deslocamento; eventuais condições promocionais; split automático; calendário de repasses; reserva financeira para contingências; estornos parciais e tratamento de fraudes.
 
 ## Cenários propostos para análise futura
 
