@@ -10,7 +10,7 @@
 
 ## 1. Objeto da plataforma
 
-O Salva Motoca! é uma plataforma digital em desenvolvimento para consulta gratuita de borracharias e, quando habilitado comercialmente, intermediação de solicitações de reparo de pneus de motocicletas no local indicado pelo usuário.
+O Salva Motoca! é uma plataforma digital em desenvolvimento para consulta gratuita de borracharias e, quando habilitado comercialmente, intermediação de **reparos de pneus no local e reboque/remoção de motocicletas**. As duas modalidades estão no escopo oficial, mas ainda não há operação financeira real habilitada.
 
 As borracharias e borracheiros que anunciam serviços podem ser terceiros independentes, mediante relação contratual a ser formalizada. As responsabilidades concretas do operador da plataforma, do prestador e de eventuais parceiros serão definidas conforme a atuação efetiva de cada um e a legislação aplicável. Nenhuma disposição destes termos exclui direitos legalmente assegurados ao consumidor.
 
@@ -30,7 +30,7 @@ O tratamento de dados pessoais será explicado em política de privacidade espec
 
 **Mapa gratuito:** consulta informativa de estabelecimentos homologados, quando houver. A simples visualização de endereço ou rota não gera comissão à plataforma. Horário e disponibilidade exigem confirmação conforme informações atualizadas.
 
-**Pedido delivery:** o usuário descreve o problema e informa a área relevante. Prestadores homologados e que optaram por estar online podem receber a solicitação. O status online não garante prontidão, chegada, preço ou execução do serviço.
+**Pedido intermediado (reparo delivery ou reboque):** o usuário seleciona a modalidade, descreve o problema e informa a área relevante. Prestadores homologados e que optaram por estar online podem receber a solicitação. O status online não garante prontidão, chegada, preço ou execução do serviço.
 
 **Orçamento:** o prestador apresenta valor e descrição. O usuário poderá aceitar ou recusar antes da contratação. No futuro, o preço total, encargos aplicáveis, condições de serviço e etapas de pagamento deverão estar claros previamente.
 
