@@ -24,6 +24,7 @@ Aprovado significa **definido pelo responsável do produto**, não necessariamen
 | SM-DEC-015 | Reboque de motos já integra o produto; seu pagamento real e despacho comercial permanecem desativados até homologação | Atualizada em 13/11/2026; sem autorização para cobrança real |
 | SM-DEC-016 | Foco no mesmo projeto e nas alterações versionadas; migrações só após análise do banco ativo | Aprovada |
 | SM-DEC-017 | Tarifa de processamento de Pix/cartão é encargo do **cliente**, exibida separadamente antes da confirmação; comissão de 15% incide somente sobre o serviço | **Aprovada expressamente em 13/11/2026**; implementação depende de PSP, contrato, impostos, regras de estorno e transparência |
+| SM-DEC-018 | Orçamento deve discriminar serviço e deslocamento quando aplicável; qualquer extra posterior exige novo orçamento e novo aceite; não há acréscimo automático após aceite | **Aprovada expressamente em 13/11/2026**; pagamentos reais continuam desativados |
 
 ## Definições técnicas adotadas, ajustáveis após testes
 
@@ -42,7 +43,7 @@ Aprovado significa **definido pelo responsável do produto**, não necessariamen
 | SM-OPEN-003 | Critérios e documentos exatos para homologar borracheiros | Segurança e legalidade |
 | SM-OPEN-004 | Área de atuação, raio e priorização de prestadores | Chamados viáveis |
 | SM-OPEN-005 | Tempo máximo de resposta e recusa pelo próprio prestador | Evitar pedidos parados |
-| SM-OPEN-006 | Preço composto, deslocamento, extras e revisão de orçamento | Previsibilidade financeira |
+| SM-OPEN-006 | Política de preço mínimo e deslocamento por área | Definir previsibilidade sem criar cobrança automática |
 | SM-OPEN-007 | Cancelamento após pagamento, estorno e mediação | Direitos e incidentes |
 | SM-OPEN-008 | Regime de tributação, notas e tratamento contábil | Sustentabilidade legal |
 | SM-OPEN-009 | Disponibilidade de suporte e escalonamento humano | Operação real |
@@ -56,6 +57,7 @@ Aprovado significa **definido pelo responsável do produto**, não necessariamen
 - **12/11/2026 — SM-DEC-014:** responsável pelo produto aprovou expressamente a comissão de **15% sobre o valor dos serviços delivery efetivamente pagos no Salva Motoca!**. Não há autorização para iniciar cobranças reais.
 - **13/11/2026 — SM-DEC-017:** responsável pelo produto aprovou a **tarifa de processamento como encargo do cliente**, destacada antes da confirmação e separada da comissão. PSP, custo real, split, estorno e tributos continuam pendentes de homologação.
 - **13/11/2026 — SM-DEC-015 atualizada:** reboque já está implementado no produto; pagamento e despacho comercial continuam desativados.
+- **13/11/2026 — SM-DEC-018:** orçamento discriminado entre serviço e deslocamento; extras exigem novo aceite. Não há cobrança automática posterior.
 
 ## Controle de alteração
 
