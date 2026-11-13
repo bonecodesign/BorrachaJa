@@ -63,6 +63,14 @@ O projeto está em fase de MVP. Deve usar planos gratuitos quando possível, sem
 - Prestador online tem **5 minutos** para aceitar ou recusar a solicitação.
 - Sem resposta no período, o pedido segue para o próximo prestador elegível.
 - **10 ausências em 30 dias** levam o perfil à revisão administrativa; não há bloqueio automático.
-- A regra depende de notificação entregue e registrada; seu acionamento fica pendente do desenho e da homologação dos canais de aviso.
+- A regra depende de notificação entregue e registrada; seu acionamento fica pendente da implementação e homologação dos canais de aviso.
+
+## Notificações de chamados
+
+- Prestador só participa quando estiver online e tiver autorizado notificações.
+- O chamado gera alerta no app/PWA com som, vibração e contador de 5 minutos; há lembretes aos 2min e 4min30s.
+- A plataforma registra envio, entrega quando tecnicamente disponível, abertura e resposta.
+- Se a notificação falhar, não há ausência atribuída ao prestador; o pedido segue ao próximo elegível.
+- SMS e WhatsApp não são usados nesta primeira fase.
 4. Homologar pagamentos e split automático.
 5. Publicar somente após validações operacionais, legais e de segurança.
