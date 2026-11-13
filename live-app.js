@@ -1,4 +1,4 @@
-/* BorrachaJá! Oficial — modo conectado (Supabase, piloto sem pagamento real). */
+/* Salva Motoca! Oficial — modo conectado (Supabase, piloto sem pagamento real). */
 (() => {
   'use strict';
   const cfg = window.BJ_CONFIG || {};
@@ -99,7 +99,7 @@
   }
   function login(){
     if(st.user)return `${title('Você já está conectado')}${profilePage()}`;
-    return `${alertBox()}${title('Entrar no BorrachaJá!','Use seu e-mail e senha. O mapa pode ser consultado sem conta.')}
+    return `${alertBox()}${title('Entrar no Salva Motoca!','Use seu e-mail e senha. O mapa pode ser consultado sem conta.')}
       <form id="login-form" class="form card">
         <label class="fieldrow"><span class="label">E-mail</span><input type="email" name="email" class="field" autocomplete="email" required></label>
         <label class="fieldrow"><span class="label">Senha</span><input type="password" name="password" class="field" autocomplete="current-password" required></label>
@@ -354,7 +354,7 @@
     const d=new FormData(form);
     if(form.id==='login-form'){
       const res=await db.auth.signInWithPassword({email:String(d.get('email')).trim(),password:String(d.get('password'))});
-      if(res.error)throw res.error;goto('home');await reload();st.notice='Bem-vindo ao BorrachaJá!';render();return;
+      if(res.error)throw res.error;goto('home');await reload();st.notice='Bem-vindo ao Salva Motoca!';render();return;
     }
     if(form.id==='register-form'){
       const res=await db.auth.signUp({email:String(d.get('email')).trim(),password:String(d.get('password')),
