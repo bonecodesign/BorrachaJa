@@ -1,44 +1,40 @@
 # Salva Motoca! Oficial
 
-Marketplace de borracharia delivery para motociclistas e motoboys.
+Marketplace de borracharias, borracharia delivery e reboque de motos para motociclistas e motoboys. **Operação inicial: Belo Horizonte e região metropolitana de MG.**
 
 > **Status: MVP em desenvolvimento — não utilizar para solicitar atendimentos reais ou emergenciais.** O sistema ainda não processa pagamentos nem garante disponibilidade de profissionais.
 
 ## Produto oficial
 
 - Aplicativo gratuito e mapa de borracharias gratuito.
-- Atendimento de borracheiro no local mediante orçamento e pagamento na plataforma.
+- Atendimento de borracheiro no local e reboque de motos mediante orçamento e pagamento na plataforma.
 - Escolha do profissional ou busca automática por proximidade/disponibilidade.
 - Comunicação dentro do aplicativo, sem divulgação pública de telefone/WhatsApp.
-- Comissão da plataforma sobre atendimentos delivery pagos.
+- Comissão de **15%** da plataforma sobre serviços delivery e reboque pagos. Consultar o mapa e ir diretamente à borracharia é gratuito, sem comissão.
 - Cadastro e verificação dos prestadores antes de aparecerem no mapa.
 - Desenvolvimento priorizando ferramentas gratuitas e custos iniciais mínimos.
 
-## Organização
+## Estado do piloto conectado
 
-O código-fonte do MVP demonstrativo, o esquema do banco de dados e os testes serão importados após revisão e preparação do repositório.
+O Supabase **Salva Motoca** possui o banco real e o MVP usa as tabelas atuais para autenticação, cadastros pendentes, pedidos e orçamentos de **teste**.
 
-**Não inserir** senhas, tokens, chaves secretas, documentos pessoais, telefones internos de fornecedores nem dados reais de clientes no GitHub.
-
-Consulte [docs/PRODUTO_OFICIAL.md](docs/PRODUTO_OFICIAL.md) para as regras atuais do produto.
-
-## Estado do piloto conectado (12/11/2026)
-
-O Supabase **BorrachaJa** já possui banco real com esquema diferente do SQL legado. A branch de desenvolvimento inclui `live-app-current.js`, que consulta as tabelas existentes, autentica contas, recebe cadastros pendentes e permite pedidos e orçamentos apenas de **teste**.
-
-- Consulte `docs/INTEGRACAO_SUPABASE.md` antes de qualquer mudança de banco.
-- A proteção do endereço do pedido foi reforçada no Supabase e registrada em `supabase/applied/`.
-- O app continua **não publicado**, sem pagamentos reais, sem atendimento garantido e sem despacho operacional.
+- Consulte [docs/INTEGRACAO_SUPABASE.md](docs/INTEGRACAO_SUPABASE.md) antes de qualquer mudança no banco.
+- O endereço do pedido permanece protegido até a confirmação de pagamento real, que ainda não existe neste MVP.
+- O app segue **não publicado**, sem pagamentos reais, sem atendimento garantido e sem despacho operacional.
 - Os fornecedores de prospecção não são prestadores homologados; seu cadastro privado não é publicado.
 
-## Nova funcionalidade do piloto — online e decisão de orçamento
+### Disponibilidade e orçamentos
 
-O borracheiro aprovado decide quando fica **online** ou **offline** no aplicativo. A presença é validada por conexão recente com o servidor. O profissional informa o preço e o cliente pode **aceitar** ou **recusar**, com transferência para o próximo borracheiro online elegível quando houver.
+O prestador aprovado pode ficar **online** ou **offline**; a presença exige comunicação recente com o servidor. Ele informa o orçamento e o cliente decide aceitar ou recusar.
 
-Aceitar **não realiza pagamento**: os pedidos ficam aguardando integração financeira futura.
+Na mesma solicitação, a primeira recusa mantém o prestador elegível para uma oportunidade futura; a segunda recusa do mesmo solicitante o exclui daquela rodada. Encerrar a solicitação e criar outra reinicia a contagem.
 
-Ver [especificação de presença e orçamentos](docs/PRESENCA_ORCAMENTO_REGRA_OFICIAL.md) e [teste virtual de duas rodadas](supabase/tests/presenca_orcamentos_rollback.sql).
+Aceitar o orçamento **não realiza pagamento**. A integração financeira permanece futura.
 
-### Regra de recusas da mesma solicitação
+## Organização
 
-A primeira recusa de orçamento **não bloqueia permanentemente** o prestador: ele volta à fila daquela rodada. Com a segunda recusa do mesmo solicitante no mesmo pedido, deixa de ser escolhido naquela rodada. Ao **encerrar a solicitação** e criar uma nova, o contador recomeça do zero. A mudança foi testada no Supabase em transações revertidas, sem chamadas ou pagamentos reais.
+O banco está criado no Supabase `Salva Motoca`, com tabelas operacionais, prospecção privada, RLS e migrações versionadas. O código do aplicativo e os testes de MVP estão nesta base; pagamentos e operação comercial ainda exigem homologação.
+
+Consulte [supabase/README.md](supabase/README.md) para regras de versionamento e [docs/PRODUTO_OFICIAL.md](docs/PRODUTO_OFICIAL.md) para a especificação vigente.
+
+**Não inserir** senhas, tokens, chaves secretas, documentos pessoais, telefones internos de fornecedores nem dados reais de clientes no GitHub.
