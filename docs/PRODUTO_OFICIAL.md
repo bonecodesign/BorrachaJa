@@ -29,7 +29,7 @@ Os prestadores se cadastram e passam por verificação antes de aparecerem como 
 O prestador homologado escolhe **ficar online** ou **ficar offline**. Apenas quem oferece delivery, está habilitado e tem comunicação recente com o servidor entra na fila de novos pedidos.
 
 - **Aceitar:** pedido fica aguardando pagamento; não há cobrança nem despacho enquanto a integração financeira não existir.
-- **Recusar:** a primeira recusa mantém o prestador elegível para outra oportunidade mais adiante na mesma rodada; após duas recusas do mesmo solicitante na mesma solicitação, fica de fora daquela rodada. O pedido segue para o próximo profissional online elegível, priorizando os mais próximos e sem retornar imediatamente ao recém-recusado. A área de busca se amplia gradualmente apenas quando necessário. Encerrar e criar novo pedido reinicia as contagens.
+- **Recusar:** a primeira recusa mantém o prestador elegível para outra oportunidade mais adiante na mesma rodada; após duas recusas do mesmo solicitante na mesma solicitação, fica de fora daquela rodada. O pedido segue para o próximo profissional online elegível, priorizando os mais próximos e sem retornar imediatamente ao recém-recusado. A área de busca se amplia gradualmente apenas quando necessário, respeitando sempre a área de atendimento declarada pelo prestador. Encerrar e criar novo pedido reinicia as contagens.
 - **Conexão perdida:** a presença efetiva expira automaticamente. Desligar a disponibilidade bloqueia novos pedidos e preserva os já recebidos.
 
 ## Serviços oficiais e regras comerciais
@@ -64,6 +64,12 @@ O projeto está em fase de MVP. Deve usar planos gratuitos quando possível, sem
 - Sem resposta no período, o pedido segue para o próximo prestador elegível.
 - **10 ausências em 30 dias** levam o perfil à revisão administrativa; não há bloqueio automático.
 - A regra depende de notificação entregue e registrada; seu acionamento fica pendente da implementação e homologação dos canais de aviso.
+
+## Área de atendimento do prestador
+
+- Cada prestador declara sua área de atendimento no perfil e pode atualizá-la.
+- Chamados só são ofertados dentro dessa área; estar online não obriga o prestador a atender fora dela.
+- A busca progressiva prioriza proximidade, mas respeita essa delimitação.
 
 ## Notificações de chamados
 
