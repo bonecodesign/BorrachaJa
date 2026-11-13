@@ -1,4 +1,4 @@
-# BorrachaJá! — começar o cadastro dos fornecedores com R$ 0
+# Salva Motoca! — começar o cadastro dos fornecedores com R$ 0
 
 **Esta etapa ainda não publica o site ou disponibiliza reparos reais.** O objetivo é ter cadastro de usuários e uma lista privada dos fornecedores potenciais em um banco de teste gratuito.
 
