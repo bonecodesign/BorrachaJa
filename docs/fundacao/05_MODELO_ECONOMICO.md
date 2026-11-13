@@ -16,7 +16,8 @@
 Definições (valores em reais):
 - P = preço total aceito e liquidado;
 - c = comissão nominal (referência 0,15);
-- F = custo total da transação de pagamento;
+- F = tarifa de processamento cobrada pelo provedor de pagamentos, suportada contratualmente pelo prestador (SM-DEC-017);
+- F_plataforma = eventual custo de pagamento que recaia efetivamente sobre a plataforma por exigência do PSP, contingência ou impossibilidade de repasse (não presumir zero);
 - V = custo variável de infraestrutura, mensagens e suporte atribuível ao pedido;
 - T = tributos incidentes na operação da plataforma, conforme enquadramento;
 - D = perda média esperada com disputas/estornos/fraudes;
@@ -26,7 +27,7 @@ Definições (valores em reais):
 
 **Resultado de contribuição estimado da plataforma = (P × c) − F_plataforma − V − T − D − R.**
 
-O valor financeiro líquido do prestador depende da contratação com o processador, alocação transparente das tarifas, tributos dele, restituições e modelo de split. Não assumir que o simples percentual de comissão representa margem ou caixa disponível.
+**Alocação de custos aprovada:** a tarifa ordinária de processamento do Pix e dos cartões é responsabilidade do **prestador**, tanto na borracharia delivery quanto no reboque, distinta dos 15% de comissão. O repasse ilustrativo, antes de tributos próprios, ajustes ou reservas, é **P − (P × 0,15) − F**. A comissão bruta da plataforma permanece **P × 0,15**; sua margem depende de outros custos efetivos, impostos e devoluções. O PSP escolhido precisará permitir a cobrança ou dedução transparente dessa tarifa do saldo do prestador, sem acréscimo inesperado ao cliente. Não assumir tarifas numéricas sem contrato.
 
 ### Exemplo meramente ilustrativo — NÃO é preço de mercado
 
@@ -36,7 +37,7 @@ O valor financeiro líquido do prestador depende da contratação com o processa
 | R$ 100,00 | R$ 15,00 | R$ 85,00 |
 | R$ 150,00 | R$ 22,50 | R$ 127,50 |
 
-**Atenção:** números acima ignoram custos de pagamento, suporte, impostos e eventuais devoluções; não são promessa de repasse líquido.
+**Atenção:** números acima mostram valores antes da tarifa de processamento, que será suportada pelo prestador, além de impostos, suporte e eventuais devoluções. Não são promessa de repasse líquido.
 
 ## Variáveis para a planilha de viabilidade
 
@@ -49,7 +50,7 @@ O valor financeiro líquido do prestador depende da contratação com o processa
 | Taxa de aceite | % | Teste real pendente |
 | Ticket médio efetivamente pago | R$ | Pesquisa e piloto pendentes |
 | Comissão nominal | % | **15% aprovada internamente**; implementação pendente |
-| Taxa de processamento | R$/pedido e % | Negociar com provedor |
+| Tarifa de processamento (Pix/cartões) | R$/pedido e % | **Prestador responsável — SM-DEC-017**; valores e forma de desconto a negociar com PSP |
 | Custo variável de atendimento | R$/pedido | Medir |
 | Impostos e obrigações | % e R$ | Contador/jurídico definir |
 | Chargeback/refund | % e R$ | Medir |
@@ -87,12 +88,12 @@ Acompanhar conversão, ticket, despesas variáveis e risco separadamente para ca
 - Separar valores de terceiros de receita da plataforma no planejamento contábil.
 - Relatório de conciliação, estorno, retenção e imposto por período.
 - Exibir ao cliente valor final antes de confirmação, sem taxas surpresas.
-- Aprovar matriz de quem arca com processamento, tributos, cancelamento e chargeback.
+- **SM-DEC-017 aprovada:** o prestador suporta a tarifa ordinária de processamento Pix/cartão; negociar valor e forma de cobrança com PSP. Aprovar separadamente a matriz de tributos, cancelamentos, reembolsos e chargebacks.
 - Não habilitar cobranças até testes reais e revisão contratual.
 
 ## Decisões comerciais pendentes
 
-**A comissão de 15% já está aprovada como percentual comercial dos serviços intermediados; sua aplicação no reboque precisa ser compatibilizada com banco, interface e contratos.** Ainda é necessário decidir: quem absorve a **tarifa de processamento de Pix/cartão** (custo distinto da comissão); preço mínimo de serviço; cobrança por deslocamento; eventuais condições promocionais; split automático; calendário de repasses; reserva financeira para contingências; estornos parciais e tratamento de fraudes.
+**A comissão de 15% já está aprovada como percentual comercial dos serviços intermediados; sua aplicação no reboque precisa ser compatibilizada com banco, interface e contratos.** **A responsabilidade pela tarifa de processamento Pix/cartão já está aprovada para o prestador.** Ainda é necessário decidir: provedor financeiro e sua tabela efetiva de tarifas, forma de desconto/repasse, preço mínimo de serviço; cobrança por deslocamento; eventuais condições promocionais; split automático; calendário de repasses; reserva financeira para contingências; estornos parciais e tratamento de fraudes.
 
 ## Cenários propostos para análise futura
 
