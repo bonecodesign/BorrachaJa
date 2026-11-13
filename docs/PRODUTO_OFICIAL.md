@@ -73,6 +73,13 @@ O projeto está em fase de MVP. Deve usar planos gratuitos quando possível, sem
 4. O pagamento é confirmado.
 5. O chat interno é liberado com as restrições de privacidade já definidas.
 
+## Cancelamento após pagamento
+
+- Se o prestador cancelar, o cliente recebe reembolso integral, inclusive da tarifa de processamento.
+- Se o cliente cancelar antes de o prestador marcar “em deslocamento”, recebe reembolso integral.
+- Depois desse marco, o valor continua retido e o suporte/mediação decide o reembolso com base no registro do atendimento; não há repasse automático.
+- A política precisa aparecer de forma transparente antes da confirmação do pagamento e só vale após homologação financeira e jurídica.
+
 ## Retenção e repasse após conclusão
 
 - Depois do pagamento, o valor fica retido pelo intermediador de pagamentos.
