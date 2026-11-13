@@ -56,3 +56,13 @@ Foram verificadas as telas:
 - Publicar apenas após revisão da segurança e operação.
 
 **Conclusão:** o fluxo virtual do backend e das telas passou nos cenários descritos. Não significa aplicativo publicado, pagamentos habilitados ou fluxo end-to-end real de dois dispositivos.
+
+## Continuação — presença online e segunda rodada de orçamento
+
+**Banco Supabase real:** cenário com cliente e dois borracheiros temporários: ambos online, profissional A envia orçamento de R$ 120, cliente recusa, pedido passa para profissional B, profissional B envia R$ 139, cliente aceita e pedido fica `awaiting_payment` sem registro financeiro. Outro cenário com segundo prestador offline termina em `no_provider`. O histórico do primeiro prestador fica protegido e somente ele pode consultar seu orçamento. A identidade de terceiro não pode aceitar a proposta. **PASSOU; todos os dados foram revertidos por `ROLLBACK`.**
+
+**Presença:** após 91 segundos sem comunicação simulada, o profissional desaparece da lista online; novo ping restaura a disponibilidade sem alterar aprovação. **PASSOU; com `ROLLBACK`.**
+
+**Interface (`live-app-current.js`) em ambiente JavaScript isolado, com Supabase simulado:** 12 cenários cobrindo lista vazia, ativação de dois prestadores, listagem online, pedido, orçamento, botões de aceite/recusa, encaminhamento ao próximo, nova proposta e aceite, e desativação online. **12/12 PASSARAM.**
+
+**Continua pendente:** teste HTTP/E2E em navegadores independentes com Supabase Auth real e revisão antes de colocar pedidos comerciais em operação.
