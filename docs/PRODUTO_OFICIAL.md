@@ -143,6 +143,13 @@ O projeto está em fase de MVP. Deve usar planos gratuitos quando possível, sem
 - Comentários não são publicados automaticamente: passam por moderação e podem ser contestados.
 - A média pública só é exibida depois de 3 serviços concluídos.
 
+## Comprovação simples do serviço
+
+- Antes de declarar o serviço concluído, o prestador registra um resumo curto do que foi feito.
+- Pode anexar uma foto do resultado quando isso fizer sentido para o atendimento.
+- O motociclista vê essas informações antes de confirmar ou contestar a conclusão.
+- Fotos não devem mostrar documentos, pessoas ou dados desnecessários.
+
 ## Confirmação de conclusão
 
 - O prestador declara no aplicativo que o serviço foi concluído.
