@@ -57,5 +57,12 @@ O projeto está em fase de MVP. Deve usar planos gratuitos quando possível, sem
 1. Validar contas separadas de motociclista e prestador em ambiente de teste.
 2. Homologar manualmente prestadores reais antes de exibi-los no mapa.
 3. Testar tempo de resposta, notificações, cobertura e fluxos antifraude.
+
+## Regra de resposta do prestador
+
+- Prestador online tem **5 minutos** para aceitar ou recusar a solicitação.
+- Sem resposta no período, o pedido segue para o próximo prestador elegível.
+- **10 ausências em 30 dias** levam o perfil à revisão administrativa; não há bloqueio automático.
+- A regra depende de notificação entregue e registrada; seu acionamento fica pendente do desenho e da homologação dos canais de aviso.
 4. Homologar pagamentos e split automático.
 5. Publicar somente após validações operacionais, legais e de segurança.

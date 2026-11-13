@@ -86,4 +86,4 @@ Liquidez insuficiente de prestadores; falsa indicação de online; perda de sina
 
 ## 12. Decisões ainda abertas
 
-CNPJ/razão social, responsável contratual, termos e tributos; processador de pagamentos, custo por transação e split; critérios de aprovação profissional; preço mínimo ou políticas de valores abusivos, se pertinentes; SLA de resposta; raio máximo; cancelamento após aceite; suporte e indenização; canais de aquisição pagos; metas do piloto e orçamento. A composição e a revisão do orçamento foram definidas.
+CNPJ/razão social, responsável contratual, termos e tributos; processador de pagamentos, custo por transação e split; critérios de aprovação profissional; preço mínimo ou políticas de valores abusivos, se pertinentes; SLA de resposta e desenho/validação das notificações; raio máximo; cancelamento após aceite; suporte e indenização; canais de aquisição pagos; metas do piloto e orçamento. A composição e a revisão do orçamento foram definidas.
