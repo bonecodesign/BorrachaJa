@@ -43,7 +43,7 @@ O projeto está em fase de MVP; deve usar planos gratuitos quando possível, sem
 O prestador fixa o valor do orçamento. O motociclista decide **Aceitar** ou **Recusar**:
 
 - **Aceitar:** pedido fica aguardando pagamento pelo aplicativo; não é cobrado nem despachado enquanto a integração financeira não existir.
-- **Recusar:** o pedido passa a outro prestador online elegível, sem repetir os que já receberam o mesmo pedido; se ninguém estiver disponível, informa que não há próxima opção.
+- **Recusar:** a primeira recusa mantém o borracheiro elegível para outra oportunidade mais adiante na mesma rodada; após duas recusas do **mesmo solicitante na mesma solicitação**, fica de fora dessa rodada. O pedido passa ao próximo prestador online disponível (nunca devolvido imediatamente ao recém-recusado). Se não houver outro, informa indisponibilidade. **Encerrar e criar novo pedido reinicia todas as contagens.**
 - **Conexão perdida:** a presença efetiva expira automaticamente. Desligar a disponibilidade bloqueia novos pedidos, preservando pedidos já recebidos.
 
 O protótipo atual usa busca por cidade e ordenação aproximada quando há GPS. Antes da operação comercial ainda são necessários raio de cobertura, notificação de novos pedidos, tempo máximo para resposta e testes com usuários reais.
