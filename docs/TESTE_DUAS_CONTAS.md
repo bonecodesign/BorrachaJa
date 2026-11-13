@@ -49,3 +49,15 @@ A aprovação não pode ser baseada apenas em endereço ou telefone encontrados 
 - Não marcar `payment_records.status='paid'` manualmente para simular que houve cobrança real;
 - Não divulgar telefones e contatos privados de fornecedores no mapa;
 - Não afirmar que o aplicativo já atende emergências.
+
+## Teste da nova disponibilidade e orçamento
+
+Com duas contas reais de teste em navegadores distintos, após homologar o prestador:
+1. Profissional ativa **Ficar online**. Em outra janela, o cliente atualiza a busca e vê que aceita pedidos.
+2. Cliente cria pedido e o profissional envia preço e detalhes.
+3. Cliente testa **Recusar e buscar próximo online** usando outro prestador homologado e conectado. A proposta anterior fica registrada.
+4. Profissional seguinte envia outro orçamento. Cliente clica **Aceitar** e observa o estado de aguardando pagamento, **sem pagar dinheiro**.
+5. No perfil do prestador, clique **Ficar offline**; a lista de novos pedidos não deve incluí-lo.
+6. Para validar queda de conexão, interrompa o navegador (ou internet) e confira que após cerca de 90 segundos sem ping ele deixa de aparecer online.
+
+**Não executar chamadas de serviço reais e não ativar cobranças.**
