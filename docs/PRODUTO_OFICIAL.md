@@ -65,6 +65,13 @@ O projeto está em fase de MVP. Deve usar planos gratuitos quando possível, sem
 - **10 ausências em 30 dias** levam o perfil à revisão administrativa; não há bloqueio automático.
 - A regra depende de notificação entregue e registrada; seu acionamento fica pendente da implementação e homologação dos canais de aviso.
 
+## Ordem de oferta dos chamados
+
+- Participam somente prestadores homologados, online e dentro da área de atendimento que declararam.
+- O sistema prioriza os mais próximos.
+- Em empate prático de distância, alterna a prioridade para evitar concentração de chamados.
+- Avaliações são informativas para o motociclista, mas não mudam a ordem automática durante o piloto.
+
 ## Avaliações e reputação
 
 - Após a confirmação bilateral da conclusão, motociclista e prestador podem dar nota de 1 a 5 e comentário opcional.
