@@ -36,6 +36,7 @@ Aprovado significa **definido pelo responsável do produto**, não necessariamen
 | SM-DEC-027 | Após conclusão bilateral, ambas as partes podem avaliar de 1 a 5 com comentário opcional; avaliações ficam ocultas até ambas enviarem ou 7 dias; comentários passam por moderação/contestação; média pública após 3 serviços concluídos | **Aprovada expressamente em 13/11/2026**; exige implementação de moderação e privacidade |
 | SM-DEC-028 | Ordem automática: prestadores homologados, online e dentro da área declarada; depois proximidade; em empate prático, alternância para evitar concentração; avaliações não mudam a ordem no piloto | **Aprovada expressamente em 13/11/2026**; exige critério técnico auditável para empate e alternância |
 | SM-DEC-029 | Piloto fechado em Belo Horizonte: até 15 prestadores homologados, 50 motociclistas convidados e 30 solicitações de teste; meta interna de 80% com ao menos um orçamento em até 15min e nenhum incidente crítico sem tratamento; expansão só após revisão | **Aprovada expressamente em 13/11/2026**; metas não são promessa pública de atendimento |
+| SM-DEC-030 | Orçamento enviado pelo prestador vale por 5 minutos; sem aceite, expira e o pedido pode avançar para o próximo elegível; qualquer alteração exige novo orçamento e novo aceite | **Aprovada expressamente em 13/11/2026**; exige implementação de cronômetro e trilha de auditoria |
 
 ## Definições técnicas adotadas, ajustáveis após testes
 
@@ -55,7 +56,7 @@ Aprovado significa **definido pelo responsável do produto**, não necessariamen
 | SM-OPEN-004 | Parâmetros de distância, etapas de expansão, limite operacional e validação da área declarada | Chamados viáveis sem impor deslocamento inviável |
 | SM-OPEN-005 | Implementação, consentimento e homologação em dispositivos reais das notificações | Garantir que o prazo de resposta seja justo e auditável |
 | SM-OPEN-006 | Política de preço mínimo e deslocamento por área | Definir previsibilidade sem criar cobrança automática |
-| SM-OPEN-007 | Cancelamento, confirmação de conclusão, estorno, taxas e mediação após pagamento | Direitos e incidentes |
+| SM-OPEN-007 | Cancelamento, validade de orçamento, confirmação de conclusão, estorno, taxas e mediação após pagamento | Direitos e incidentes |
 | SM-OPEN-008 | Regime de tributação, notas e tratamento contábil | Sustentabilidade legal |
 | SM-OPEN-009 | Implementação, horários operacionais e escalonamento humano do suporte | Operação real sem promessa indevida |
 | SM-OPEN-010 | Instrumentação e revisão dos resultados do piloto antes de ampliar | Gate de decisão |
@@ -80,6 +81,7 @@ Aprovado significa **definido pelo responsável do produto**, não necessariamen
 - **13/11/2026 — SM-DEC-027:** avaliações bilaterais após conclusão; ocultas até ambas enviarem ou 7 dias; comentários moderados e contestáveis; média pública após 3 serviços concluídos.
 - **13/11/2026 — SM-DEC-028:** ordem de oferta por elegibilidade, proximidade e alternância em empate prático; avaliações não mudam a ordem automática no piloto.
 - **13/11/2026 — SM-DEC-029:** piloto fechado em Belo Horizonte com até 15 prestadores, 50 motociclistas e 30 solicitações; meta interna de 80% de orçamento em até 15min e nenhum incidente crítico sem tratamento.
+- **13/11/2026 — SM-DEC-030:** orçamento vale por 5 minutos; sem aceite, expira e o pedido pode avançar. Alteração de preço exige novo orçamento e novo aceite.
 
 ## Controle de alteração
 
