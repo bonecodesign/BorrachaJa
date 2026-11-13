@@ -78,6 +78,8 @@ Não há prova de margem positiva, faturamento ou cobertura de custos. Não comu
 
 ## 10. Indicadores de validação
 
+Piloto fechado em Belo Horizonte: até 15 prestadores homologados, 50 motociclistas convidados e ao menos 30 solicitações de teste. Critérios internos: 80% das solicitações com ao menos um orçamento em até 15 minutos e nenhum incidente crítico de segurança ou privacidade sem tratamento. Não são promessas públicas de serviço.
+
 Profissionais homologados e efetivamente disponíveis; solicitações por área e horário; porcentagem que recebe ao menos um orçamento; tempo até primeira resposta; taxa de aceite; chamadas sem prestador; cancelamentos; avaliações; incidentes; custo de suporte por pedido; comissões líquidas após devoluções.
 
 ## 11. Riscos centrais
@@ -86,4 +88,4 @@ Liquidez insuficiente de prestadores; falsa indicação de online; perda de sina
 
 ## 12. Decisões ainda abertas
 
-CNPJ/razão social, responsável contratual, termos e tributos; processador de pagamentos, custo por transação e split; critérios complementares de aprovação profissional; preço mínimo ou políticas de valores abusivos, se pertinentes; homologação técnica das notificações e auditoria de entrega; validação operacional da área de atendimento declarada pelo prestador; regras de cancelamento e confirmação de conclusão após pagamentos reais; implementação da alternância justa em empates de proximidade e mediação; implementação e teste do suporte com protocolo e triagem de segurança; indenização; canais de aquisição pagos; metas do piloto e orçamento. A composição e a revisão do orçamento foram definidas.
+CNPJ/razão social, responsável contratual, termos e tributos; processador de pagamentos, custo por transação e split; critérios complementares de aprovação profissional; preço mínimo ou políticas de valores abusivos, se pertinentes; homologação técnica das notificações e auditoria de entrega; validação operacional da área de atendimento declarada pelo prestador; regras de cancelamento e confirmação de conclusão após pagamentos reais; implementação da alternância justa em empates de proximidade e mediação; implementação e teste do suporte com protocolo e triagem de segurança; indenização; canais de aquisição pagos; orçamento do piloto. As metas do piloto fechado foram definidas. A composição e a revisão do orçamento foram definidas.

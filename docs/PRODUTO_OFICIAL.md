@@ -65,6 +65,13 @@ O projeto está em fase de MVP. Deve usar planos gratuitos quando possível, sem
 - **10 ausências em 30 dias** levam o perfil à revisão administrativa; não há bloqueio automático.
 - A regra depende de notificação entregue e registrada; seu acionamento fica pendente da implementação e homologação dos canais de aviso.
 
+## Piloto fechado em Belo Horizonte
+
+- Até 15 prestadores homologados e 50 motociclistas convidados.
+- Pelo menos 30 solicitações de teste.
+- Critério interno: 80% das solicitações devem receber ao menos um orçamento em até 15 minutos, sem incidente crítico de segurança ou privacidade sem tratamento.
+- Uma abertura maior só é considerada após revisar os resultados. Esses critérios não são promessa pública de atendimento.
+
 ## Ordem de oferta dos chamados
 
 - Participam somente prestadores homologados, online e dentro da área de atendimento que declararam.
