@@ -38,3 +38,7 @@ O borracheiro aprovado decide quando fica **online** ou **offline** no aplicativ
 Aceitar **não realiza pagamento**: os pedidos ficam aguardando integração financeira futura.
 
 Ver [especificação de presença e orçamentos](docs/PRESENCA_ORCAMENTO_REGRA_OFICIAL.md) e [teste virtual de duas rodadas](supabase/tests/presenca_orcamentos_rollback.sql).
+
+### Regra de recusas da mesma solicitação
+
+A primeira recusa de orçamento **não bloqueia permanentemente** o prestador: ele volta à fila daquela rodada. Com a segunda recusa do mesmo solicitante no mesmo pedido, deixa de ser escolhido naquela rodada. Ao **encerrar a solicitação** e criar uma nova, o contador recomeça do zero. A mudança foi testada no Supabase em transações revertidas, sem chamadas ou pagamentos reais.
