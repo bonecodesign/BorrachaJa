@@ -39,7 +39,8 @@ Aprovado significa **definido pelo responsável do produto**, não necessariamen
 | SM-DEC-030 | Orçamento enviado pelo prestador vale por 5 minutos; sem aceite, expira e o pedido pode avançar para o próximo elegível; qualquer alteração exige novo orçamento e novo aceite | **Aprovada expressamente em 13/11/2026**; exige implementação de cronômetro e trilha de auditoria |
 | SM-DEC-031 | Chat interno é liberado somente após pagamento confirmado; não expõe telefone/WhatsApp; permite mensagens, localização e fotos necessárias; fecha após conclusão ou cancelamento, preservando histórico para suporte e incidentes | **Atualizada expressamente em 13/11/2026**; permanece indisponível enquanto pagamentos reais não forem homologados |
 | SM-DEC-032 | Pedido exige foto do problema e marca, modelo e ano da motocicleta | **Aprovada expressamente em 13/11/2026**; exige orientação de privacidade e validação de campos antes do envio |
-| SM-DEC-033 | Ordem obrigatória do fluxo: solicitação com foto e dados da moto; recebimento de orçamentos; aceite de um orçamento; pagamento confirmado; abertura do chat interno sob as restrições já aprovadas | **Aprovada expressamente em 13/11/2026**; retenção e repasse de valores continuam pendentes de decisão própria |
+| SM-DEC-033 | Ordem obrigatória do fluxo: solicitação com foto e dados da moto; recebimento de orçamentos; aceite de um orçamento; pagamento confirmado; abertura do chat interno sob as restrições já aprovadas | **Aprovada expressamente em 13/11/2026**; retenção e repasse condicionados à decisão SM-DEC-034 |
+| SM-DEC-034 | Após pagamento, valor fica retido pelo intermediador até confirmação bilateral da conclusão; então ocorre repasse ao prestador, descontando 15% somente do serviço; sem confirmação, não há liberação automática e o caso segue para suporte/mediação | **Aprovada expressamente em 13/11/2026**; depende de PSP compatível, validação jurídica, tributária e contratual |
 
 ## Definições técnicas adotadas, ajustáveis após testes
 
@@ -54,7 +55,7 @@ Aprovado significa **definido pelo responsável do produto**, não necessariamen
 | ID | Tema pendente | Por que importa |
 | --- | --- | --- |
 | SM-OPEN-001 | Pessoa jurídica, razão social, CNPJ e contatos oficiais | Contratos, notas e canal de atendimento |
-| SM-OPEN-002 | PSP, Pix/cartões, custo efetivo, split, retenção/repasse e regras de liquidação da tarifa já atribuída ao cliente | Implementar sem taxas-surpresa e com transparência |
+| SM-OPEN-002 | Escolha/homologação de PSP, Pix/cartões, custo efetivo, split e liquidação compatíveis com a retenção/repasses aprovados | Implementar sem taxas-surpresa e com transparência |
 | SM-OPEN-003 | Critérios complementares, checagem e guarda segura dos dados de homologação | Segurança, privacidade e legalidade |
 | SM-OPEN-004 | Parâmetros de distância, etapas de expansão, limite operacional e validação da área declarada | Chamados viáveis sem impor deslocamento inviável |
 | SM-OPEN-005 | Implementação, consentimento e homologação em dispositivos reais das notificações | Garantir que o prazo de resposta seja justo e auditável |
@@ -87,7 +88,8 @@ Aprovado significa **definido pelo responsável do produto**, não necessariamen
 - **13/11/2026 — SM-DEC-030:** orçamento vale por 5 minutos; sem aceite, expira e o pedido pode avançar. Alteração de preço exige novo orçamento e novo aceite.
 - **13/11/2026 — SM-DEC-031 atualizada:** chat interno só após pagamento confirmado; sem exposição de telefone/WhatsApp; permanece indisponível até homologação dos pagamentos reais.
 - **13/11/2026 — SM-DEC-032:** pedido exige foto do problema e identificação da moto por marca, modelo e ano.
-- **13/11/2026 — SM-DEC-033:** fluxo obrigatório: solicitação com foto/dados → orçamentos → aceite → pagamento confirmado → chat interno. Retenção e repasse continuam pendentes.
+- **13/11/2026 — SM-DEC-033:** fluxo obrigatório: solicitação com foto/dados → orçamentos → aceite → pagamento confirmado → chat interno.
+- **13/11/2026 — SM-DEC-034:** valor fica retido pelo intermediador após pagamento e é repassado ao prestador após confirmação bilateral; 15% incidem somente sobre o serviço. Pendências seguem para suporte/mediação, sem liberação automática.
 
 ## Controle de alteração
 
