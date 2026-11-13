@@ -1,11 +1,11 @@
 # FND-05 — Modelo econômico-financeiro e hipóteses
 
-**Versão 0.1 — estudo interno, não previsão de faturamento**
+**Versão 0.2 — estudo interno, não previsão de faturamento**
 
 ## Hipóteses aprovadas ou registradas
 
 - **Mapa e consulta:** gratuitos, sem cobrança pela ida direta à oficina.
-- **Borracharia delivery intermediada:** comissão da plataforma **prevista em 15%** sobre o valor efetivamente pago; confirmar aprovação comercial, base de cálculo, tributação e contrato antes de operar.
+- **Borracharia delivery intermediada:** comissão de **15% aprovada internamente em 12/11/2026** sobre o valor do serviço efetivamente pago e liquidado pelo aplicativo (SM-DEC-014). A aplicação prática permanece condicionada a contratos, regras de estorno, tributação e integração financeira homologada.
 - **Reboque:** não gera faturamento no MVP inicial; expansão futura a decidir.
 - **Preço de serviço:** definido pelo prestador por orçamento; cliente aceita ou recusa.
 - **Pagamento:** Pix/cartões e split ainda não conectados nem homologados.
@@ -22,7 +22,7 @@ Definições (valores em reais):
 - D = perda média esperada com disputas/estornos/fraudes;
 - R = ajustes, reembolsos e repasses reversos.
 
-**Comissão bruta teórica = P × c.**
+**Comissão bruta definida para cálculo = P × 0,15.**
 
 **Resultado de contribuição estimado da plataforma = (P × c) − F_plataforma − V − T − D − R.**
 
@@ -48,7 +48,7 @@ O valor financeiro líquido do prestador depende da contratação com o processa
 | Pedidos que recebem orçamento | % | Teste real pendente |
 | Taxa de aceite | % | Teste real pendente |
 | Ticket médio efetivamente pago | R$ | Pesquisa e piloto pendentes |
-| Comissão nominal | % | Referência de 15% |
+| Comissão nominal | % | **15% aprovada internamente**; implementação pendente |
 | Taxa de processamento | R$/pedido e % | Negociar com provedor |
 | Custo variável de atendimento | R$/pedido | Medir |
 | Impostos e obrigações | % e R$ | Contador/jurídico definir |
@@ -60,7 +60,7 @@ O valor financeiro líquido do prestador depende da contratação com o processa
 
 **Pedidos liquidados mensais = pedidos iniciados × % com orçamento × % de aceite × % liquidados.**
 
-**Comissão bruta mensal = pedidos liquidados × ticket médio pago × 15%.**
+**Comissão bruta mensal = pedidos liquidados × ticket médio pago dos serviços × 15%.**
 
 **Margem de contribuição mensal = comissão bruta − custos variáveis da plataforma − devoluções e ajustes associados.**
 
@@ -90,7 +90,7 @@ O valor financeiro líquido do prestador depende da contratação com o processa
 
 ## Decisões comerciais pendentes
 
-Preço mínimo de serviço, cobrança por deslocamento, distribuição de taxas de pagamento, eventuais condições promocionais, split automático, calendário de repasses, reserva financeira para contingências, estornos parciais e tratamento de fraudes.
+**A comissão de 15% já está aprovada; não permanece como hipótese de percentual.** Ainda é necessário decidir: quem absorve a **tarifa de processamento de Pix/cartão** (custo distinto da comissão); preço mínimo de serviço; cobrança por deslocamento; eventuais condições promocionais; split automático; calendário de repasses; reserva financeira para contingências; estornos parciais e tratamento de fraudes.
 
 ## Cenários propostos para análise futura
 
