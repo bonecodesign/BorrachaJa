@@ -61,9 +61,9 @@ O Salva Motoca! é um marketplace em construção para **reparos de pneus e rebo
 
 ## 8. Fontes de receita e custos
 
-**Receita comercial aprovada internamente:** comissão de **15% sobre o valor de serviços intermediados de reparo delivery e reboque efetivamente pagos e liquidados pelo aplicativo**, sujeita a reversões em estornos e cancelamentos. **A tarifa de processamento de Pix/cartão é uma questão separada e ainda não foi atribuída ao prestador, ao cliente ou à plataforma.** Antes da operação real, formalizar base de cálculo, condições de devolução, transparência comercial, tributos, liquidação e split com apoio jurídico e contábil.
+**Receita comercial aprovada internamente:** comissão de **15% sobre o valor de serviços intermediados de reparo delivery e reboque efetivamente pagos e liquidados pelo aplicativo**, sujeita a reversões em estornos e cancelamentos. **Decisão comercial SM-DEC-017:** a tarifa de processamento de Pix/cartão será suportada pelo **prestador de serviço** (borracharia delivery ou reboque), em separado da comissão de 15%. O cliente verá o valor total previamente aceito, sem acréscimo automático dessa tarifa. A tarifa exata, o mecanismo de desconto e o contrato com o PSP ainda serão definidos e homologados. Antes da operação real, formalizar base de cálculo, condições de devolução, transparência comercial, tributos, liquidação e split com apoio jurídico e contábil.
 
-**Custos a apurar:** processamento de pagamentos, infraestrutura, mapas e mensagens, suporte, chargebacks/fraudes, marketing, formalização jurídica, tributos, contabilidade, seguro e eventuais responsabilidades de atendimento.
+**Custos a apurar:** custos de processamento cobrados do prestador (avaliar o tratamento financeiro/contábil conforme PSP), infraestrutura, mapas e mensagens, suporte, chargebacks/fraudes, marketing, formalização jurídica, tributos, contabilidade, seguro e eventuais responsabilidades de atendimento. A decisão sobre quem suporta a tarifa não garante custo zero ao operador, pois o PSP pode cobrar outras taxas ou despesas.
 
 Não há prova de margem positiva, faturamento ou cobertura de custos. Não comunicar investimento inicial zero como custo operacional garantido para sempre.
 
@@ -87,4 +87,4 @@ Liquidez insuficiente de prestadores; falsa indicação de online; perda de sina
 
 ## 12. Decisões ainda abertas
 
-CNPJ/razão social, responsável contratual, termos e tributos; processador de pagamentos e custo por transação; critérios de aprovação profissional; preço mínimo ou políticas de valores abusivos, se pertinentes; SLA de resposta; raio máximo; cancelamento após aceite; suporte e indenização; canais de aquisição pagos; metas do piloto e orçamento.
+CNPJ/razão social, responsável contratual, termos e tributos; processador de pagamentos, tarifas efetivas e suporte ao desconto da tarifa do prestador no split; critérios de aprovação profissional; preço mínimo ou políticas de valores abusivos, se pertinentes; SLA de resposta; raio máximo; cancelamento após aceite; suporte e indenização; canais de aquisição pagos; metas do piloto e orçamento.
