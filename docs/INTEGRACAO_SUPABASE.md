@@ -74,14 +74,14 @@ Abra `http://localhost:8080` com internet. A autenticação do Supabase poderá 
 
 ## Regra nova — presença online e recusa de orçamento (12/11/2026)
 
-**Implementado no banco e na branch:** `bj_provider_presence` guarda disponibilidade escolhida pelo borracheiro, com ping a cada 30 segundos e expiração de conectividade após 90 segundos. `bj_request_attempts` evita repetir o profissional no mesmo pedido. As funções protegidas `bj_set_presence`, `bj_ping_presence`, `bj_online_providers`, `bj_submit_quote` e `bj_answer_quote` operam o fluxo.
+**Implementado no banco e na branch:** `bj_provider_presence` guarda disponibilidade escolhida pelo borracheiro, com ping a cada 30 segundos e expiração de conectividade após 90 segundos. `bj_request_attempts` registra até duas recusas por par pedido/prestador; a primeira devolve o profissional à fila e a segunda o exclui somente daquela rodada. As funções protegidas `bj_set_presence`, `bj_ping_presence`, `bj_online_providers`, `bj_submit_quote` e `bj_answer_quote` operam o fluxo.
 
 Migrações no Supabase, todas já aplicadas:
 - `20261113002617_presenca_online_orcamento_e_proximo_prestador`
 - `20261113002736_separar_visibilidade_publica_e_propria_da_presenca`
 - `20261113003015_preservar_historico_de_orcamentos_do_prestador`
 
-O pedido passa de `requested` para `quoted` quando o prestador informa valor. O cliente **aceita** (`awaiting_payment`, sem cobrar nada) ou **recusa**, transferindo o mesmo pedido a outro prestador online e homologado, ainda não tentado. Sem próximo, o estado vira `no_provider`.
+O pedido passa de `requested` para `quoted` quando o prestador informa valor. O cliente **aceita** (`awaiting_payment`, sem cobrar nada) ou **recusa**, transferindo o pedido a outro prestador online e homologado; antigos participantes com uma única recusa podem reaparecer depois que os ainda não recusados forem considerados. Sem próximo, o estado vira `no_provider`.
 
 O cadastro administrativo `providers.is_active` permanece separado da disponibilidade escolhida. Sem aprovação administrativa e `provider_services.is_active=true`, não pode ficar online.
 
@@ -91,3 +91,9 @@ O cadastro administrativo `providers.is_active` permanece separado da disponibil
 - Simulação de navegação JS com banco em memória: **12/12 cenários passaram**.
 
 **Pendências:** validação com duas sessões de Auth reais, notificação/atualização automática de pedidos sem botão, raio de cobertura e distância real de deslocamento, tempo de resposta e tratamento de prestador que fica offline com pedido pendente. O usuário ainda precisa atualizar a tela "Pedidos" ou abri-la novamente para carregar novos chamados. Funções `SECURITY DEFINER` expostas a autenticados devem passar por revisão de segurança antes do lançamento. Ver [regras de presença e orçamento](PRESENCA_ORCAMENTO_REGRA_OFICIAL.md).
+
+## Atualização: duas recusas por rodada
+
+A migração `duas_recusas_por_prestador_em_cada_solicitacao` acrescenta `rejection_count` e `last_declined_at` à trilha `bj_request_attempts`, substitui `bj_answer_quote` e cria a RPC `bj_finish_request` para o cliente encerrar um pedido de teste sem registrar conclusão de serviço.
+
+A seleção prioriza prestadores com zero recusas, aceita de volta quem tem uma recusa e exclui apenas os com **duas recusas na mesma solicitação**. Um novo `service_requests.id` zera a contagem. Há teste SQL com `ROLLBACK` em `supabase/tests/duas_recusas_por_rodada_rollback.sql`.
