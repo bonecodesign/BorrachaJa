@@ -1,5 +1,3 @@
-<PARSED TEXT FOR SHEET: 1 / 1 TABS
-TAB NAME: fornecedores_candidatos_exemplo.csv>
-index,nome,bairro,cidade,borracharia,delivery,reboque,origem,observacoes,contato_administrativo
-0,Prestador Exemplo A,,Belo Horizonte,nao,sim,nao,Dados fictícios para testes,"Candidato a reparos no local. Confirmar empresa, atuação em motos e cobertura.",
-1,Reboque Exemplo B,,Belo Horizonte,nao,nao,sim,Dados fictícios para testes,"Candidato a serviço de reboque. Categoria futura, não ativar delivery de borracharia.",
+nome;bairro;cidade;borracharia;delivery;reboque;origem;observacoes;contato_administrativo
+Prestador Exemplo A;;Belo Horizonte;nao;sim;nao;Dados fictícios para testes;"Candidato a reparos no local. Confirmar empresa, atuação em motos e cobertura.";
+Reboque Exemplo B;;Belo Horizonte;nao;nao;sim;Dados fictícios para testes;"Candidato a serviço de reboque. Categoria futura, não ativar delivery de borracharia.";
