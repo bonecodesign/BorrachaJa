@@ -31,3 +31,10 @@ O Supabase **BorrachaJa** já possui banco real com esquema diferente do SQL leg
 - O app continua **não publicado**, sem pagamentos reais, sem atendimento garantido e sem despacho operacional.
 - Os fornecedores de prospecção não são prestadores homologados; seu cadastro privado não é publicado.
 
+## Nova funcionalidade do piloto — online e decisão de orçamento
+
+O borracheiro aprovado decide quando fica **online** ou **offline** no aplicativo. A presença é validada por conexão recente com o servidor. O profissional informa o preço e o cliente pode **aceitar** ou **recusar**, com transferência para o próximo borracheiro online elegível quando houver.
+
+Aceitar **não realiza pagamento**: os pedidos ficam aguardando integração financeira futura.
+
+Ver [especificação de presença e orçamentos](docs/PRESENCA_ORCAMENTO_REGRA_OFICIAL.md) e [teste virtual de duas rodadas](supabase/tests/presenca_orcamentos_rollback.sql).
