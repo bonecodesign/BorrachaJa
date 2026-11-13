@@ -34,6 +34,7 @@ Aprovado significa **definido pelo responsável do produto**, não necessariamen
 | SM-DEC-025 | Suporte no app com protocolo e histórico; categorias de atendimento, prestador, pagamento futuro e segurança; relatos de segurança suspendem a solicitação para análise humana; sem promessa de suporte 24h no piloto | **Aprovada expressamente em 13/11/2026**; app não substitui serviços de emergência |
 | SM-DEC-026 | Serviço só é concluído após confirmação das duas partes: prestador declara conclusão e motociclista confirma; sem ambas, permanece pendente para acompanhamento/suporte | **Aprovada expressamente em 13/11/2026**; pagamentos e avaliações dependem de implementação posterior |
 | SM-DEC-027 | Após conclusão bilateral, ambas as partes podem avaliar de 1 a 5 com comentário opcional; avaliações ficam ocultas até ambas enviarem ou 7 dias; comentários passam por moderação/contestação; média pública após 3 serviços concluídos | **Aprovada expressamente em 13/11/2026**; exige implementação de moderação e privacidade |
+| SM-DEC-028 | Ordem automática: prestadores homologados, online e dentro da área declarada; depois proximidade; em empate prático, alternância para evitar concentração; avaliações não mudam a ordem no piloto | **Aprovada expressamente em 13/11/2026**; exige critério técnico auditável para empate e alternância |
 
 ## Definições técnicas adotadas, ajustáveis após testes
 
@@ -58,7 +59,7 @@ Aprovado significa **definido pelo responsável do produto**, não necessariamen
 | SM-OPEN-009 | Implementação, horários operacionais e escalonamento humano do suporte | Operação real sem promessa indevida |
 | SM-OPEN-010 | Metas quantitativas de piloto, lançamento e indicadores | Gate de decisão |
 | SM-OPEN-011 | Política de idade/elegibilidade para contas e geolocalização | Direitos e proteção de dados |
-| SM-OPEN-012 | Implementação de reputação, moderação, ranking e prevenção de direcionamento injusto | Transparência |
+| SM-OPEN-012 | Implementação de reputação, moderação, alternância em empates e prevenção de direcionamento injusto | Transparência |
 | SM-OPEN-013 | Marca/slogan finais, domínio e registro de marca | Identidade e propriedade intelectual |
 
 ## Histórico de validação
@@ -76,6 +77,7 @@ Aprovado significa **definido pelo responsável do produto**, não necessariamen
 - **13/11/2026 — SM-DEC-025:** suporte no app com protocolo e histórico; relatos de segurança suspendem a solicitação para análise humana. Não há promessa de atendimento 24h e o app não substitui emergência.
 - **13/11/2026 — SM-DEC-026:** conclusão exige confirmação das duas partes: prestador declara e motociclista confirma. Sem ambas, o serviço fica pendente para acompanhamento.
 - **13/11/2026 — SM-DEC-027:** avaliações bilaterais após conclusão; ocultas até ambas enviarem ou 7 dias; comentários moderados e contestáveis; média pública após 3 serviços concluídos.
+- **13/11/2026 — SM-DEC-028:** ordem de oferta por elegibilidade, proximidade e alternância em empate prático; avaliações não mudam a ordem automática no piloto.
 
 ## Controle de alteração
 
