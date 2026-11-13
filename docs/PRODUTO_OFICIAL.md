@@ -65,6 +65,16 @@ O projeto está em fase de MVP. Deve usar planos gratuitos quando possível, sem
 - **10 ausências em 30 dias** levam o perfil à revisão administrativa; não há bloqueio automático.
 - A regra depende de notificação entregue e registrada; seu acionamento fica pendente da implementação e homologação dos canais de aviso.
 
+## Ordem do atendimento
+
+1. O motociclista solicita o serviço com foto do problema e dados da motocicleta.
+2. Prestadores elegíveis enviam orçamentos.
+3. O motociclista aceita um orçamento.
+4. O pagamento é confirmado.
+5. O chat interno é liberado com as restrições de privacidade já definidas.
+
+Retenção e repasse de valores serão definidos antes da ativação de pagamentos reais.
+
 ## Dados obrigatórios do pedido
 
 - O motociclista envia uma foto do problema.
