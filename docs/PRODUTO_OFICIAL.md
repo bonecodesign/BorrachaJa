@@ -18,7 +18,7 @@ O cliente pode escolher um profissional ou solicitar busca automática. O profis
 
 ## Comunicação
 
-Telefones e links externos não são exibidos nos perfis. Chamados delivery usam fluxos de orçamento e comunicação interna. Informações de segurança e suporte permanecem acessíveis conforme necessidade.
+Telefones e links externos não são exibidos nos perfis. Chamados delivery usam fluxos de orçamento e comunicação interna.
 
 ## Profissionais e administração
 
@@ -28,10 +28,8 @@ Os prestadores se cadastram e passam por verificação antes de aparecerem como 
 
 O prestador homologado escolhe **ficar online** ou **ficar offline**. Apenas quem oferece delivery, está habilitado e tem comunicação recente com o servidor entra na fila de novos pedidos.
 
-O prestador fixa o valor do orçamento. O motociclista decide:
-
-- **Aceitar:** pedido fica aguardando pagamento pelo aplicativo; não há cobrança nem despacho enquanto a integração financeira não existir.
-- **Recusar:** a primeira recusa mantém o prestador elegível para outra oportunidade mais adiante na mesma rodada; após duas recusas do **mesmo solicitante na mesma solicitação**, fica de fora daquela rodada. O pedido segue para o próximo profissional online elegível, sem retornar imediatamente ao recém-recusado. Encerrar e criar novo pedido reinicia as contagens.
+- **Aceitar:** pedido fica aguardando pagamento; não há cobrança nem despacho enquanto a integração financeira não existir.
+- **Recusar:** a primeira recusa mantém o prestador elegível para outra oportunidade mais adiante na mesma rodada; após duas recusas do mesmo solicitante na mesma solicitação, fica de fora daquela rodada. O pedido segue para o próximo profissional online elegível, sem retornar imediatamente ao recém-recusado. Encerrar e criar novo pedido reinicia as contagens.
 - **Conexão perdida:** a presença efetiva expira automaticamente. Desligar a disponibilidade bloqueia novos pedidos e preserva os já recebidos.
 
 ## Serviços oficiais e regras comerciais
@@ -48,7 +46,7 @@ Levantamento de 12/11/2026: **36 candidatos únicos**, associados a **40 ofertas
 
 No Supabase `Salva Motoca`, os dados internos de prospecção ficam em tabelas privadas com RLS e sem acesso direto de `anon` ou `authenticated`. Contatos não são publicados no repositório nem exibidos no aplicativo.
 
-**Nenhum candidato é parceiro homologado ou habilitado para chamados.** Não exibir ofertas, horários 24h ou disponibilidade operacional como confirmados até validação comercial e técnica. Pagamentos reais permanecem desativados enquanto não houver homologação do processador e do split financeiro.
+**Nenhum candidato é parceiro homologado ou habilitado para chamados.** Não exibir ofertas, horários 24h ou disponibilidade operacional como confirmados até validação comercial e técnica. Pagamentos reais permaneccem desativados enquanto não houver homologação do processador e do split financeiro.
 
 ## Política de desenvolvimento
 
