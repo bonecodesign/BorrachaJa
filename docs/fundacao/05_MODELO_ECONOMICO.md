@@ -6,7 +6,7 @@
 
 - **Mapa e consulta:** gratuitos, sem cobrança pela ida direta à oficina.
 - **Borracharia delivery intermediada:** comissão de **15% aprovada internamente em 12/11/2026** sobre o valor do serviço efetivamente pago e liquidado pelo aplicativo (SM-DEC-014). A aplicação prática permanece condicionada a contratos, regras de estorno, tributação e integração financeira homologada.
-- **Reboque:** não gera faturamento no MVP inicial; expansão futura a decidir.
+- **Reboque:** já está implementado no produto, mas não possui checkout nem cobrança real habilitados; sua ativação comercial depende de homologação.
 - **Preço de serviço:** definido pelo prestador por orçamento; cliente aceita ou recusa.
 - **Pagamento:** Pix/cartões e split ainda não conectados nem homologados.
 - **Custo inicial de desenvolvimento:** priorizar ferramentas gratuitas quando possível, **não** considerar que a operação real terá custo zero.
@@ -24,9 +24,9 @@ Definições (valores em reais):
 
 **Comissão bruta definida para cálculo = P × 0,15.**
 
-**Resultado de contribuição estimado da plataforma = (P × c) − F_plataforma − V − T − D − R.**
+**Resultado de contribuição estimado da plataforma = (P × c) − V − T − D − R.** A tarifa de processamento é cobrada separadamente do cliente e não compõe a comissão do serviço; sua cobrança, liquidação e eventuais reembolsos dependem do PSP homologado.
 
-O valor financeiro líquido do prestador depende da contratação com o processador, alocação transparente das tarifas, tributos dele, restituições e modelo de split. Não assumir que o simples percentual de comissão representa margem ou caixa disponível.
+O valor financeiro líquido do prestador parte do valor do serviço menos a comissão aplicável, tributos dele, restituições e regras de split. A tarifa de processamento é encargo do cliente e deve aparecer destacada antes da confirmação. Não assumir que o simples percentual de comissão representa margem ou caixa disponível.
 
 ### Exemplo meramente ilustrativo — NÃO é preço de mercado
 
@@ -85,12 +85,12 @@ O valor financeiro líquido do prestador depende da contratação com o processa
 - Separar valores de terceiros de receita da plataforma no planejamento contábil.
 - Relatório de conciliação, estorno, retenção e imposto por período.
 - Exibir ao cliente valor final antes de confirmação, sem taxas surpresas.
-- Aprovar matriz de quem arca com processamento, tributos, cancelamento e chargeback.
+- Aplicar a decisão aprovada: tarifa de processamento como encargo do cliente, destacada antes da confirmação; definir tributos, cancelamento e chargeback.
 - Não habilitar cobranças até testes reais e revisão contratual.
 
 ## Decisões comerciais pendentes
 
-**A comissão de 15% já está aprovada; não permanece como hipótese de percentual.** Ainda é necessário decidir: quem absorve a **tarifa de processamento de Pix/cartão** (custo distinto da comissão); preço mínimo de serviço; cobrança por deslocamento; eventuais condições promocionais; split automático; calendário de repasses; reserva financeira para contingências; estornos parciais e tratamento de fraudes.
+**A comissão de 15% e a tarifa de processamento como encargo do cliente já estão aprovadas; não permanecem como hipóteses.** Ainda é necessário decidir: preço mínimo de serviço; cobrança por deslocamento; eventuais condições promocionais; split automático; calendário de repasses; reserva financeira para contingências; estornos parciais e tratamento de fraudes.
 
 ## Cenários propostos para análise futura
 
