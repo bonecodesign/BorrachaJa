@@ -65,6 +65,13 @@ O projeto está em fase de MVP. Deve usar planos gratuitos quando possível, sem
 - **10 ausências em 30 dias** levam o perfil à revisão administrativa; não há bloqueio automático.
 - A regra depende de notificação entregue e registrada; seu acionamento fica pendente da implementação e homologação dos canais de aviso.
 
+## Avaliações e reputação
+
+- Após a confirmação bilateral da conclusão, motociclista e prestador podem dar nota de 1 a 5 e comentário opcional.
+- A avaliação de uma parte fica oculta da outra até ambas enviarem ou se passarem 7 dias.
+- Comentários não são publicados automaticamente: passam por moderação e podem ser contestados.
+- A média pública só é exibida depois de 3 serviços concluídos.
+
 ## Confirmação de conclusão
 
 - O prestador declara no aplicativo que o serviço foi concluído.
