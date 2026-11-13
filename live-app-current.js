@@ -15,7 +15,7 @@
   });
   const state = {
     page: "home", user: null, profile: null, ownProvider: null, directory: [],
-    services: [], categories: [], orders: [], quotes: [], selected: null,
+    services: [], categories: [], onlineIds: new Set(), ownPresence: null, orders: [], quotes: [], selected: null,
     mode: "manual", location: null, map: null, loading: false, requestKey: null,
     message: "", error: ""
   };
@@ -23,7 +23,7 @@
     ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[ch]);
   const amount = cents => (Number(cents) / 100).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
   const statusName = value => ({
-    requested: "Solicitado", quoted: "Orçado", accepted: "Aceito",
+    requested: "Aguardando orçamento", quoted: "Orçamento recebido", awaiting_payment: "Orçamento aceito — aguardando pagamento", no_provider: "Sem próximo prestador online", accepted: "Aceito",
     in_progress: "Em atendimento", completed: "Concluído", cancelled: "Cancelado"
   })[value] || "Em análise";
   const deliveryCategory = () => state.categories.find(row => row.code === "borracharia_delivery");
@@ -32,7 +32,7 @@
     return new Set(state.services.filter(row =>
       row.is_active && category && row.category_id === category.id).map(row => row.provider_id));
   };
-  const available = () => state.directory.filter(row => deliveryIds().has(row.id));
+  const available = () => state.directory.filter(row => deliveryIds().has(row.id) && state.onlineIds.has(row.id));
   const safeNotice = () =>
     (state.error ? '<div class="notice bad" role="alert">' + esc(state.error) + "</div>" : "") +
     (state.message ? '<div class="notice good" role="status">' + esc(state.message) + "</div>" : "");
@@ -74,13 +74,15 @@
   }
   function providerCard(p) {
     const d = distance(p);
+    const isOnline = deliveryIds().has(p.id) && state.onlineIds.has(p.id);
     return '<article class="card"><h3>' + esc(p.display_name) + '</h3><p class="small muted">' +
       esc(p.city) + ", " + esc(p.state_code) +
       (Number.isFinite(d) ? " · " + d.toFixed(1).replace(".", ",") + " km em linha reta" : "") +
       '</p><p>' + esc(p.description || "Prestador de serviços para motos.") + '</p>' +
+      '<p class="small muted">' + (isOnline ? '🟢 Online para pedidos delivery' : '⚪ Não está recebendo pedidos delivery') + '</p>' +
       '<div class="actions"><button class="btn outline sm" data-action="detail" data-id="' + esc(p.id) +
       '">Ver detalhes</button>' +
-      (deliveryIds().has(p.id) ? '<button class="btn sm" data-action="select-provider" data-id="' +
+      (isOnline ? '<button class="btn sm" data-action="select-provider" data-id="' +
         esc(p.id) + '">Solicitar orçamento delivery</button>' : "") + "</div></article>";
   }
   function renderHome() {
@@ -95,7 +97,7 @@
       '<small>Escolha ou busca automática, sem pagamento real nesta etapa</small></span><span class="arrow">›</span></button>' +
       '<div class="grid2"><div class="stat"><strong>' + state.directory.length +
       '</strong><small>Prestadores aprovados e ativos</small></div><div class="stat"><strong>' + available().length +
-      '</strong><small>Com serviço delivery ativo</small></div></div>';
+      '</strong><small>Online para receber pedidos delivery</small></div></div>';
   }
   function renderMap() {
     return header("Mapa de borracharias", "Consulta gratuita. Só aparecem profissionais aprovados e com serviços ativos.") +
@@ -114,12 +116,13 @@
       '<div class="card"><p>' + esc(p.description || "") + '</p>' +
       (p.street_address ? '<p class="small">' + esc(p.street_address) + '</p>' : "") +
       (coords ? '<a class="btn outline" target="_blank" rel="noopener noreferrer" href="https://www.google.com/maps/dir/?api=1&destination=' + coords + '">Traçar rota</a>' : "") +
-      (deliveryIds().has(p.id) ? '<button class="btn full" data-action="select-provider" data-id="' + esc(p.id) + '">Solicitar orçamento delivery</button>' : "") +
+      (state.onlineIds.has(p.id) && deliveryIds().has(p.id) ? '<button class="btn full" data-action="select-provider" data-id="' + esc(p.id) + '">Solicitar orçamento delivery</button>' : "") +
       '<p class="small muted">Não exibimos telefones nem WhatsApp.</p></div>';
   }
   function renderRequest() {
     const list = available().slice().sort((a, b) => distance(a) - distance(b));
-    return header("Atendimento no local", "Solicitações de TESTE. Ainda não existem pagamento nem despacho operacional.") +
+    return header("Atendimento no local", "Somente prestadores homologados, online e conectados recentemente recebem solicitações de TESTE.") +
+      '<button class="btn outline sm" data-action="reload">Atualizar disponíveis</button>' +
       '<div class="tabs"><button data-action="mode" data-mode="manual" class="' +
       (state.mode === "manual" ? "active" : "") + '">Eu escolho</button>' +
       '<button data-action="mode" data-mode="automatic" class="' + (state.mode === "automatic" ? "active" : "") +
@@ -135,7 +138,7 @@
     if (!state.user) return '<div class="card">Entre na sua conta para criar um pedido de teste.' +
       '<button class="btn full" data-page="login">Entrar ou cadastrar</button></div>';
     const p = state.directory.find(row => row.id === state.selected);
-    if (!p || !deliveryIds().has(p.id)) return '<div class="notice">Prestador selecionado não está habilitado para delivery.</div>';
+    if (!p || !deliveryIds().has(p.id) || !state.onlineIds.has(p.id)) return '<div class="notice">O prestador está offline ou indisponível para novos pedidos. Atualize a lista.</div>';
     return header("Solicitar orçamento", p.display_name + " — ambiente de testes, sem atendimento real") +
       '<form id="request-form" class="card form">' +
       label("Modelo da moto", "text", "motorcycle", "Ex.: Honda CG 160", true) +
@@ -182,7 +185,15 @@
     return header("Minha conta", state.profile?.display_name || state.user.email || "") +
       '<div class="card"><p>Conta: ' + esc(state.user.email || "") + '</p>' +
       (own ? '<p><b>Meu estabelecimento:</b> ' + esc(own.display_name) +
-        '</p><p><b>Status:</b> ' + esc(own.status) + (own.is_active ? " · ativo" : " · inativo") + '</p>' :
+        '</p><p><b>Homologação:</b> ' + esc(own.status) + (own.is_active ? " · habilitado" : " · não habilitado") + '</p>' +
+        (own.status === "approved" && own.is_active ?
+          '<p><b>Disponibilidade para novos pedidos:</b> ' +
+          (state.ownPresence?.online_requested && state.onlineIds.has(own.id) ? '🟢 Online' : '⚪ Offline') + '</p>' +
+          '<button class="btn full" data-action="toggle-presence" data-online="' +
+          (state.ownPresence?.online_requested ? 'false' : 'true') + '">' +
+          (state.ownPresence?.online_requested ? 'Ficar offline — parar novos chamados' : 'Ficar online — receber chamados') +
+          '</button><p class="small muted">Requer internet e app aberto. Sem contato com o servidor por cerca de 90 segundos, você deixa de aparecer como online.</p>'
+          : '<div class="notice">Disponibilidade será liberada após aprovação e habilitação do serviço delivery.</div>') :
        '<button class="btn full" data-page="provider-form">Cadastrar minha borracharia</button>') +
       '<button class="btn outline full" data-action="logout">Sair da conta</button></div>';
   }
@@ -192,20 +203,27 @@
     return header("Pedidos e orçamentos", "Ambiente de testes. Nenhuma cobrança ou atendimento real está ativo.") +
       '<button class="btn outline sm" data-action="reload">Atualizar pedidos</button>' +
       (state.orders.length ? state.orders.map(o => {
-        const q = state.quotes.filter(x => x.request_id === o.id);
+        const q = state.quotes.filter(x => x.request_id === o.id).sort((a,b) => String(a.created_at).localeCompare(String(b.created_at)));
+        const activeQuote = q.find(item => item.status === "proposed" && item.provider_id === o.provider_id);
         const provider = state.directory.find(p => p.id === o.provider_id) || state.ownProvider;
         return '<div class="card"><p><b>' + esc(o.problem_description) + '</b></p><p class="small muted">' +
           esc(statusName(o.status)) + ' · ' + new Date(o.created_at).toLocaleString("pt-BR") + '</p>' +
           '<p>Prestador: ' + esc(provider?.display_name || "Em triagem") + '</p>' +
           (q.length ? q.map(item => '<p><b>Orçamento:</b> ' + amount(item.amount_cents) +
-              ' · ' + esc(item.details || "") + '</p>').join("") :
+              ' · ' + esc(item.details || "") + ' · ' + esc(({proposed:"Aguardando sua decisão",accepted:"Aceito",declined:"Recusado",expired:"Expirado"})[item.status] || item.status) + '</p>').join("") :
             '<p class="small muted">Orçamento ainda não recebido.</p>') +
-          (providerOwns(o) && !q.length && o.status === "requested" ?
+          (providerOwns(o) && !activeQuote && o.status === "requested" ?
             '<form class="quote-form form" data-id="' + esc(o.id) + '">' +
             label("Preço do serviço (R$)", "number", "amount", "Ex.: 100.00", true) +
             label("Detalhes", "text", "details", "Materiais e deslocamento incluídos?", false) +
             '<button class="btn full" type="submit">Enviar orçamento de teste</button></form>' : "") +
-          (owns(o) && q.length ? '<div class="notice">Pagamento e aceite ainda desativados. Não transfira valores.</div>' : "") +
+          (owns(o) && activeQuote && o.status === "quoted" ?
+            '<div class="actions"><button class="btn sm" data-action="answer-quote" data-id="' +
+            esc(activeQuote.id) + '" data-accept="true">Aceitar orçamento</button>' +
+            '<button class="btn outline sm" data-action="answer-quote" data-id="' + esc(activeQuote.id) +
+            '" data-accept="false">Recusar e buscar próximo online</button></div>' : "") +
+          (owns(o) && o.status === "awaiting_payment" ? '<div class="notice">Orçamento aceito. Pagamentos ainda não habilitados; nenhum atendimento foi confirmado.</div>' : "") +
+          (owns(o) && o.status === "no_provider" ? '<div class="notice">Nenhum outro prestador online disponível para receber este pedido no momento.</div>' : "") +
           '</div>';
       }).join("") : '<div class="notice">Você ainda não tem pedidos cadastrados.</div>');
   }
@@ -239,14 +257,16 @@
     });
   }
   async function refreshDirectory() {
-    const [providers, services, categories] = await Promise.all([
+    const [providers, services, categories, online] = await Promise.all([
       db.from("providers").select("id,display_name,description,street_address,city,state_code,latitude,longitude,status,is_active")
         .eq("status", "approved").eq("is_active", true).limit(200),
       db.from("provider_services").select("provider_id,category_id,is_active").eq("is_active", true).limit(400),
-      db.from("service_categories").select("id,code,name,paid_in_app,commission_percent")
+      db.from("service_categories").select("id,code,name,paid_in_app,commission_percent"),
+      db.rpc("bj_online_providers")
     ]);
-    for (const response of [providers, services, categories]) if (response.error) throw response.error;
+    for (const response of [providers, services, categories, online]) if (response.error) throw response.error;
     state.services = services.data || []; state.categories = categories.data || [];
+    state.onlineIds = new Set((online.data || []).map(row => row.provider_id));
     const relevantCategories = new Set(state.categories.filter(row => row.code === 'map_borracharia' || row.code === 'borracharia_delivery').map(row => row.id));
     const activeIds = new Set(state.services.filter(row => relevantCategories.has(row.category_id)).map(row => row.provider_id));
     state.directory = (providers.data || []).filter(row => activeIds.has(row.id));
@@ -255,13 +275,13 @@
     const sessionResult = await db.auth.getSession();
     if (sessionResult.error) throw sessionResult.error;
     if (!sessionResult.data?.session) {
-      state.user = null; state.profile = null; state.ownProvider = null;
+      state.user = null; state.profile = null; state.ownProvider = null; state.ownPresence = null; state.ownPresence = null;
       state.orders = []; state.quotes = [];
       return;
     }
     const { data, error } = await db.auth.getUser();
     if (error) throw error;
-    state.user = data?.user || null; state.profile = null; state.ownProvider = null;
+    state.user = data?.user || null; state.profile = null; state.ownProvider = null; state.ownPresence = null;
     if (!state.user) { state.orders = []; state.quotes = []; return; }
     const [profile, provider] = await Promise.all([
       db.from("app_profiles").select("user_id,display_name").eq("user_id", state.user.id).maybeSingle(),
@@ -270,6 +290,13 @@
     if (profile.error) throw profile.error;
     if (provider.error) throw provider.error;
     state.profile = profile.data; state.ownProvider = provider.data;
+    if (state.ownProvider) {
+      const presence = await db.from("bj_provider_presence")
+        .select("provider_id,online_requested,last_seen_at")
+        .eq("provider_id",state.ownProvider.id).maybeSingle();
+      if (presence.error) throw presence.error;
+      state.ownPresence = presence.data || {provider_id:state.ownProvider.id,online_requested:false,last_seen_at:null};
+    }
     if (!state.profile) {
       const proposed = String(state.user.user_metadata?.display_name || state.user.email?.split("@")[0] || "Motociclista").trim().slice(0, 100);
       const validName = proposed.length >= 2 ? proposed : "Motociclista";
@@ -285,7 +312,7 @@
     if (state.orders.length) {
       const ids = state.orders.map(o => o.id);
       const res = await db.from("service_quotes")
-        .select("request_id,provider_id,amount_cents,details,status,created_at")
+        .select("id,request_id,provider_id,amount_cents,details,status,created_at")
         .in("request_id", ids).limit(100);
       if (res.error) throw res.error;
       state.quotes = res.data || [];
@@ -321,6 +348,37 @@
     const action = target.dataset.action, id = target.dataset.id;
     if (action === "gps") { locate(); return; }
     if (action === "reload") { await allRefresh(); return; }
+    if (action === "toggle-presence") {
+      if (state.loading || !state.user || !state.ownProvider) return;
+      state.loading = true;
+      try {
+        const desired = target.dataset.online === "true";
+        const out = await db.rpc("bj_set_presence",{p_online:desired});
+        if (out.error) throw out.error;
+        await refreshDirectory(); await refreshIdentity();
+        state.error = ""; state.message = desired ? "Você está online e pode receber novos chamados de teste." : "Você está offline para novos chamados.";
+      } catch (err) { state.error = errorText(err); }
+      finally { state.loading = false; render(); }
+      return;
+    }
+    if (action === "answer-quote") {
+      if (state.loading || !state.user) return;
+      state.loading = true;
+      try {
+        const accepted = target.dataset.accept === "true";
+        const out = await db.rpc("bj_answer_quote",{p_quote_id:id,p_accept:accepted});
+        if (out.error) throw out.error;
+        await refreshDirectory(); await refreshIdentity();
+        state.error = "";
+        state.message = out.data === "awaiting_payment" ?
+          "Orçamento aceito. Aguardando pagamento (ainda desativado)." :
+          out.data === "next_provider" ?
+          "Orçamento recusado. O pedido seguiu para o próximo prestador online." :
+          "Orçamento recusado. Não há outro prestador online disponível neste momento.";
+      } catch (err) { state.error = errorText(err); }
+      finally { state.loading = false; render(); }
+      return;
+    }
     if (action === "detail") { state.selected = id; nav("detail"); return; }
     if (action === "select-provider") { state.requestKey = null; state.selected = id; state.mode = "manual"; nav("request-form"); return; }
     if (action === "mode") { state.mode = target.dataset.mode; render(); return; }
@@ -387,7 +445,7 @@
       if (!state.user) throw new Error("Entre na conta para continuar.");
       const provider = state.directory.find(p => p.id === state.selected);
       const category = deliveryCategory();
-      if (!provider || !category || !deliveryIds().has(provider.id)) throw new Error("Prestador delivery não disponível.");
+      if (!provider || !category || !deliveryIds().has(provider.id) || !state.onlineIds.has(provider.id)) throw new Error("Prestador delivery não está online.");
       const problem = String(data.get("problem") || "").trim();
       const motorcycle = String(data.get("motorcycle") || "").trim();
       const address = String(data.get("address") || "").trim();
@@ -413,13 +471,36 @@
       const orderId = form.dataset.id;
       const price = Number(String(data.get("amount") || "").replace(",", "."));
       if (!Number.isFinite(price) || price < 1 || price > 5000) throw new Error("Orçamento deve estar entre R$ 1 e R$ 5.000.");
-      const res = await db.from("service_quotes").insert({
-        request_id: orderId, provider_id: state.ownProvider.id,
-        amount_cents: Math.round(price * 100), details: String(data.get("details") || "").trim(), status: "proposed"
+      const res = await db.rpc("bj_submit_quote",{
+        p_request_id: orderId, p_amount_cents: Math.round(price * 100),
+        p_details: String(data.get("details") || "").trim()
       });
       if (res.error) throw res.error;
       await refreshIdentity(); state.message = "Orçamento de teste registrado.";
     });
+  });
+  let presencePingInFlight = false;
+  async function sendPresenceHeartbeat() {
+    if (presencePingInFlight || !state.user || !state.ownProvider ||
+      !state.ownPresence?.online_requested || document.visibilityState === "hidden") return;
+    presencePingInFlight = true;
+    try {
+      const result = await db.rpc("bj_ping_presence");
+      if (result.error) throw result.error;
+      if (result.data === false) {
+        state.ownPresence.online_requested = false;
+        state.error = "Sua disponibilidade foi interrompida. Verifique o cadastro.";
+        render();
+      }
+    } catch (err) {
+      // A presença vence automaticamente no banco sem novos pings.
+      state.error = "Falha de conexão: seu status online poderá expirar. " + errorText(err);
+      if (state.page === "profile") render();
+    } finally { presencePingInFlight = false; }
+  }
+  window.setInterval(sendPresenceHeartbeat,30000);
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState !== "hidden") sendPresenceHeartbeat();
   });
   db.auth.onAuthStateChange((_event, session) => {
     if (!session && state.user) {
