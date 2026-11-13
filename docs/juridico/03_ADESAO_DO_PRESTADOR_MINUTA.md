@@ -47,7 +47,7 @@ Os critérios de tempo de resposta, cancelamento de chamados, não compareciment
 
 ## 7. Pagamento, comissão e repasse — A DEFINIR
 
-A **decisão comercial interna SM-DEC-014**, aprovada em 12/11/2026, estabelece comissão de **15% sobre os serviços intermediados de borracharia delivery efetivamente pagos pelo aplicativo**; o documento oficial também prevê **15% para serviços de reboque**, sujeitos à integração técnica e à homologação financeira. A presente minuta **não transforma essa decisão em obrigação contratual vigente** antes da aprovação final e formalização pelas partes. A base de cálculo, natureza do serviço da plataforma, tarifas de pagamento, impostos, recibos, mecanismo de split, prazo de repasse, estornos e responsabilidade por chargeback deverão ser detalhados em anexo econômico revisado antes de cobranças reais.
+A **decisão comercial interna SM-DEC-014**, aprovada em 12/11/2026, estabelece comissão de **15% sobre os serviços intermediados de borracharia delivery efetivamente pagos pelo aplicativo**; o documento oficial também prevê **15% para serviços de reboque**, sujeitos à integração técnica e à homologação financeira. A presente minuta **não transforma essa decisão em obrigação contratual vigente** antes da aprovação final e formalização pelas partes. A decisão comercial **SM-DEC-017** estabelece que **o prestador arcará com a tarifa ordinária de processamento de Pix e cartões**, separadamente da comissão de 15%, nas modalidades de reparo delivery e reboque. O custo efetivo da tarifa, sua dedução ou cobrança pelo processador, a base de cálculo, os impostos, recibos, o mecanismo de split, o prazo de repasse, os estornos e a responsabilidade por chargeback deverão constar do anexo econômico revisado e aceito antes de cobranças reais. **Não utilizar esta minuta como contrato vigente** nem repassar automaticamente esse custo ao cliente por fora do preço informado.
 
 Nenhuma taxa é devida por mera consulta ao mapa ou visita direta à oficina. O sistema de testes não recebe valores e não gera direito a recebimentos reais.
 
@@ -78,7 +78,7 @@ Condições de duração, denúncia, cancelamento, descredenciamento, reclamaç�
 ## Anexos obrigatórios antes da assinatura
 
 - **Anexo A:** critérios de elegibilidade e verificação.
-- **Anexo B:** tabela comercial detalhada e repasses.
+- **Anexo B:** tabela comercial com comissão de 15%, tarifa de processamento a cargo do prestador, valores efetivos do PSP, forma de dedução, exemplos de repasse, estornos e conciliação.
 - **Anexo C:** cancelamento, estorno, mediação e suporte.
 - **Anexo D:** segurança, privacidade e uso de informações de clientes.
 - **Anexo E:** áreas e condições reais de atendimento.
