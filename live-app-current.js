@@ -1,4 +1,4 @@
-/* BorrachaJá! — integração piloto com o esquema real do Supabase.
+/* Salva Motoca! — integração piloto com o esquema real do Supabase.
  * NÃO recebe pagamentos, NÃO despacha socorro real e NÃO expõe contatos externos.
  */
 (() => {
