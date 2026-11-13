@@ -38,3 +38,22 @@ O banco está criado no Supabase `Salva Motoca`, com tabelas operacionais, prosp
 Consulte [supabase/README.md](supabase/README.md) para regras de versionamento e [docs/PRODUTO_OFICIAL.md](docs/PRODUTO_OFICIAL.md) para a especificação vigente.
 
 **Não inserir** senhas, tokens, chaves secretas, documentos pessoais, telefones internos de fornecedores nem dados reais de clientes no GitHub.
+
+## Documentação fundadora — Salva Motoca!
+
+O projeto possui um caderno fundador para alinhar negócio, produto, operação, custos, privacidade, governança e implantação, além de minutas jurídicas **não vigentes**:
+
+- [Índice e governança dos documentos](docs/fundacao/00_INDICE_E_CONTROLE_DOCUMENTAL.md).
+- [Manifesto, identidade e missão](docs/fundacao/01_MANIFESTO_IDENTIDADE.md).
+- [Plano de negócio](docs/fundacao/02_PLANO_DE_NEGOCIO.md).
+- [Requisitos e critérios de aceite](docs/fundacao/03_PRD_PRODUTO.md).
+- [Manual operacional](docs/fundacao/04_MANUAL_OPERACIONAL.md).
+- [Modelo econômico-financeiro](docs/fundacao/05_MODELO_ECONOMICO.md).
+- [Mapa jurídico e proteção de dados](docs/fundacao/06_MAPA_JURIDICO_E_PRIVACIDADE.md).
+- [Marcos de implantação e critérios de lançamento](docs/fundacao/07_PLANO_DE_IMPLANTACAO.md).
+- [Registro de decisões](docs/fundacao/08_REGISTRO_DE_DECISOES.md).
+- [Apresentação institucional](docs/fundacao/09_APRESENTACAO_INSTITUCIONAL.md).
+
+Minutas para revisão jurídica: [Termos de Uso](docs/juridico/01_TERMOS_DE_USO_MINUTA.md), [Política de Privacidade](docs/juridico/02_POLITICA_DE_PRIVACIDADE_MINUTA.md), [Adesão do Prestador](docs/juridico/03_ADESAO_DO_PRESTADOR_MINUTA.md) e [Cancelamentos e Mediação](docs/juridico/04_CANCELAMENTOS_E_MEDIACAO_MINUTA.md).
+
+**Nenhuma minuta é contrato vigente ou comprovante de homologação.** Os dados oficiais da empresa, meios de pagamento, obrigações tributárias e funcionamento comercial precisam ser definidos e revisados antes do lançamento.
