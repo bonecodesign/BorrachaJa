@@ -1,18 +1,18 @@
-# BorrachaJá! Oficial — Especificação de referência
+# Salva Motoca! Oficial — Especificação de referência
 
-**Nome oficial:** BorrachaJá!
+**Nome oficial:** Salva Motoca!
 
-**Proposta:** conectar motociclistas a borracharias e borracheiros delivery, em formato de marketplace (modelo semelhante ao de um aplicativo de delivery).
+**Proposta:** conectar motociclistas a borracharias, borracheiros delivery e fornecedores de reboque de motos, em formato de marketplace.
+
+**Área inicial de operação:** Belo Horizonte (BH) e região metropolitana de Minas Gerais.
 
 ## Acesso gratuito
 
 O aplicativo e a consulta ao mapa de borracharias são gratuitos. O usuário pode localizar estabelecimentos, conferir informações disponíveis e obter rota até o local. A ida direta ao estabelecimento não gera comissão para a plataforma.
 
-## Delivery intermediado
+## Serviços intermediados
 
-**Somente o atendimento de borracheiro no local é cobrado pelo aplicativo**. O mapa permanece gratuito e a plataforma não cobra comissão por visitas presenciais. A hipótese comercial atual de comissão do delivery é de 15%, a validar com os prestadores.
-
-**Reboque de motos:** poderá ser avaliado em uma expansão futura. Não está incluído nas cobranças nem no despacho ativo do MVP.
+A contratação dentro da plataforma cobre **borracharia no local do problema** e **reboque de motos**, ambos sujeitos à comissão de **15%** sobre o valor do serviço pago. Um mesmo fornecedor pode atender às duas modalidades.
 
 O cliente pode escolher um profissional ou solicitar busca automática. O profissional informa um orçamento, o cliente aceita e paga por meio do aplicativo. A divisão financeira e os repasses dependem de integração homologada com um provedor de pagamentos. Nesta fase, os pagamentos reais estão desativados.
 
@@ -24,28 +24,40 @@ Telefones e links externos não são exibidos nos perfis. Chamados delivery usam
 
 Os prestadores se cadastram e passam por verificação antes de aparecerem como ativos. O administrador gerencia solicitações e aprovações. Dados de contato administrativo e registros privados não pertencem a este repositório público.
 
+## Disponibilidade online e decisão sobre orçamento
+
+O prestador homologado escolhe **ficar online** ou **ficar offline**. Apenas quem oferece delivery, está habilitado e tem comunicação recente com o servidor entra na fila de novos pedidos.
+
+O prestador fixa o valor do orçamento. O motociclista decide:
+
+- **Aceitar:** pedido fica aguardando pagamento pelo aplicativo; não há cobrança nem despacho enquanto a integração financeira não existir.
+- **Recusar:** a primeira recusa mantém o prestador elegível para outra oportunidade mais adiante na mesma rodada; após duas recusas do **mesmo solicitante na mesma solicitação**, fica de fora daquela rodada. O pedido segue para o próximo profissional online elegível, sem retornar imediatamente ao recém-recusado. Encerrar e criar novo pedido reinicia as contagens.
+- **Conexão perdida:** a presença efetiva expira automaticamente. Desligar a disponibilidade bloqueia novos pedidos e preserva os já recebidos.
+
+## Serviços oficiais e regras comerciais
+
+1. **📍🛞 Mapa de borracharias físicas:** download, consulta e rotas gratuitos, sem comissão pela simples consulta.
+2. **🛞 Delivery de borracharia:** atendimento para reparo de pneu no local, com solicitação, comunicação, orçamento e pagamento dentro da plataforma; comissão de **15%** sobre o valor efetivamente pago.
+3. **🚚 Reboque de motos:** remoção ou transporte com solicitação, comunicação, orçamento e pagamento dentro da plataforma; **a mesma comissão de 15%**.
+
+O prestador pode oferecer uma ou ambas as modalidades pagas em um único cadastro, com oferta, preço, disponibilidade e cobertura independentes.
+
+## Prospecção inicial — BH + Contagem
+
+Levantamento de 12/11/2026: **36 candidatos únicos**, associados a **40 ofertas**; quatro candidatos têm as duas modalidades de socorro, algumas ainda dependentes de confirmação. A referência pública, sem telefones, está em `data/prestadores_candidatos_BH_2026-11-12.csv`.
+
+No Supabase `Salva Motoca`, os dados internos de prospecção ficam em tabelas privadas com RLS e sem acesso direto de `anon` ou `authenticated`. Contatos não são publicados no repositório nem exibidos no aplicativo.
+
+**Nenhum candidato é parceiro homologado ou habilitado para chamados.** Não exibir ofertas, horários 24h ou disponibilidade operacional como confirmados até validação comercial e técnica. Pagamentos reais permanecem desativados enquanto não houver homologação do processador e do split financeiro.
+
 ## Política de desenvolvimento
 
-O projeto está em fase de MVP; deve usar planos gratuitos quando possível, sem afirmar disponibilidade comercial ou atendimento de emergência antes de testes completos.
+O projeto está em fase de MVP. Deve usar planos gratuitos quando possível, sem afirmar disponibilidade comercial ou atendimento de emergência antes de testes operacionais, legais e de segurança.
 
 ## Próximas etapas
 
-1. Testar contas separadas de motociclista e prestador no Supabase `BorrachaJa`.
+1. Validar contas separadas de motociclista e prestador em ambiente de teste.
 2. Homologar manualmente prestadores reais antes de exibi-los no mapa.
-3. Implementar aceite de orçamento, gestão segura de estados e antifraude.
-4. Homologar pagamentos e split automático exclusivamente para borracharia delivery.
-5. Publicar apenas após testes operacionais, legais e de segurança.
-
-## Disponibilidade online e decisão sobre orçamento
-
-**Regra oficial aprovada:** o prestador homologado escolhe **Ficar online** ou **Ficar offline** no aplicativo. Apenas os habilitados para borracharia delivery que estejam ligados e com comunicação recente com o servidor (janela de 90 segundos) entram na fila de novos pedidos.
-
-O prestador fixa o valor do orçamento. O motociclista decide **Aceitar** ou **Recusar**:
-
-- **Aceitar:** pedido fica aguardando pagamento pelo aplicativo; não é cobrado nem despachado enquanto a integração financeira não existir.
-- **Recusar:** a primeira recusa mantém o borracheiro elegível para outra oportunidade mais adiante na mesma rodada; após duas recusas do **mesmo solicitante na mesma solicitação**, fica de fora dessa rodada. O pedido passa ao próximo prestador online disponível (nunca devolvido imediatamente ao recém-recusado). Se não houver outro, informa indisponibilidade. **Encerrar e criar novo pedido reinicia todas as contagens.**
-- **Conexão perdida:** a presença efetiva expira automaticamente. Desligar a disponibilidade bloqueia novos pedidos, preservando pedidos já recebidos.
-
-O protótipo atual usa busca por cidade e ordenação aproximada quando há GPS. Antes da operação comercial ainda são necessários raio de cobertura, notificação de novos pedidos, tempo máximo para resposta e testes com usuários reais.
-
-**Especificação detalhada:** [Presença online e orçamento](PRESENCA_ORCAMENTO_REGRA_OFICIAL.md).
+3. Testar tempo de resposta, notificações, cobertura e fluxos antifraude.
+4. Homologar pagamentos e split automático.
+5. Publicar somente após validações operacionais, legais e de segurança.
