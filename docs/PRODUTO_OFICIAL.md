@@ -65,6 +65,12 @@ O projeto está em fase de MVP. Deve usar planos gratuitos quando possível, sem
 - **10 ausências em 30 dias** levam o perfil à revisão administrativa; não há bloqueio automático.
 - A regra depende de notificação entregue e registrada; seu acionamento fica pendente da implementação e homologação dos canais de aviso.
 
+## Validade do orçamento
+
+- Cada orçamento enviado pelo prestador vale por **5 minutos**.
+- Sem aceite nesse período, expira e a solicitação pode seguir para o próximo prestador elegível.
+- Qualquer mudança posterior de preço exige novo orçamento discriminado e novo aceite.
+
 ## Piloto fechado em Belo Horizonte
 
 - Até 15 prestadores homologados e 50 motociclistas convidados.
