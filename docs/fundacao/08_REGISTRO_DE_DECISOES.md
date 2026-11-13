@@ -21,8 +21,9 @@ Aprovado significa **definido pelo responsável do produto**, não necessariamen
 | SM-DEC-012 | Pagamentos reais não serão ativados antes de integração, testes e homologação | Aprovada |
 | SM-DEC-013 | Desenvolvimento inicial deve evitar serviços pagos sem autorização, priorizando custo R$ 0 | Aprovada como restrição de projeto |
 | SM-DEC-014 | Comissão de **15% sobre o valor de serviços de borracharia delivery efetivamente pagos pelo aplicativo** | **Aprovada expressamente em 12/11/2026**. Implementação condicionada a contrato, tributação, PSP, split e regras de estorno; sem ativação de cobranças nesta decisão |
-| SM-DEC-015 | Reboque é ideia de expansão futura e não entra no pagamento ativo do MVP | Referência atual documentada; reavaliar antes de expandir |
+| SM-DEC-015 | Reboque de motos já integra o produto; seu pagamento real e despacho comercial permanecem desativados até homologação | Atualizada em 13/11/2026; sem autorização para cobrança real |
 | SM-DEC-016 | Foco no mesmo projeto e nas alterações versionadas; migrações só após análise do banco ativo | Aprovada |
+| SM-DEC-017 | Tarifa de processamento de Pix/cartão é encargo do **cliente**, exibida separadamente antes da confirmação; comissão de 15% incide somente sobre o serviço | **Aprovada expressamente em 13/11/2026**; implementação depende de PSP, contrato, impostos, regras de estorno e transparência |
 
 ## Definições técnicas adotadas, ajustáveis após testes
 
@@ -37,7 +38,7 @@ Aprovado significa **definido pelo responsável do produto**, não necessariamen
 | ID | Tema pendente | Por que importa |
 | --- | --- | --- |
 | SM-OPEN-001 | Pessoa jurídica, razão social, CNPJ e contatos oficiais | Contratos, notas e canal de atendimento |
-| SM-OPEN-002 | PSP, Pix/cartões, **quem suporta a tarifa de processamento**, custos e split | Repasse e margem; **próxima decisão comercial** |
+| SM-OPEN-002 | PSP, Pix/cartões, custo efetivo, split e regras de liquidação da tarifa já atribuída ao cliente | Implementar sem taxas-surpresa e com transparência |
 | SM-OPEN-003 | Critérios e documentos exatos para homologar borracheiros | Segurança e legalidade |
 | SM-OPEN-004 | Área de atuação, raio e priorização de prestadores | Chamados viáveis |
 | SM-OPEN-005 | Tempo máximo de resposta e recusa pelo próprio prestador | Evitar pedidos parados |
@@ -52,7 +53,9 @@ Aprovado significa **definido pelo responsável do produto**, não necessariamen
 
 ## Histórico de validação
 
-- **12/11/2026 — SM-DEC-014:** responsável pelo produto aprovou expressamente a comissão de **15% sobre o valor dos serviços delivery efetivamente pagos no Salva Motoca!**. Registro realizado nos documentos FND-02, FND-05 e FND-08; a distribuição da tarifa de processamento e o provedor financeiro permanecem em aberto. Não há autorização para iniciar cobranças reais.
+- **12/11/2026 — SM-DEC-014:** responsável pelo produto aprovou expressamente a comissão de **15% sobre o valor dos serviços delivery efetivamente pagos no Salva Motoca!**. Não há autorização para iniciar cobranças reais.
+- **13/11/2026 — SM-DEC-017:** responsável pelo produto aprovou a **tarifa de processamento como encargo do cliente**, destacada antes da confirmação e separada da comissão. PSP, custo real, split, estorno e tributos continuam pendentes de homologação.
+- **13/11/2026 — SM-DEC-015 atualizada:** reboque já está implementado no produto; pagamento e despacho comercial continuam desativados.
 
 ## Controle de alteração
 
@@ -60,4 +63,4 @@ Uma alteração deve receber: ID, enunciado anterior, enunciado novo, razão, da
 
 ## Itens que NÃO estão decididos
 
-Não presumir: tarifa obrigatoriamente suportada por qualquer parte, tempo de chegada garantido, atendimento 24 horas, cobertura de todo município, vínculo trabalhista ou ausência de vínculo, exclusão contratual ampla de responsabilidade, retenção indefinida de dados, habilitação de pagamentos ou autorização automática de candidatos prospectados.
+Não presumir: valor ou modalidade da tarifa sem PSP homologado, tempo de chegada garantido, atendimento 24 horas, cobertura de todo município, vínculo trabalhista ou ausência de vínculo, exclusão contratual ampla de responsabilidade, retenção indefinida de dados, habilitação de pagamentos ou autorização automática de candidatos prospectados.

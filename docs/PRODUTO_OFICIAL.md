@@ -14,7 +14,7 @@ O aplicativo e a consulta ao mapa de borracharias são gratuitos. O usuário pod
 
 A contratação dentro da plataforma cobre **borracharia no local do problema** e **reboque de motos**, ambos sujeitos à comissão de **15%** sobre o valor do serviço pago. Um mesmo fornecedor pode atender às duas modalidades.
 
-O cliente pode escolher um profissional ou solicitar busca automática. O profissional informa um orçamento, o cliente aceita e paga por meio do aplicativo. A divisão financeira e os repasses dependem de integração homologada com um provedor de pagamentos. Nesta fase, os pagamentos reais estão desativados.
+O cliente pode escolher um profissional ou solicitar busca automática. O profissional informa um orçamento, o cliente aceita e paga por meio do aplicativo. A divisão financeira e os repasses dependem de integração homologada com um provedor de pagamentos. Quando ativada, a tarifa de processamento será um encargo do cliente, mostrada separadamente antes da confirmação; a comissão de 15% incidirá somente sobre o valor do serviço. Nesta fase, os pagamentos reais estão desativados.
 
 ## Comunicação
 
@@ -46,7 +46,7 @@ Levantamento de 12/11/2026: **36 candidatos únicos**, associados a **40 ofertas
 
 No Supabase `Salva Motoca`, os dados internos de prospecção ficam em tabelas privadas com RLS e sem acesso direto de `anon` ou `authenticated`. Contatos não são publicados no repositório nem exibidos no aplicativo.
 
-**Nenhum candidato é parceiro homologado ou habilitado para chamados.** Não exibir ofertas, horários 24h ou disponibilidade operacional como confirmados até validação comercial e técnica. Pagamentos reais permaneccem desativados enquanto não houver homologação do processador e do split financeiro.
+**Nenhum candidato é parceiro homologado ou habilitado para chamados.** Não exibir ofertas, horários 24h ou disponibilidade operacional como confirmados até validação comercial e técnica. Pagamentos reais permanecem desativados enquanto não houver homologação do processador e do split financeiro.
 
 ## Política de desenvolvimento
 
