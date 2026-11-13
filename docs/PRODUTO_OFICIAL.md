@@ -1,6 +1,6 @@
-# BorrachaJá! Oficial — Especificação de referência
+# Salva Motoca! Oficial — Especificação de referência
 
-**Nome oficial:** BorrachaJá!
+**Nome oficial:** Salva Motoca!
 
 **Proposta:** conectar motociclistas a borracharias, borracheiros delivery e fornecedores de reboque de motos, em formato de marketplace.
 
@@ -18,38 +18,44 @@ O cliente pode escolher um profissional ou solicitar busca automática. O profis
 
 ## Comunicação
 
-Telefones e links externos não são exibidos nos perfis. Chamados delivery usam fluxos de orçamento e comunicação interna. Informações de segurança e suporte permanecem acessíveis conforme necessidade.
+Telefones e links externos não são exibidos nos perfis. Chamados delivery usam fluxos de orçamento e comunicação interna.
 
 ## Profissionais e administração
 
 Os prestadores se cadastram e passam por verificação antes de aparecerem como ativos. O administrador gerencia solicitações e aprovações. Dados de contato administrativo e registros privados não pertencem a este repositório público.
 
+## Disponibilidade online e decisão sobre orçamento
+
+O prestador homologado escolhe **ficar online** ou **ficar offline**. Apenas quem oferece delivery, está habilitado e tem comunicação recente com o servidor entra na fila de novos pedidos.
+
+- **Aceitar:** pedido fica aguardando pagamento; não há cobrança nem despacho enquanto a integração financeira não existir.
+- **Recusar:** a primeira recusa mantém o prestador elegível para outra oportunidade mais adiante na mesma rodada; após duas recusas do mesmo solicitante na mesma solicitação, fica de fora daquela rodada. O pedido segue para o próximo profissional online elegível, sem retornar imediatamente ao recém-recusado. Encerrar e criar novo pedido reinicia as contagens.
+- **Conexão perdida:** a presença efetiva expira automaticamente. Desligar a disponibilidade bloqueia novos pedidos e preserva os já recebidos.
+
+## Serviços oficiais e regras comerciais
+
+1. **📍🛞 Mapa de borracharias físicas:** download, consulta e rotas gratuitos, sem comissão pela simples consulta.
+2. **🛞 Delivery de borracharia:** atendimento para reparo de pneu no local, com solicitação, comunicação, orçamento e pagamento dentro da plataforma; comissão de **15%** sobre o valor efetivamente pago.
+3. **🚚 Reboque de motos:** remoção ou transporte com solicitação, comunicação, orçamento e pagamento dentro da plataforma; **a mesma comissão de 15%**.
+
+O prestador pode oferecer uma ou ambas as modalidades pagas em um único cadastro, com oferta, preço, disponibilidade e cobertura independentes.
+
+## Prospecção inicial — BH + Contagem
+
+Levantamento de 12/11/2026: **36 candidatos únicos**, associados a **40 ofertas**; quatro candidatos têm as duas modalidades de socorro, algumas ainda dependentes de confirmação. A referência pública, sem telefones, está em `data/prestadores_candidatos_BH_2026-11-12.csv`.
+
+No Supabase `Salva Motoca`, os dados internos de prospecção ficam em tabelas privadas com RLS e sem acesso direto de `anon` ou `authenticated`. Contatos não são publicados no repositório nem exibidos no aplicativo.
+
+**Nenhum candidato é parceiro homologado ou habilitado para chamados.** Não exibir ofertas, horários 24h ou disponibilidade operacional como confirmados até validação comercial e técnica. Pagamentos reais permaneccem desativados enquanto não houver homologação do processador e do split financeiro.
+
 ## Política de desenvolvimento
 
-O projeto está em fase de MVP; deve usar planos gratuitos quando possível, sem afirmar disponibilidade comercial ou atendimento de emergência antes de testes completos.
+O projeto está em fase de MVP. Deve usar planos gratuitos quando possível, sem afirmar disponibilidade comercial ou atendimento de emergência antes de testes operacionais, legais e de segurança.
 
 ## Próximas etapas
 
-1. Organizar o código do MVP e os testes.
-2. Evoluir e testar o projeto Supabase `BorrachaJa-Oficial` (criado com esquema inicial, migrações e RLS), usando exclusivamente `bonecodesign/BorrachaJa` para versionamento.
-3. Validar os primeiros prestadores.
+1. Validar contas separadas de motociclista e prestador em ambiente de teste.
+2. Homologar manualmente prestadores reais antes de exibi-los no mapa.
+3. Testar tempo de resposta, notificações, cobertura e fluxos antifraude.
 4. Homologar pagamentos e split automático.
-5. Publicar apenas após testes operacionais, legais e de segurança.
-
-## Serviços oficiais e regras comerciais — 12/11/2026
-
-O BorrachaJá! Oficial atende inicialmente motociclistas de Belo Horizonte e Região Metropolitana com três funcionalidades:
-
-1. **📍🛞 Mapa de borracharias físicas:** download, consulta e rotas gratuitos, sem comissão pela simples consulta.
-2. **🛞 Delivery de borracharia:** atendimento para reparo de pneu no local, com solicitação, comunicação, orçamento e pagamento dentro da plataforma; comissão de **15%** sobre o valor efetivamente pago pelo serviço.
-3. **🚚 Reboque de motos:** remoção/transporte com solicitação, comunicação, orçamento e pagamento dentro da plataforma; **a mesma comissão de 15%**.
-
-O prestador pode oferecer uma ou ambas as modalidades pagas em **um único cadastro**, com oferta, preço, disponibilidade e cobertura independentes. O ícone duplo é 🛞🚚.
-
-### Prospecção inicial — BH + Contagem
-
-Levantamento de 12/11/2026: **36 candidatos únicos**, associados a **40 ofertas**; quatro candidatos têm as duas modalidades de socorro, algumas ainda dependentes de confirmação. Fonte de referência pública, sem telefones: `data/prestadores_candidatos_BH_2026-11-12.csv`.
-
-No Supabase `BorrachaJa-Oficial`, os dados internos da prospecção ficam nas tabelas `prestadores_prospeccao`, `ofertas_prospeccao` e `configuracao_comercial`, com RLS e sem acesso direto de `anon` ou `authenticated` nesta etapa. Contatos não são publicados no repositório nem exibidos no aplicativo.
-
-**Nenhum candidato é parceiro homologado ou habilitado para chamados**. Não exibir ofertas, horários 24h ou disponibilidade operacional como confirmados até validação comercial e técnica. Pagamentos reais permanecem desativados enquanto não houver homologação do processador e do split financeiro.
+5. Publicar somente após validações operacionais, legais e de segurança.
