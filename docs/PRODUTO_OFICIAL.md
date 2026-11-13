@@ -65,6 +65,13 @@ O projeto está em fase de MVP. Deve usar planos gratuitos quando possível, sem
 - **10 ausências em 30 dias** levam o perfil à revisão administrativa; não há bloqueio automático.
 - A regra depende de notificação entregue e registrada; seu acionamento fica pendente da implementação e homologação dos canais de aviso.
 
+## Suporte e incidentes no piloto
+
+- O suporte é acessado pelo app e gera protocolo e histórico para acompanhamento.
+- As categorias são: atendimento, prestador, pagamento (quando existir) e segurança.
+- Um relato de segurança suspende a solicitação para análise humana. Em emergência, o usuário deve acionar os serviços públicos competentes; o app não os substitui.
+- Não há promessa de atendimento 24 horas nesta fase; os casos comuns recebem retorno no próximo período operacional.
+
 ## Cancelamento no piloto
 
 - Antes de aceitar um orçamento, o motociclista pode cancelar livremente.
