@@ -65,12 +65,19 @@ O projeto está em fase de MVP. Deve usar planos gratuitos quando possível, sem
 - **10 ausências em 30 dias** levam o perfil à revisão administrativa; não há bloqueio automático.
 - A regra depende de notificação entregue e registrada; seu acionamento fica pendente da implementação e homologação dos canais de aviso.
 
-## Chat interno após aceite
+## Dados obrigatórios do pedido
 
-- O chat interno é liberado somente após o motociclista aceitar o orçamento.
+- O motociclista envia uma foto do problema.
+- Informa marca, modelo e ano da motocicleta.
+- Esses dados apoiam o orçamento; a imagem deve ser enviada apenas quando necessária ao atendimento.
+
+## Chat interno após pagamento
+
+- O chat interno é liberado somente após pagamento confirmado.
 - Telefone e WhatsApp não são exibidos entre as partes.
 - Permite mensagens, localização e fotos necessárias ao atendimento.
 - Fecha depois da conclusão ou do cancelamento, mantendo o histórico acessível para suporte e incidentes.
+- Enquanto os pagamentos reais não estiverem homologados, o chat permanece indisponível.
 
 ## Validade do orçamento
 
