@@ -65,6 +65,13 @@ O projeto está em fase de MVP. Deve usar planos gratuitos quando possível, sem
 - **10 ausências em 30 dias** levam o perfil à revisão administrativa; não há bloqueio automático.
 - A regra depende de notificação entregue e registrada; seu acionamento fica pendente da implementação e homologação dos canais de aviso.
 
+## Cancelamento no piloto
+
+- Antes de aceitar um orçamento, o motociclista pode cancelar livremente.
+- Após o aceite, pode solicitar cancelamento; o prestador é avisado e a ocorrência fica registrada.
+- O prestador pode cancelar informando o motivo; a solicitação volta à busca por prestadores elegíveis.
+- Enquanto pagamentos reais estiverem desativados, não há multa, cobrança ou estorno financeiro nesse fluxo.
+
 ## Homologação mínima do prestador
 
 Antes de aparecer como elegível, o prestador informa nome completo ou razão social, CPF ou CNPJ, telefone verificado, endereço/base de atendimento e serviços oferecidos, além de aceitar os termos da plataforma. Dados bancários não são solicitados nesta fase e só entram no fluxo quando pagamentos reais forem homologados.
