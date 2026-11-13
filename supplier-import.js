@@ -1,4 +1,4 @@
-/* BorrachaJá! — parser e normalizador de CSV para leads. Sem enviar dados a terceiros. */
+/* Salva Motoca! — parser e normalizador de CSV para leads. Sem enviar dados a terceiros. */
 (function (root) {
   'use strict';
   function parseCsv(input) {
