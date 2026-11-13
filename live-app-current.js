@@ -230,7 +230,13 @@
             '<button class="btn outline sm" data-action="answer-quote" data-id="' + esc(activeQuote.id) +
             '" data-accept="false">Recusar e buscar próximo online</button></div>' : "") +
           (owns(o) && o.status === "awaiting_payment" ? '<div class="notice">Orçamento aceito. Pagamentos ainda não habilitados; nenhum atendimento foi confirmado.</div>' : "") +
-          (owns(o) && o.status === "no_provider" ? '<div class="notice">Nenhum outro prestador online disponível para receber este pedido no momento.</div>' : "") +
+          (owns(o) && o.status === "no_provider" ? '<div class="notice">Nenhum outro prestador online elegível agora. O profissional só sai desta rodada após duas recusas.</div>' : "") +
+          (owns(o) && ["requested","quoted","no_provider","awaiting_payment"].includes(o.status) ?
+            '<button class="btn outline full" data-action="finish-request" data-id="' +
+            esc(o.id) + '">Encerrar esta solicitação de teste</button>' : "") +
+          (owns(o) && o.status === "cancelled" ?
+            '<div class="notice">Solicitação encerrada. A contagem de recusas recomeça em um novo pedido.</div>' +
+            '<button class="btn full" data-page="request">Criar nova solicitação</button>' : "") +
           '</div>';
       }).join("") : '<div class="notice">Você ainda não tem pedidos cadastrados.</div>');
   }
@@ -382,6 +388,20 @@
           out.data === "next_provider" ?
           "Orçamento recusado. O pedido seguiu para o próximo prestador online." :
           "Orçamento recusado. Não há outro prestador online disponível neste momento.";
+      } catch (err) { state.error = errorText(err); }
+      finally { state.loading = false; render(); }
+      return;
+    }
+    if (action === "finish-request") {
+      if (state.loading || !state.user) return;
+      state.loading = true;
+      try {
+        const result = await db.rpc("bj_finish_request", {p_request_id:id});
+        if (result.error) throw result.error;
+        await refreshIdentity();
+        state.error = "";
+        state.requestKey = null;
+        state.message = "Solicitação encerrada. Em um novo pedido, todos os prestadores online voltam à fila com zero recusas.";
       } catch (err) { state.error = errorText(err); }
       finally { state.loading = false; render(); }
       return;
