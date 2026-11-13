@@ -27,7 +27,7 @@ O Salva Motoca! é um marketplace em construção para o segmento de reparos de 
 
 ## 4. Produto inicial
 
-**MVP planejado:** cadastro e autenticação; mapa gratuito; cadastro e homologação de prestadores; status online/offline e confirmação de presença; escolha manual ou sugestão por proximidade; pedido; orçamento do prestador; aceite ou recusa; fila com no máximo duas recusas por prestador na mesma solicitação; cancelamento sem cobrança no piloto; confirmação bilateral de conclusão; encerramento; trilha de auditoria; suporte com protocolo, triagem de segurança e mediação básicos.
+**MVP planejado:** cadastro e autenticação; mapa gratuito; cadastro e homologação de prestadores; status online/offline e confirmação de presença; escolha manual ou sugestão por proximidade; pedido; orçamento do prestador; aceite ou recusa; fila com no máximo duas recusas por prestador na mesma solicitação; cancelamento sem cobrança no piloto; confirmação bilateral de conclusão; avaliações bilaterais moderadas; encerramento; trilha de auditoria; suporte com protocolo, triagem de segurança e mediação básicos.
 
 **Fora da operação comercial atual:** pagamentos reais e split, atendimento de emergência garantido, cobertura nacional, serviço com SLA garantido e retirada de dados do cliente para contato externo. O fluxo de reboque existe no produto, mas não pode ser cobrado nem despachado sem homologação.
 
@@ -86,4 +86,4 @@ Liquidez insuficiente de prestadores; falsa indicação de online; perda de sina
 
 ## 12. Decisões ainda abertas
 
-CNPJ/razão social, responsável contratual, termos e tributos; processador de pagamentos, custo por transação e split; critérios complementares de aprovação profissional; preço mínimo ou políticas de valores abusivos, se pertinentes; homologação técnica das notificações e auditoria de entrega; validação operacional da área de atendimento declarada pelo prestador; regras de cancelamento e confirmação de conclusão após pagamentos reais; implementação e teste do suporte com protocolo e triagem de segurança; indenização; canais de aquisição pagos; metas do piloto e orçamento. A composição e a revisão do orçamento foram definidas.
+CNPJ/razão social, responsável contratual, termos e tributos; processador de pagamentos, custo por transação e split; critérios complementares de aprovação profissional; preço mínimo ou políticas de valores abusivos, se pertinentes; homologação técnica das notificações e auditoria de entrega; validação operacional da área de atendimento declarada pelo prestador; regras de cancelamento e confirmação de conclusão após pagamentos reais; parâmetros de reputação e mediação; implementação e teste do suporte com protocolo e triagem de segurança; indenização; canais de aquisição pagos; metas do piloto e orçamento. A composição e a revisão do orçamento foram definidas.
