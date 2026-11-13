@@ -1,6 +1,6 @@
 {
- "name":"BorrachaJá!",
- "short_name":"BorrachaJá!",
+ "name":"Salva Motoca!",
+ "short_name":"Salva Motoca!",
  "description":"Encontre borracharias e solicite um borracheiro no local.",
  "start_url":"./index.html",
  "scope":"./",
