@@ -73,6 +73,13 @@ O projeto está em fase de MVP. Deve usar planos gratuitos quando possível, sem
 4. O pagamento é confirmado.
 5. O chat interno é liberado com as restrições de privacidade já definidas.
 
+## Registro de chegada
+
+- O prestador marca “cheguei” ao alcançar o local do motociclista.
+- O motociclista recebe um aviso imediato.
+- O rastreamento em tempo real é encerrado nesse evento.
+- Divergências sobre a chegada são registradas para suporte; a conclusão do serviço ainda exige confirmação bilateral.
+
 ## Acompanhamento do deslocamento
 
 - Após marcar “em deslocamento”, o prestador tem seu deslocamento informado em tempo real ao motociclista até a chegada.
