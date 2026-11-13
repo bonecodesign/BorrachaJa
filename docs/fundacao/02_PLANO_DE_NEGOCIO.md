@@ -37,8 +37,8 @@ O Salva Motoca! é um marketplace em construção para o segmento de reparos de 
 2. Consulta mapa sem pagar; pode optar por pedir reparo delivery.
 3. Cadastro/login e consentimentos adequados; fornece descrição do problema e informações estritamente necessárias.
 4. Prestador homologado e online recebe chamado e responde dentro de janela a definir.
-5. Prestador apresenta preço total e detalhamento.
-6. Cliente aceita ou recusa; após recusa, o próximo elegível recebe a oportunidade.
+5. Prestador apresenta orçamento discriminado: valor do serviço e deslocamento, quando aplicável; o cliente vê o total antes do aceite.
+6. Cliente aceita ou recusa; qualquer extra posterior exige novo orçamento discriminado e novo aceite. Após recusa, o próximo elegível recebe a oportunidade.
 7. Ao aceitar, há etapa de pagamento protegida **ainda não implementada**; confirmar e executar serviço só depois do processamento financeiro seguro.
 8. Após o serviço, o sistema permite confirmação, eventual disputa e avaliação.
 9. Suporte revisa conflitos e fraude; dados pessoais são tratados com regras de retenção e acesso.
@@ -86,4 +86,4 @@ Liquidez insuficiente de prestadores; falsa indicação de online; perda de sina
 
 ## 12. Decisões ainda abertas
 
-CNPJ/razão social, responsável contratual, termos e tributos; processador de pagamentos, custo por transação e split; critérios de aprovação profissional; preço mínimo ou políticas de valores abusivos, se pertinentes; SLA de resposta; raio máximo; cancelamento após aceite; suporte e indenização; canais de aquisição pagos; metas do piloto e orçamento.
+CNPJ/razão social, responsável contratual, termos e tributos; processador de pagamentos, custo por transação e split; critérios de aprovação profissional; preço mínimo ou políticas de valores abusivos, se pertinentes; SLA de resposta; raio máximo; cancelamento após aceite; suporte e indenização; canais de aquisição pagos; metas do piloto e orçamento. A composição e a revisão do orçamento foram definidas.
