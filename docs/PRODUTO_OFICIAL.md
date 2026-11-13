@@ -65,6 +65,13 @@ O projeto está em fase de MVP. Deve usar planos gratuitos quando possível, sem
 - **10 ausências em 30 dias** levam o perfil à revisão administrativa; não há bloqueio automático.
 - A regra depende de notificação entregue e registrada; seu acionamento fica pendente da implementação e homologação dos canais de aviso.
 
+## Confirmação de conclusão
+
+- O prestador declara no aplicativo que o serviço foi concluído.
+- O motociclista precisa confirmar essa conclusão.
+- O atendimento só é marcado como concluído depois das duas confirmações.
+- Sem uma das confirmações, ele permanece pendente para acompanhamento e suporte; não há cobrança nesta fase.
+
 ## Suporte e incidentes no piloto
 
 - O suporte é acessado pelo app e gera protocolo e histórico para acompanhamento.
