@@ -71,3 +71,23 @@ Abra `http://localhost:8080` com internet. A autenticação do Supabase poderá 
 - O esquema de prospecção é isolado sem políticas de consulta pública (comportamento desejado).
 - É necessário criar ferramenta de homologação administrativa segura e definir método de captura de localização correto para o pedido.
 - A busca automática usa distância aproximada: ainda não possui despacho automático confiável.
+
+## Regra nova — presença online e recusa de orçamento (12/11/2026)
+
+**Implementado no banco e na branch:** `bj_provider_presence` guarda disponibilidade escolhida pelo borracheiro, com ping a cada 30 segundos e expiração de conectividade após 90 segundos. `bj_request_attempts` evita repetir o profissional no mesmo pedido. As funções protegidas `bj_set_presence`, `bj_ping_presence`, `bj_online_providers`, `bj_submit_quote` e `bj_answer_quote` operam o fluxo.
+
+Migrações no Supabase, todas já aplicadas:
+- `20261113002617_presenca_online_orcamento_e_proximo_prestador`
+- `20261113002736_separar_visibilidade_publica_e_propria_da_presenca`
+- `20261113003015_preservar_historico_de_orcamentos_do_prestador`
+
+O pedido passa de `requested` para `quoted` quando o prestador informa valor. O cliente **aceita** (`awaiting_payment`, sem cobrar nada) ou **recusa**, transferindo o mesmo pedido a outro prestador online e homologado, ainda não tentado. Sem próximo, o estado vira `no_provider`.
+
+O cadastro administrativo `providers.is_active` permanece separado da disponibilidade escolhida. Sem aprovação administrativa e `provider_services.is_active=true`, não pode ficar online.
+
+**Testes executados:**
+- Simulação SQL em transação revertida: troca para próximo prestador, recusa e aceite, bloqueio por terceiros, orçamento histórico do prestador anterior, ausência de pagamentos e ausência de candidato seguinte; arquivo `supabase/tests/presenca_orcamentos_rollback.sql`.
+- Simulação de expiração de presença e novo ping com transação revertida: passou.
+- Simulação de navegação JS com banco em memória: **12/12 cenários passaram**.
+
+**Pendências:** validação com duas sessões de Auth reais, notificação/atualização automática de pedidos sem botão, raio de cobertura e distância real de deslocamento, tempo de resposta e tratamento de prestador que fica offline com pedido pendente. O usuário ainda precisa atualizar a tela "Pedidos" ou abri-la novamente para carregar novos chamados. Funções `SECURITY DEFINER` expostas a autenticados devem passar por revisão de segurança antes do lançamento. Ver [regras de presença e orçamento](PRESENCA_ORCAMENTO_REGRA_OFICIAL.md).
