@@ -70,7 +70,7 @@ Não há prova de margem positiva, faturamento ou cobertura de custos. Não comu
 
 **Fase A — pesquisa:** pelo menos entrevistas com motociclistas e prestadores, levantando preço de reparos, raio e disponibilidade. Definir amostra antes de afirmar resultados.
 
-**Fase B — usabilidade:** duas contas reais de teste em navegadores independentes, cenários de pedido e recusa, queda de rede, reenvio, notificação, limite de duas recusas e novo pedido.
+**Fase B — usabilidade:** duas contas reais de teste em navegadores independentes, cenários de pedido e recusa, queda de rede, reenvio, notificação, auditoria de entrega, limite de duas recusas e novo pedido.
 
 **Fase C — operação assistida:** seleção voluntária e documentada de profissionais, observação de atendimentos não emergenciais com suporte ativo e pagamentos homologados.
 
@@ -86,4 +86,4 @@ Liquidez insuficiente de prestadores; falsa indicação de online; perda de sina
 
 ## 12. Decisões ainda abertas
 
-CNPJ/razão social, responsável contratual, termos e tributos; processador de pagamentos, custo por transação e split; critérios de aprovação profissional; preço mínimo ou políticas de valores abusivos, se pertinentes; SLA de resposta e desenho/validação das notificações; raio máximo; cancelamento após aceite; suporte e indenização; canais de aquisição pagos; metas do piloto e orçamento. A composição e a revisão do orçamento foram definidas.
+CNPJ/razão social, responsável contratual, termos e tributos; processador de pagamentos, custo por transação e split; critérios de aprovação profissional; preço mínimo ou políticas de valores abusivos, se pertinentes; homologação técnica das notificações e auditoria de entrega; raio máximo; cancelamento após aceite; suporte e indenização; canais de aquisição pagos; metas do piloto e orçamento. A composição e a revisão do orçamento foram definidas.
