@@ -49,9 +49,11 @@ Aprovado significa **definido pelo responsável do produto**, não necessariamen
 | SM-OPEN-011 | Política de idade/elegibilidade para contas e geolocalização | Direitos e proteção de dados |
 | SM-OPEN-012 | Critérios de ranking e reputação, prevenção de direcionamento injusto | Transparência |
 | SM-OPEN-013 | Marca/slogan finais, domínio e registro de marca | Identidade e propriedade intelectual |
+| SM-OPEN-014 | Concluir a integração técnica do reboque no aplicativo conectado e alinhar a configuração financeira no Supabase | O produto e a migração inicial incluem reboque, mas o banco ativo usa 0%/cobrança desativada e o front-end ainda não oferece esse pedido; requer código, testes e homologação antes de cobrar |
 
 ## Histórico de validação
 
+- **12/11/2026 — SM-DEC-015:** o responsável pelo produto confirmou que **reboque de motocicletas já integra o projeto**, corrigindo o enquadramento equivocado como expansão futura. Documento oficial de produto mantém reboque com orçamento e comissão de 15%. Verificar o fluxo técnico completo antes de liberar pagamentos.
 - **12/11/2026 — SM-DEC-014:** responsável pelo produto aprovou expressamente a comissão de **15% sobre o valor dos serviços delivery efetivamente pagos no Salva Motoca!**. Registro realizado nos documentos FND-02, FND-05 e FND-08; a distribuição da tarifa de processamento e o provedor financeiro permanecem em aberto. Não há autorização para iniciar cobranças reais.
 
 ## Conciliação da modalidade de reboque
