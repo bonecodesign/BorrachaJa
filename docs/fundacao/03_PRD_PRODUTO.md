@@ -4,7 +4,7 @@
 
 ## Objetivo do produto
 
-Entregar uma jornada digital confiável que permita encontrar borracharias e, futuramente, contratar reparo de pneus de moto com orçamento escolhido pelo profissional, decisão do cliente, gestão de disponibilidade e pagamentos protegidos.
+Entregar uma jornada digital confiável que permita encontrar borracharias e contratar **reparo de pneus no local ou reboque de motocicletas** com orçamento escolhido pelo profissional, decisão do cliente, gestão de disponibilidade e pagamentos protegidos, após homologação comercial.
 
 **Estado atual:** protótipo e Supabase integrados na branch de desenvolvimento, com testes virtuais. Não publicado comercialmente nem homologado ponta a ponta em produção. A palavra "implementado" não implica lançamento.
 
@@ -38,10 +38,14 @@ Entregar uma jornada digital confiável que permita encontrar borracharias e, fu
 | SM-F16 | Painel administrativo | Aprovação, suspensão, auditoria, gestão de chamados e suporte | Pendente |
 | SM-F17 | Avaliação | Reputação com controle antifraude e direito de resposta apropriado | Pendente |
 | SM-F18 | Acessibilidade | Contraste, navegação por teclado, mensagens acessíveis e clareza de estado | A validar |
+| SM-F19 | Reboque de motos | Cliente seleciona reboque, descreve necessidade de remoção, recebe orçamento de profissional habilitado, aceita/recusa e segue a mesma regra de rodada | **Categoria cadastrada no banco e prevista no produto; fluxo E2E e pagamento pendentes** |
+| SM-F20 | Modalidades do prestador | Prestador pode ofertar reparo, reboque ou ambos, com homologação e disponibilidade conforme serviço e cobertura | Especificado; validação técnica pendente |
 
 ## Regras operacionais fechadas
 
 **Mapa:** consulta sem cobrança e sem comissão por simples visita ao local.
+
+**Modalidades pagas previstas no produto:** reparo delivery e reboque de motos, sob comissão comercial de 15% sobre serviços efetivamente pagos. Nenhuma cobrança está habilitada nesta etapa; no banco ativo, reboque aparece temporariamente não cobrável e não é oferecido pelo front-end conectado. Corrigir e homologar essa divergência antes de operar.
 
 **Elegibilidade delivery:** homologado, serviço habilitado, flag online voluntária e sinal de comunicação com o servidor nos últimos ~90 s.
 

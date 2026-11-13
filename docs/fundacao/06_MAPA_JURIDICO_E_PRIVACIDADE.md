@@ -74,3 +74,11 @@ A qualificação da plataforma como intermediadora tecnológica não elimina aut
 - ANPD — guias e materiais: https://www.gov.br/anpd/pt-br/centrais-de-conteudo/materiais-educativos-e-publicacoes
 
 **Revisão jurídica humana obrigatória** antes de publicar Termos, Política, Contrato de Prestador ou aceitar operações com valores reais.
+
+## Modalidade de reboque de motocicletas — revisão específica
+
+O reboque já integra o escopo oficial do Salva Motoca!, mas sua disponibilização comercial exige verificar separadamente: requisitos profissionais e documentais de prestadores e veículos, segurança da operação de transporte, responsabilidade por avarias e por carga, condições de origem e destino, restrições de acesso, eventual seguro e regras aplicáveis à atividade.
+
+Do ponto de vista de privacidade, considerar **dois locais protegidos** (origem e destino) e compartilhar somente os dados estritamente necessários com prestador homologado, em etapa autorizada. A integração financeira de reboque deve preservar transparência de preço, confirmação de pagamento e direitos de cancelamento/estorno.
+
+Essa revisão não altera as atuais permissões do banco, não libera cobranças e não equivale a homologação legal.

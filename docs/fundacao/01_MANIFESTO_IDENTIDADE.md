@@ -8,11 +8,11 @@
 
 Uma falha no pneu interrompe deslocamentos de trabalho, estudo, lazer e cuidados familiares. Quem está com a moto parada precisa encontrar ajuda com clareza e segurança; quem presta reparos precisa ter autonomia para definir preço, disponibilidade e área de atuação.
 
-O Salva Motoca! propõe aproximar essas pessoas por meio de uma experiência digital simples: consulta gratuita de borracharias e, em uma etapa posterior, solicitação de atendimento de reparo de pneus no local, com orçamento apresentado pelo profissional e decisão do motociclista.
+O Salva Motoca! propõe aproximar essas pessoas por meio de uma experiência digital simples: consulta gratuita de borracharias e serviços intermediados de **reparo de pneus no local e reboque de motocicletas**, com orçamento apresentado pelo prestador e decisão do motociclista. A disponibilização comercial depende de homologação.
 
 ## Missão
 
-Facilitar o encontro seguro e transparente entre motociclistas que precisam de reparo de pneus e borracheiros verificados, respeitando o tempo, a autonomia e as condições de ambas as partes.
+Facilitar o encontro seguro e transparente entre motociclistas que precisam de reparo de pneus **ou remoção/reboque de motos** e prestadores verificados, respeitando o tempo, a autonomia e as condições de ambas as partes.
 
 ## Visão
 

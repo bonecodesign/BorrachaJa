@@ -11,7 +11,7 @@ Lançar um piloto comercial em área limitada de Belo Horizonte com prestadores 
 | Marco | Entrega | Dependência para avançar | Estado |
 | --- | --- | --- | --- |
 | M0 — Fundação | Identidade, modelo de negócio, requisitos, documentação básica | Decisões registradas e responsável definido | Em elaboração |
-| M1 — MVP técnico | Cadastro, catálogo, localização, presença, fila, orçamento, aceite/recusa | Código revisado, testes integrados e ambiente estável | Parcial |
+| M1 — MVP técnico | Cadastro, catálogo, localização, presença, fila, orçamento, aceite/recusa **para reparo delivery e reboque** | Código revisado, jornada das duas modalidades integrada e testes independentes | Parcial; reboque ainda não integrado ao fluxo conectado |
 | M2 — Homologação fechada | Teste real com 2 contas e 2 prestadores fictícios consentidos, cenários de rede e segurança | RLS, Auth e logs revisados | Pendente |
 | M3 — Operação assistida | Painel administrativo, notificações, timeout, suporte, contestação | Responsáveis humanos e critérios operacionais | Pendente |
 | M4 — Pagamento protegido | Pix/cartões, webhooks, split e reembolso com conciliação | PSP homologado, contratos e contas empresariais | Pendente |
@@ -23,7 +23,7 @@ Lançar um piloto comercial em área limitada de Belo Horizonte com prestadores 
 
 **P0, não adiável antes de usuários reais:** finalizar teste E2E com Supabase Auth, segurança de funções privilegiadas, isolamento de pedidos, gerenciamento de sessão e recuperação de falha.
 
-**P1, necessário para piloto assistido:** cadastro/homologação administrativa, notificações de novos pedidos, prazo de resposta, prestadores que ficam offline com pedido atribuído, cancelamento e mediação.
+**P1, necessário para piloto assistido:** cadastro/homologação administrativa, **jornada completa do reboque com prestadores e veículos compatíveis**, notificações de novos pedidos, prazo de resposta, prestadores que ficam offline com pedido atribuído, cancelamento e mediação.
 
 **P2, necessário para comércio real:** PSP e split homologados, comprovantes, conciliação, estorno, contratos e rotina de suporte, confirmação de serviço.
 
