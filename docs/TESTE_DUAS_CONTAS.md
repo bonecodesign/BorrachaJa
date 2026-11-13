@@ -61,3 +61,15 @@ Com duas contas reais de teste em navegadores distintos, após homologar o prest
 6. Para validar queda de conexão, interrompa o navegador (ou internet) e confira que após cerca de 90 segundos sem ping ele deixa de aparecer online.
 
 **Não executar chamadas de serviço reais e não ativar cobranças.**
+
+## Regra das duas recusas — teste específico
+
+Depois de aprovar **dois prestadores fictícios com consentimento**, coloque A e B online e use uma única conta de cliente:
+
+1. A envia orçamento; cliente recusa: A fica com **1/2** recusas no mesmo pedido, e B recebe a próxima tentativa.
+2. B envia e é recusado: B fica com **1/2**, e A pode receber de novo.
+3. A envia outro orçamento, e o cliente recusa: A fica com **2/2**, fora desta solicitação.
+4. B envia e recebe segunda recusa: B também sai; o pedido informa que não há próximo elegível.
+5. Cliente escolhe **Encerrar esta solicitação**, depois **Criar nova solicitação**. A e B voltam a ser elegíveis online, começando a contagem do zero.
+
+Este teste não deve acionar atendimento nem pagamento real. A lógica foi simulada no banco com `ROLLBACK`, mas o teste com duas contas reais ainda está pendente.
