@@ -4,9 +4,9 @@
 
 ## 1. Resumo executivo
 
-O Salva Motoca! é um marketplace em construção para o segmento de reparos de pneus de motocicletas. O produto combina um mapa gratuito de borracharias verificadas com um fluxo de solicitação delivery no local do problema. O prestador recebe chamado quando está homologado, habilitado e online; define seu próprio orçamento; o cliente aceita ou recusa. A plataforma mantém o histórico de ofertas e tenta o próximo elegível quando há recusa.
+O Salva Motoca! é um marketplace em construção para **reparos de pneus e reboque de motocicletas**. Combina um mapa gratuito de borracharias verificadas com dois serviços intermediados: **borracharia delivery** (reparo no local) e **reboque de motos** (remoção/transporte), ambos integrantes do escopo oficial do produto. O prestador recebe chamado quando está homologado, habilitado e online; define seu próprio orçamento; o cliente aceita ou recusa. A plataforma mantém o histórico de ofertas e tenta o próximo elegível quando há recusa.
 
-**Modelo econômico aprovado internamente:** comissão de **15% sobre o valor dos serviços de borracharia delivery efetivamente pagos pelo aplicativo**. Decisão comercial aprovada pelo responsável pelo projeto em 12/11/2026 (SM-DEC-014). Sua execução depende de validação jurídica, tributária, contratual e de meios de pagamento. Consulta ao mapa e visita direta ao estabelecimento não geram comissão. Reboque é possibilidade futura, fora do checkout inicial.
+**Modelo econômico aprovado internamente:** comissão de **15% sobre os valores de serviços intermediados de borracharia delivery e reboque efetivamente pagos pelo aplicativo**. Decisão comercial aprovada pelo responsável pelo projeto em 12/11/2026 (SM-DEC-014). Sua execução depende de validação jurídica, tributária, contratual e de meios de pagamento. Consulta ao mapa e visita direta ao estabelecimento não geram comissão. **O reboque já integra o escopo oficial do produto**, com a mesma comissão comercial prevista de 15% nos serviços pagos, conforme `docs/PRODUTO_OFICIAL.md`. A categoria já consta do banco original, mas a jornada conectada e o checkout ainda exigem integração e homologação; o banco ativo mantém a cobrança do reboque desativada.
 
 ## 2. Problema e oportunidade
 
@@ -24,17 +24,18 @@ O Salva Motoca! é um marketplace em construção para o segmento de reparos de 
 | Motoboy/entregador | Veículo parado afeta renda | Facilidade de localizar atendimento |
 | Borracharia física | Baixa presença digital | Descoberta gratuita no mapa |
 | Borracheiro delivery | Demanda descontínua | Chamados apenas enquanto escolhe estar online |
+| Prestador de reboque de motos | Dificuldade de receber pedidos compatíveis com seus equipamentos e área de atuação | Solicitações de remoção/transporte compatíveis com disponibilidade e cobertura |
 
 ## 4. Produto inicial
 
-**MVP planejado:** cadastro e autenticação; mapa gratuito; cadastro e homologação de prestadores; status online/offline e confirmação de presença; escolha manual ou sugestão por proximidade; pedido; orçamento do prestador; aceite ou recusa; fila com no máximo duas recusas por prestador na mesma solicitação; encerramento; trilha de auditoria; suporte e mediação básicos.
+**MVP planejado:** cadastro e autenticação; mapa gratuito; cadastro e homologação de prestadores de reparo e reboque; escolha da modalidade; disponibilidade online/offline por serviço e área; solicitação; orçamento do prestador; aceite ou recusa; fila com no máximo duas recusas por prestador na mesma solicitação; encerramento; trilha de auditoria; suporte e mediação básicos. A contratação de reboque está **definida no produto, mas ainda não totalmente integrada ao front-end conectado e ao banco ativo**.
 
-**Fora do MVP operacional atual:** reboque cobrável, atendimento de emergência garantido, motor automático de pagamentos/split, cobertura nacional, serviço com SLA garantido, retirada de dados do cliente para contato externo.
+**Ainda não habilitados para operação real:** pagamentos e split de reparo e reboque, atendimento de emergência garantido, cobertura nacional, serviço com SLA garantido e compartilhamento externo de dados do cliente. A jornada técnica de reboque também precisa ser concluída e homologada antes do primeiro serviço comercial.
 
 ## 5. Jornada comercial pretendida
 
 1. Usuário descobre o app por busca, indicação, QR code no estabelecimento ou comunicação local.
-2. Consulta mapa sem pagar; pode optar por pedir reparo delivery.
+2. Consulta mapa sem pagar; pode escolher **reparo delivery ou reboque**, de acordo com o problema, a cobertura e a disponibilidade dos prestadores.
 3. Cadastro/login e consentimentos adequados; fornece descrição do problema e informações estritamente necessárias.
 4. Prestador homologado e online recebe chamado e responde dentro de janela a definir.
 5. Prestador apresenta preço total e detalhamento.
@@ -53,14 +54,14 @@ O Salva Motoca! é um marketplace em construção para o segmento de reparos de 
 
 - Plataforma web/PWA, banco e autenticação.
 - Meios de pagamento com recursos de marketplace, retenção/repasse e conciliação, ainda não selecionados.
-- Prestadores homologados voluntariamente e com documentação adequada.
+- Prestadores homologados voluntariamente, com verificação específica da modalidade oferecida (reparo ou reboque) e documentação adequada.
 - Função administrativa de verificação, suporte, incidentes e revisão humana.
 - Serviços de mapa/roteamento e notificações compatíveis com orçamento.
 - Contabilidade, assessoria jurídica, proteção de dados e condições contratuais.
 
 ## 8. Fontes de receita e custos
 
-**Receita comercial aprovada internamente:** comissão de **15% sobre o valor do serviço delivery efetivamente pago e liquidado pelo aplicativo**, sujeita a reversões em estornos e cancelamentos. **A tarifa de processamento de Pix/cartão é uma questão separada e ainda não foi atribuída ao prestador, ao cliente ou à plataforma.** Antes da operação real, formalizar base de cálculo, condições de devolução, transparência comercial, tributos, liquidação e split com apoio jurídico e contábil.
+**Receita comercial aprovada internamente:** comissão de **15% sobre o valor de serviços intermediados de reparo delivery e reboque efetivamente pagos e liquidados pelo aplicativo**, sujeita a reversões em estornos e cancelamentos. **A tarifa de processamento de Pix/cartão é uma questão separada e ainda não foi atribuída ao prestador, ao cliente ou à plataforma.** Antes da operação real, formalizar base de cálculo, condições de devolução, transparência comercial, tributos, liquidação e split com apoio jurídico e contábil.
 
 **Custos a apurar:** processamento de pagamentos, infraestrutura, mapas e mensagens, suporte, chargebacks/fraudes, marketing, formalização jurídica, tributos, contabilidade, seguro e eventuais responsabilidades de atendimento.
 
