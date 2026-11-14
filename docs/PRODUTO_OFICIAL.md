@@ -78,6 +78,12 @@ O motociclista pode selecionar **uma ou mais opções** na mesma solicitação:
 
 O pedido só é oferecido a prestadores que declararam atender os serviços selecionados.
 
+## Orçamento itemizado
+
+- Todo orçamento informa separadamente cada serviço selecionado, o **deslocamento obrigatório** e cada peça ou material.
+- O total final é exibido antes do pagamento.
+- Nenhum item adicional pode ser cobrado sem novo orçamento discriminado e novo aceite.
+
 ## Ordem do atendimento
 
 1. O motociclista solicita o serviço com foto do problema e dados da motocicleta.
