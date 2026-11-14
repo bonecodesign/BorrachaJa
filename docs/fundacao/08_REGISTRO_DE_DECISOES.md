@@ -49,6 +49,7 @@ Aprovado significa **definido pelo responsável do produto**, não necessariamen
 | SM-DEC-040 | Pedido permite selecionar uma ou mais opções: pneu furado/reparo, troca de câmara, troca de pneu, calibragem/válvula, reboque de moto e outro problema com descrição/foto; prestador só recebe solicitações compatíveis com os serviços que declarou atender | **Aprovada expressamente em 13/11/2026**; requer taxonomia e compatibilidade de serviços na implementação |
 | SM-DEC-041 | Todo orçamento discrimina cada serviço selecionado, deslocamento obrigatório e cada peça/material; total final é exibido antes do pagamento; nenhum item adicional é cobrado sem novo orçamento e aceite | **Aprovada expressamente em 13/11/2026**; exige validação de itens e transparência no checkout |
 | SM-DEC-042 | No piloto não há tabela fixa: prestador define serviço, deslocamento e peças de forma separada; motociclista escolhe; valores potencialmente abusivos/incoerentes podem ser suspensos para revisão humana, sem ajuste automático | **Aprovada expressamente em 13/11/2026**; exige critérios publicados, registro e direito de contestação |
+| SM-DEC-043 | Comissão de 15% também incide sobre o valor do serviço de reboque; deslocamento, tarifa de processamento e extras não integram a base | **Aprovada expressamente em 13/11/2026**; ativação depende de PSP, contratos, impostos e homologação |
 
 ## Definições técnicas adotadas, ajustáveis após testes
 
@@ -106,6 +107,7 @@ Aprovado significa **definido pelo responsável do produto**, não necessariamen
 - **13/11/2026 — SM-DEC-040:** motociclista seleciona uma ou mais opções de serviço; o prestador só recebe pedidos compatíveis com o que declarou atender.
 - **13/11/2026 — SM-DEC-041:** orçamento itemiza serviços, deslocamento obrigatório e peças/materiais, com total antes do pagamento. Alterações exigem novo orçamento e aceite.
 - **13/11/2026 — SM-DEC-042:** sem tabela fixa no piloto; prestador define valores discriminados e motociclista escolhe. Possíveis abusos/incoerências vão para revisão humana, sem ajuste automático.
+- **13/11/2026 — SM-DEC-043:** reboque também tem comissão de 15% apenas sobre o serviço; deslocamento, tarifa e extras ficam fora da base.
 
 ## Controle de alteração
 
