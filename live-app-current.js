@@ -4,6 +4,7 @@
 (() => {
   "use strict";
   const config = window.BJ_CONFIG || {};
+  const F1 = window.SMRequestF1;
   const container = document.getElementById("app");
   const banner = document.querySelector(".demo-banner");
   if (!window.supabase || !window.supabase.createClient) {
@@ -17,7 +18,7 @@
     page: "home", user: null, profile: null, ownProvider: null, directory: [],
     services: [], categories: [], onlineIds: new Set(), ownPresence: null, orders: [], quotes: [], selected: null,
     mode: "manual", location: null, map: null, loading: false, requestKey: null,
-    message: "", error: ""
+    message: "", error: "", uploadedPhotoKey: null, photoPreview: {}
   };
   const esc = value => String(value ?? "").replace(/[&<>"']/g, ch =>
     ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[ch]);
@@ -154,16 +155,24 @@
       '<button class="btn full" data-page="login">Entrar ou cadastrar</button></div>';
     const p = state.directory.find(row => row.id === state.selected);
     if (!p || !deliveryIds().has(p.id) || !state.onlineIds.has(p.id)) return '<div class="notice">O prestador está offline ou indisponível para novos pedidos. Atualize a lista.</div>';
+    const options = Object.entries(F1.SERVICE_TYPES).map(([code, title]) =>
+      '<label class="fieldrow"><input type="checkbox" name="services" value="' + esc(code) + '">' +
+      esc(title) + (code === "reboque_moto" ? ' — integração em desenvolvimento (não envia)' : '') + '</label>').join('');
     return header("Solicitar orçamento", p.display_name + " — ambiente de testes, sem atendimento real") +
       '<form id="request-form" class="card form">' +
-      label("Modelo da moto", "text", "motorcycle", "Ex.: Honda CG 160", true) +
-      '<label class="fieldrow"><span class="label">Problema com o pneu</span>' +
+      '<fieldset><legend><b>Qual serviço você precisa?</b> (selecione um ou mais)</legend>' + options + '</fieldset>' +
+      label("Marca da moto", "text", "brand", "Ex.: Honda", true) +
+      label("Modelo da moto", "text", "model", "Ex.: CG 160", true) +
+      '<label class="fieldrow"><span class="label">Ano da moto</span><input class="field" type="number" name="year" min="1950" max="' + (new Date().getFullYear()+1) + '" step="1" placeholder="Ex.: 2024" required></label>' +
+      '<label class="fieldrow"><span class="label">Foto do problema (obrigatória)</span>' +
+      '<input class="field" type="file" name="photo" accept="image/jpeg,image/png,image/webp" required>' +
+      '<small>JPG, PNG ou WebP de até 8 MB. A imagem será reduzida e convertida em JPG sem metadados EXIF antes do upload privado.</small></label>' +
+      '<label class="fieldrow"><span class="label">Descreva o problema</span>' +
       '<textarea name="problem" minlength="5" maxlength="1900" required class="field" placeholder="Explique o problema"></textarea></label>' +
       '<label class="fieldrow"><span class="label">Endereço do atendimento (restrito)</span>' +
-      '<textarea name="address" maxlength="280" required class="field" placeholder="Rua, número e referência"></textarea></label>' +
-      '<p class="notice">O endereço é protegido contra leitura direta pelo prestador antes do pagamento. ' +
-      'Não envie solicitações reais enquanto este aplicativo estiver em testes.</p>' +
-      '<button class="btn full" type="submit">Criar pedido de teste</button></form>';
+      '<textarea name="address" minlength="6" maxlength="280" required class="field" placeholder="Rua, número e referência"></textarea></label>' +
+      '<p class="notice">Somente TESTES: não envie dados ou localizações reais nesta fase. A foto poderá ser vista pelo prestador designado para preparar o orçamento; endereço exato continua restrito antes do pagamento. Nenhum socorro ou pagamento é ativado.</p>' +
+      '<button class="btn full" type="submit">Revisar e criar pedido de teste</button></form>';
   }
   function renderLogin() {
     return header("Entrar", "A conta é necessária para cadastros e solicitações de teste.") +
@@ -224,6 +233,10 @@
         return '<div class="card"><p><b>' + esc(o.problem_description) + '</b></p><p class="small muted">' +
           esc(statusName(o.status)) + ' · ' + new Date(o.created_at).toLocaleString("pt-BR") + '</p>' +
           '<p>Prestador: ' + esc(provider?.display_name || "Em triagem") + '</p>' +
+           (o.motorcycle_brand ? '<p><b>Moto:</b> ' + esc(o.motorcycle_brand) + ' ' + esc(o.motorcycle_model) + ' (' + esc(o.motorcycle_year) + ')</p>' : '') +
+           (o.service_types?.length ? '<p><b>Serviços:</b> ' + o.service_types.map(code => esc(F1.SERVICE_TYPES[code] || code)).join(', ') + '</p>' : '') +
+           (o.photo_path && (owns(o) || providerOwns(o)) ? '<button class="btn outline sm" data-action="view-photo" data-id="' + esc(o.id) + '">Ver foto do problema</button>' +
+             (state.photoPreview[o.id] ? '<p><img style="max-width:100%;border-radius:8px" referrerpolicy="no-referrer" alt="Foto do problema enviada pelo cliente" src="' + esc(state.photoPreview[o.id]) + '"></p>' : '') : '') +
           (q.length ? q.map(item => '<p><b>Orçamento de ' +
               esc(state.directory.find(p => p.id === item.provider_id)?.display_name || "prestador anterior") +
               ':</b> ' + amount(item.amount_cents) +
@@ -328,7 +341,7 @@
       state.profile = { user_id: state.user.id, display_name: validName };
     }
     const { data: orders, error: ordersError } = await db.from("service_requests")
-      .select("id,customer_id,category_id,provider_id,problem_description,status,created_at,updated_at")
+      .select("id,customer_id,category_id,provider_id,problem_description,motorcycle_brand,motorcycle_model,motorcycle_year,service_types,photo_path,status,created_at,updated_at")
       .order("created_at", { ascending: false }).limit(50);
     if (ordersError) throw ordersError;
     state.orders = orders || [];
@@ -362,7 +375,56 @@
     state.loading = true;
     try { await fn(new FormData(form)); state.error = ""; }
     catch (error) { state.error = errorText(error); }
-    finally { state.loading = false; render(); }
+    finally {
+      state.loading = false;
+      // Erros na F1 nao apagam a foto e todos os dados que a pessoa ja digitou.
+      if (form.id === "request-form" && state.error && form.isConnected) {
+        let notice = container.querySelector(".f1-form-error");
+        if (!notice) {
+          notice = document.createElement("div");
+          notice.className = "notice bad f1-form-error";
+          notice.setAttribute("role", "alert");
+          form.prepend(notice);
+        }
+        notice.textContent = state.error;
+      } else render();
+    }
+  }
+  async function preparePrivatePhoto(file) {
+    F1.validatePhoto(file);
+    let image, objectUrl;
+    try {
+      if (typeof createImageBitmap === "function") image = await createImageBitmap(file);
+      else {
+        objectUrl = URL.createObjectURL(file);
+        image = new Image();
+        image.src = objectUrl;
+        await new Promise((resolve, reject) => {
+          image.onload = resolve; image.onerror = () => reject(new Error("Foto ilegível."));
+        });
+      }
+      const width = image.width, height = image.height;
+      if (!width || !height) throw new Error("Foto sem dimensões válidas.");
+      const scale = Math.min(1, 1600 / Math.max(width, height));
+      const canvas = document.createElement("canvas");
+      canvas.width = Math.max(1, Math.round(width * scale));
+      canvas.height = Math.max(1, Math.round(height * scale));
+      const context = canvas.getContext("2d");
+      if (!context) throw new Error("Não foi possível preparar a foto.");
+      context.fillStyle = "#fff";
+      context.fillRect(0, 0, canvas.width, canvas.height);
+      context.drawImage(image, 0, 0, canvas.width, canvas.height);
+      const jpeg = await new Promise(resolve => canvas.toBlob(resolve, "image/jpeg", 0.82));
+      if (!jpeg || jpeg.type !== "image/jpeg" || jpeg.size > F1.MAX_UPLOAD_BYTES)
+        throw new Error("Não foi possível gerar foto JPG de até 5 MB.");
+      return jpeg;
+    } catch (error) {
+      if (error instanceof Error && /Foto|foto|imagem|JPG|MB/.test(error.message)) throw error;
+      throw new Error("Não foi possível ler a foto. Escolha outra imagem JPG, PNG ou WebP.");
+    } finally {
+      if (image && typeof image.close === "function") image.close();
+      if (objectUrl) URL.revokeObjectURL(objectUrl);
+    }
   }
   document.addEventListener("click", async event => {
     const target = event.target.closest("[data-page], [data-action]");
@@ -402,6 +464,19 @@
       finally { state.loading = false; render(); }
       return;
     }
+    if (action === "view-photo") {
+      const order = state.orders.find(o => o.id === id);
+      if (!order || !order.photo_path || !(owns(order) || providerOwns(order))) return;
+      const signed = await db.storage.from("request-photos").createSignedUrl(order.photo_path, 60);
+      if (signed.error || !signed.data?.signedUrl) {
+        state.error = "Foto privada indisponível: " + errorText(signed.error);
+      } else {
+        state.photoPreview[id] = signed.data.signedUrl;
+        state.error = "";
+      }
+      render();
+      return;
+    }
     if (action === "finish-request") {
       if (state.loading || !state.user) return;
       state.loading = true;
@@ -417,12 +492,12 @@
       return;
     }
     if (action === "detail") { state.selected = id; nav("detail"); return; }
-    if (action === "select-provider") { state.requestKey = null; state.selected = id; state.mode = "manual"; nav("request-form"); return; }
+    if (action === "select-provider") { state.requestKey = null; state.uploadedPhotoKey = null; state.selected = id; state.mode = "manual"; nav("request-form"); return; }
     if (action === "mode") { state.mode = target.dataset.mode; render(); return; }
     if (action === "automatic") {
       const list = available().filter(p => Number.isFinite(distance(p))).sort((a, b) => distance(a) - distance(b));
       if (!list.length) { state.error = "Não há prestadores delivery com coordenadas verificadas próximos para esta simulação."; render(); return; }
-      state.requestKey = null; state.selected = list[0].id; nav("request-form"); return;
+      state.requestKey = null; state.uploadedPhotoKey = null; state.selected = list[0].id; nav("request-form"); return;
     }
     if (action === "logout") {
       const { error } = await db.auth.signOut();
@@ -479,30 +554,57 @@
       await refreshIdentity(); nav("profile"); state.message = "Cadastro e serviços enviados. Aguarde homologação.";
     });
     if (form.id === "request-form") submitForm(form, async data => {
-      if (!state.user) throw new Error("Entre na conta para continuar.");
+      if (!state.user || !F1) throw new Error("Faça login para criar o pedido.");
       const provider = state.directory.find(p => p.id === state.selected);
       const category = deliveryCategory();
-      if (!provider || !category || !deliveryIds().has(provider.id) || !state.onlineIds.has(provider.id)) throw new Error("Prestador delivery não está online.");
-      const problem = String(data.get("problem") || "").trim();
-      const motorcycle = String(data.get("motorcycle") || "").trim();
-      const address = String(data.get("address") || "").trim();
-      if (!motorcycle || problem.length < 5 || address.length < 6) throw new Error("Preencha os dados do pedido.");
+      if (!provider || !category || !deliveryIds().has(provider.id) || !state.onlineIds.has(provider.id))
+        throw new Error("Prestador delivery não está online.");
+      const photo = data.get("photo");
+      const payload = F1.validateRequest({
+        brand: data.get("brand"), model: data.get("model"), year: data.get("year"),
+        services: data.getAll("services"), problem: data.get("problem"),
+        address: data.get("address"), photo
+      });
+      const confirmation = [
+        "PEDIDO DE TESTE — sem atendimento real",
+        "Moto: " + payload.brand + " " + payload.model + " (" + payload.year + ")",
+        "Serviços: " + payload.services.map(code => F1.SERVICE_TYPES[code]).join(", "),
+        "Problema: " + payload.problem,
+        "Endereço restrito: " + payload.address,
+        "Foto será enviada a armazenamento privado e acessível ao prestador designado para orçar.",
+        "Confirmar envio?"
+      ].join("\n");
+      if (!window.confirm(confirmation)) return;
       if (!state.requestKey) {
-        if (!globalThis.crypto?.randomUUID) throw new Error("Use uma conexão segura (HTTPS ou localhost) para registrar o pedido.");
+        if (!globalThis.crypto?.randomUUID) throw new Error("Use HTTPS ou localhost para registrar o pedido.");
         state.requestKey = globalThis.crypto.randomUUID();
       }
+      const path = F1.makePhotoPath(state.user.id, state.requestKey);
+      if (state.uploadedPhotoKey !== state.requestKey) {
+        const jpeg = await preparePrivatePhoto(photo);
+        const uploaded = await db.storage.from("request-photos").upload(path, jpeg, {
+          contentType: "image/jpeg", upsert: false, cacheControl: "3600"
+        });
+        if (uploaded.error) throw new Error("Upload privado não concluído: " + errorText(uploaded.error));
+        state.uploadedPhotoKey = state.requestKey;
+      }
       const inserted = await db.from("service_requests").insert({
-        request_key: state.requestKey,
-        customer_id: state.user.id, category_id: category.id,
-        provider_id: provider.id, problem_description: motorcycle + " — " + problem,
-        address_details: address, latitude: state.location?.lat ?? null, longitude: state.location?.lng ?? null,
-        status: "requested"
+        request_key: state.requestKey, customer_id: state.user.id,
+        category_id: category.id, provider_id: provider.id,
+        problem_description: payload.problem, address_details: payload.address,
+        latitude: state.location?.lat ?? null, longitude: state.location?.lng ?? null,
+        motorcycle_brand: payload.brand, motorcycle_model: payload.model, motorcycle_year: payload.year,
+        service_types: payload.services, photo_path: path, status: "requested"
       });
       if (inserted.error && inserted.error.code !== "23505") throw inserted.error;
-      // No caso de resposta perdida após gravar, a mesma chave não cria um segundo pedido.
-      state.requestKey = null;
+      if (inserted.error) {
+        const already = await db.from("service_requests").select("id")
+          .eq("request_key", state.requestKey).eq("customer_id", state.user.id).maybeSingle();
+        if (already.error || !already.data) throw new Error("Não foi possível confirmar o pedido repetido. Verifique Meus pedidos.");
+      }
+      state.requestKey = null; state.uploadedPhotoKey = null;
       await refreshIdentity(); nav("orders");
-      state.message = inserted.error ? "Pedido já registrado: confira Meus pedidos." : "Pedido de TESTE registrado, sem pagamento ou despacho real.";
+      state.message = "Pedido completo de TESTE registrado. Nenhum pagamento ou despacho foi realizado.";
     });
     if (form.classList.contains("quote-form")) submitForm(form, async data => {
       const orderId = form.dataset.id;
