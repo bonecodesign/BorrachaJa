@@ -12,7 +12,7 @@ on:
       - 'docs/F1_PREVIEW.html'
       - 'tests/f1-stage-setup.sql'
       - 'tests/f1-stage-rls.sql'
-      - 'supabase/migrations/20261114013000_f1_solicitacao_dados_foto.sql'
+      - 'supabase/migrations/20261114020317_f1_solicitacao_dados_foto_privada.sql'
       - 'supabase/rollback/f1_solicitacao_sem_dados.sql'
       - '.github/workflows/f1-tests.yml'
   push:
@@ -71,7 +71,7 @@ jobs:
       - name: Criar esquema Supabase minimo apenas no container descartavel
         run: psql -X -v ON_ERROR_STOP=1 -f tests/f1-stage-setup.sql
       - name: Aplicar migration F1 apenas no container descartavel
-        run: psql -X -v ON_ERROR_STOP=1 -f supabase/migrations/20261114013000_f1_solicitacao_dados_foto.sql
+        run: psql -X -v ON_ERROR_STOP=1 -f supabase/migrations/20261114020317_f1_solicitacao_dados_foto_privada.sql
       - name: Ensaiar RLS com cliente, prestador designado, outro prestador e anonimo
         run: psql -X -v ON_ERROR_STOP=1 -f tests/f1-stage-rls.sql
       - name: Testar rollback seguro do esquema F1 com zero dados
