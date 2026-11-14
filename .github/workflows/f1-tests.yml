@@ -5,6 +5,7 @@ on:
       - 'request-f1.js'
       - 'live-app-current.js'
       - 'index.html'
+      - 'sw.js'
       - 'tests/request-f1.test.js'
       - 'tests/f1-app-flow.test.js'
       - 'tests/f1-stage-setup.sql'
@@ -35,6 +36,8 @@ jobs:
       - name: Verificar carregamento do modulo F1
         run: |
           grep -q 'src="./request-f1.js"' index.html
+          grep -q "'./request-f1.js'" sw.js
+          node --check sw.js
   sql-isolado-f1:
     runs-on: ubuntu-latest
     timeout-minutes: 10
