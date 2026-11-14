@@ -13,6 +13,7 @@ on:
       - 'tests/f1-stage-setup.sql'
       - 'tests/f1-stage-rls.sql'
       - 'supabase/migrations/20261114013000_f1_solicitacao_dados_foto.sql'
+      - 'supabase/rollback/f1_solicitacao_sem_dados.sql'
       - '.github/workflows/f1-tests.yml'
   push:
     branches:
@@ -73,3 +74,14 @@ jobs:
         run: psql -X -v ON_ERROR_STOP=1 -f supabase/migrations/20261114013000_f1_solicitacao_dados_foto.sql
       - name: Ensaiar RLS com cliente, prestador designado, outro prestador e anonimo
         run: psql -X -v ON_ERROR_STOP=1 -f tests/f1-stage-rls.sql
+      - name: Testar rollback seguro do esquema F1 com zero dados
+        run: |
+          psql -X -v ON_ERROR_STOP=1 -f supabase/rollback/f1_solicitacao_sem_dados.sql
+          psql -X -v ON_ERROR_STOP=1 -c "do \$\$ begin
+            if exists (select 1 from information_schema.columns
+                       where table_schema='public' and table_name='service_requests'
+                       and column_name='photo_path')
+            then raise exception 'Rollback nao removeu coluna F1'; end if;
+            if (select public from storage.buckets where id='request-photos')
+            then raise exception 'Bucket tornou-se publico'; end if;
+          end \$\$;"
