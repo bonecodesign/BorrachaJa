@@ -312,13 +312,13 @@
     if (sessionResult.error) throw sessionResult.error;
     if (!sessionResult.data?.session) {
       state.user = null; state.profile = null; state.ownProvider = null; state.ownPresence = null; state.ownPresence = null;
-      state.orders = []; state.quotes = [];
+      state.orders = []; state.quotes = []; state.photoPreview = {};
       return;
     }
     const { data, error } = await db.auth.getUser();
     if (error) throw error;
     state.user = data?.user || null; state.profile = null; state.ownProvider = null; state.ownPresence = null;
-    if (!state.user) { state.orders = []; state.quotes = []; return; }
+    if (!state.user) { state.orders = []; state.quotes = []; state.photoPreview = {}; return; }
     const [profile, provider] = await Promise.all([
       db.from("app_profiles").select("user_id,display_name").eq("user_id", state.user.id).maybeSingle(),
       db.from("providers").select("id,display_name,status,is_active,owner_id,city").eq("owner_id", state.user.id).maybeSingle()
@@ -402,9 +402,10 @@
       else {
         objectUrl = URL.createObjectURL(file);
         image = new Image();
-        image.src = objectUrl;
         await new Promise((resolve, reject) => {
-          image.onload = resolve; image.onerror = () => reject(new Error("Foto ilegível."));
+          image.onload = resolve;
+          image.onerror = () => reject(new Error("Foto ilegível."));
+          image.src = objectUrl;
         });
       }
       const width = image.width, height = image.height;
@@ -648,7 +649,7 @@
   db.auth.onAuthStateChange((_event, session) => {
     if (!session && state.user) {
       state.user = null; state.profile = null; state.ownProvider = null;
-      state.orders = []; state.quotes = [];
+      state.orders = []; state.quotes = []; state.photoPreview = {};
       state.page = "home"; render();
     }
   });
