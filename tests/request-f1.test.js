@@ -18,6 +18,10 @@ test("monta pedido completo com serviços múltiplos e normaliza texto", () => {
   assert.equal(result.year, 2024);
 });
 
+test("não reduz silenciosamente campos acima do limite", () => {
+  assert.throws(() => F1.validateRequest(valid({ brand: "H".repeat(71) }), 2026), /70 caracteres/);
+  assert.throws(() => F1.validateRequest(valid({ model: "M".repeat(91) }), 2026), /90 caracteres/);
+});
 test("impede pedido sem foto", () => assert.throws(() => F1.validateRequest(valid({ photo: null }), 2026), /foto/));
 test("impede arquivo com tipo inválido", () => assert.throws(() => F1.validateRequest(valid({ photo: { type: "image/svg+xml", size: 200 } }), 2026), /JPG/));
 test("impede imagem original acima de 8 MB", () => assert.throws(() => F1.validateRequest(valid({ photo: { type: "image/png", size: 9 * 1024 * 1024 } }), 2026), /8 MB/));
