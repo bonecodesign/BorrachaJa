@@ -680,8 +680,11 @@
   });
   db.auth.onAuthStateChange((_event, session) => {
     if (!session && state.user) {
-      state.user = null; state.profile = null; state.ownProvider = null;
+      state.user = null; state.profile = null; state.ownProvider = null; state.ownPresence = null;
       state.orders = []; state.quotes = []; state.photoPreview = {};
+      // Nunca reutilizar request_key, upload pendente ou foto de uma conta em outra.
+      state.requestKey = null; state.uploadedPhotoKey = null;
+      state.uploadedPhotoSignature = null;
       state.page = "home"; render();
     }
   });
