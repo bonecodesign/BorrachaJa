@@ -378,6 +378,10 @@
     finally {
       state.loading = false;
       // Erros na F1 nao apagam a foto e todos os dados que a pessoa ja digitou.
+      if (form.id === "request-form" && !state.error && form.isConnected) {
+        // Pessoa desistiu na revisao: conservar campos preenchidos.
+        return;
+      }
       if (form.id === "request-form" && state.error && form.isConnected) {
         let notice = container.querySelector(".f1-form-error");
         if (!notice) {
