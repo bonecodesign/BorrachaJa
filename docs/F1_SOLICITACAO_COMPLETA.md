@@ -56,7 +56,7 @@ Em seguida, acesse `http://localhost:8080/docs/F1_PREVIEW.html`. Usar apenas dad
 
 ### Resultado dos testes da branch
 
-- `node --test tests/request-f1.test.js tests/f1-app-flow.test.js tests/f1-preview.test.js`: **23/23 aprovados** na execução automatizada.
+- `node --test tests/request-f1.test.js tests/f1-app-flow.test.js tests/f1-preview.test.js`: **25/25 aprovados** na execução automatizada.
 - `sql-isolado-f1`: migration e ensaio de RLS passaram em PostgreSQL 17 descartável.
 - `sw.js`: cache atualizado para conter `request-f1.js`, com verificação de sintaxe pela CI.
 - `config.js`: trava `f1TestRequestsEnabled: false`; tentativa forçada de envio é bloqueada pela própria aplicação.
@@ -100,7 +100,7 @@ Em seguida, acesse `http://localhost:8080/docs/F1_PREVIEW.html`. Usar apenas dad
 - **Problema corrigido:** migration anterior tinha expressão regular interrompida e trechos SQL duplicados; o arquivo foi reescrito e reaplicado com sucesso no banco PostgreSQL 17 descartável do GitHub Actions.
 - **Banco isolado, com fixtures mínimas:** `tests/f1-stage-setup.sql` simula Auth, Storage, prestadores e solicitações; `tests/f1-stage-rls.sql` executa a migration real e confirma que cliente consulta a própria foto, prestador designado recebe acesso, terceiro/anon não consultam, troca de prestador retira acesso anterior e apenas fotos não vinculadas podem ser excluídas.
 - **Validação no servidor:** foto existente é verificada por trigger `SECURITY INVOKER` para pedidos F1 completos; pedidos legados sem dados F1 continuam aceitos; pedidos F1 parciais são rejeitados; caminho da foto deve coincidir com ID do cliente e `request_key`.
-- **CI:** job `validar-f1` com 11 testes JS e checagem de sintaxe, e job `sql-isolado-f1` com PostgreSQL 17 e RLS, ambos com sucesso na execução inicial de validação da migration.
+- **CI:** job `validar-f1` com 25 testes JS e checagem de sintaxe, e job `sql-isolado-f1` com PostgreSQL 17 e RLS, ambos com sucesso na execução inicial de validação da migration.
 - **Limitação fundamental:** a conta Supabase vinculada apresenta somente o projeto `Salva Motoca`, sem branch de desenvolvimento existente. Não foi criada infraestrutura que gere cobrança sem autorização. **Não houve teste real HTTP de upload, Auth e Storage Supabase.**
 - **Retrabalho evitado no formulário:** proteção contra alteração silenciosa da foto após upload e recuperação de tentativa de upload idempotente quando a primeira resposta falhar; ainda faltam testes E2E de falha real de rede.
 - **Segurança remanescente:** revisão de todas as permissões e dos avisos de `SECURITY DEFINER` já existentes no Supabase, testes Android/desktop, limitação de taxa e limpeza de fotos órfãs antes de implantação.
