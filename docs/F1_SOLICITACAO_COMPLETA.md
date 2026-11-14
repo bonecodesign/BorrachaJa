@@ -20,7 +20,7 @@
 - Não habilitar pagamentos, despacho de socorro, chat ou reboque comercial.
 
 ## Ordem obrigatória antes de integrar à `main`
-1. Revisar e aprovar a migration `supabase/migrations/20261114013000_f1_solicitacao_dados_foto.sql`, incluindo políticas Storage, RLS, limites e backup. Corrigida na branch após uma versão inválida. A migration **não foi aplicada** no Supabase remoto.
+1. Revisar e aprovar a migration `supabase/migrations/20261114020317_f1_solicitacao_dados_foto_privada.sql`, incluindo políticas Storage, RLS, limites e backup. Corrigida na branch após uma versão inválida. A migration **não foi aplicada** no Supabase remoto.
 2. **Apenas após uma aprovação específica para modificar o banco existente**, aplicar a migration aditiva no **único Supabase Salva Motoca!**, com backup prévio e registro de estado, mantendo `f1TestRequestsEnabled: false`. Os testes de RLS e compatibilidade já rodam em PostgreSQL 17 descartável no GitHub Actions.
 3. Revisar privacidade, retenção, limpeza de fotos órfãs e proteção contra spam/limites de upload.
 4. Antes de ligar F1, realizar testes HTTP/E2E com contas fictícias controladas no **único Supabase**, incluindo cliente, prestador designado e terceiro; usar fotos e endereços fictícios, sem publicar serviços reais. Validar duplicações e limpar os dados de teste com cuidado.
