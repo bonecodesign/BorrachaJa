@@ -62,6 +62,15 @@ Em seguida, acesse `http://localhost:8080/docs/F1_PREVIEW.html`. Usar apenas dad
 - `config.js`: trava `f1TestRequestsEnabled: false`; tentativa forçada de envio é bloqueada pela própria aplicação.
 - Nenhuma alteração foi aplicada ao Supabase ativo, nenhuma branch Supabase foi criada e não houve custos novos de infraestrutura autorizados.
 
+## Revisão de permissões reais — compatibilidade de coluna e sessão
+
+- A consulta de leitura ao Supabase ativo confirmou que `authenticated` possui `INSERT` na tabela de pedidos, mas `SELECT` somente em colunas explicitamente concedidas; endereço (`address_details`), latitude e longitude continuam privados.
+- A migração aditiva passou a conceder **exclusivamente** `SELECT` para `motorcycle_brand`, `motorcycle_model`, `motorcycle_year`, `service_types` e `photo_path`. Não foi concedido `SELECT` geral na tabela nem leitura direta de localização.
+- Os testes PostgreSQL de RLS reproduzem os `GRANT` por coluna do projeto atual; a suíte falha caso os novos campos não possam ser consultados ou caso o endereço e GPS sejam expostos.
+- O painel de pedidos consulta os campos F1 somente quando a flag `f1TestRequestsEnabled` está habilitada. Com a flag desligada, continua usando apenas as colunas presentes no esquema original e pode operar **antes da aplicação da migração**, sem quebrar a tela de pedidos.
+- Em troca ou expiração da sessão, o aplicativo limpa a chave de pedido pendente, o indicador de foto já enviada e a prévia temporária. Ao sair de Pedidos, as URLs assinadas deixam de ser exibidas na interface.
+- Esta revisão foi registrada na branch isolada; **nenhuma alteração de privilégios ocorreu no banco remoto**.
+
 ## Testes disponíveis
 - `node --test tests/request-f1.test.js tests/f1-app-flow.test.js tests/f1-preview.test.js`
 - `node --check request-f1.js`
