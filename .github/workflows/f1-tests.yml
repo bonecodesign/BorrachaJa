@@ -1,0 +1,33 @@
+name: F1 - testes sem pagamentos
+on:
+  pull_request:
+    paths:
+      - 'request-f1.js'
+      - 'live-app-current.js'
+      - 'index.html'
+      - 'tests/request-f1.test.js'
+      - '.github/workflows/f1-tests.yml'
+  push:
+    branches:
+      - 'feat/f1-solicitacao-completa-segura'
+permissions:
+  contents: read
+jobs:
+  validar-f1:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Testes da validacao de pedido
+        run: node --test tests/request-f1.test.js
+      - name: Sintaxe das telas e scripts
+        run: |
+          node --check request-f1.js
+          node --check live-app-current.js
+          node --check bootstrap.js
+      - name: Verificar carregamento do modulo F1
+        run: |
+          grep -q 'src="./request-f1.js"' index.html
