@@ -48,6 +48,7 @@ Aprovado significa **definido pelo responsável do produto**, não necessariamen
 | SM-DEC-039 | Após o resumo do prestador, motociclista tem 5 minutos para confirmar no app e então avalia o prestador; em caso de divergência, aciona o chat para suporte, que permanece aberto até a resolução | **Aprovada expressamente em 13/11/2026**; exige cronômetro, notificações e fluxo de suporte auditável |
 | SM-DEC-040 | Pedido permite selecionar uma ou mais opções: pneu furado/reparo, troca de câmara, troca de pneu, calibragem/válvula, reboque de moto e outro problema com descrição/foto; prestador só recebe solicitações compatíveis com os serviços que declarou atender | **Aprovada expressamente em 13/11/2026**; requer taxonomia e compatibilidade de serviços na implementação |
 | SM-DEC-041 | Todo orçamento discrimina cada serviço selecionado, deslocamento obrigatório e cada peça/material; total final é exibido antes do pagamento; nenhum item adicional é cobrado sem novo orçamento e aceite | **Aprovada expressamente em 13/11/2026**; exige validação de itens e transparência no checkout |
+| SM-DEC-042 | No piloto não há tabela fixa: prestador define serviço, deslocamento e peças de forma separada; motociclista escolhe; valores potencialmente abusivos/incoerentes podem ser suspensos para revisão humana, sem ajuste automático | **Aprovada expressamente em 13/11/2026**; exige critérios publicados, registro e direito de contestação |
 
 ## Definições técnicas adotadas, ajustáveis após testes
 
@@ -66,7 +67,7 @@ Aprovado significa **definido pelo responsável do produto**, não necessariamen
 | SM-OPEN-003 | Critérios complementares, checagem, catálogo de serviços e guarda segura dos dados de homologação | Segurança, privacidade e legalidade |
 | SM-OPEN-004 | Parâmetros de distância, etapas de expansão, limite operacional e validação da área declarada | Chamados viáveis sem impor deslocamento inviável |
 | SM-OPEN-005 | Implementação, consentimento e homologação em dispositivos reais das notificações | Garantir que o prazo de resposta seja justo e auditável |
-| SM-OPEN-006 | Política de preço mínimo e valor de deslocamento por área | Definir previsibilidade com deslocamento obrigatório e transparente |
+| SM-OPEN-006 | Critérios publicados de revisão de valores potencialmente abusivos/incoerentes | Transparência sem tabela fixa ou ajuste automático |
 | SM-OPEN-007 | Implementação/homologação de cancelamento, estorno, taxas e mediação pós-pagamento | Direitos e incidentes |
 | SM-OPEN-008 | Regime de tributação, notas e tratamento contábil | Sustentabilidade legal |
 | SM-OPEN-009 | Implementação, horários operacionais, chat de divergência e escalonamento humano do suporte | Operação real sem promessa indevida |
@@ -104,6 +105,7 @@ Aprovado significa **definido pelo responsável do produto**, não necessariamen
 - **13/11/2026 — SM-DEC-039:** motociclista confirma em até 5 minutos e avalia o prestador em seguida. Divergência abre chat para suporte até a resolução.
 - **13/11/2026 — SM-DEC-040:** motociclista seleciona uma ou mais opções de serviço; o prestador só recebe pedidos compatíveis com o que declarou atender.
 - **13/11/2026 — SM-DEC-041:** orçamento itemiza serviços, deslocamento obrigatório e peças/materiais, com total antes do pagamento. Alterações exigem novo orçamento e aceite.
+- **13/11/2026 — SM-DEC-042:** sem tabela fixa no piloto; prestador define valores discriminados e motociclista escolhe. Possíveis abusos/incoerências vão para revisão humana, sem ajuste automático.
 
 ## Controle de alteração
 

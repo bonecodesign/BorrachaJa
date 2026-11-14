@@ -78,6 +78,13 @@ O motociclista pode selecionar **uma ou mais opções** na mesma solicitação:
 
 O pedido só é oferecido a prestadores que declararam atender os serviços selecionados.
 
+## Controle de preços no piloto
+
+- Não há tabela fixa de preços nesta fase.
+- Prestadores definem valores de serviço, deslocamento e peças de forma discriminada; o motociclista escolhe entre os orçamentos.
+- Valores potencialmente abusivos ou incoerentes podem ser suspensos para revisão humana.
+- A plataforma não altera preços automaticamente; haverá registro e possibilidade de contestação.
+
 ## Orçamento itemizado
 
 - Todo orçamento informa separadamente cada serviço selecionado, o **deslocamento obrigatório** e cada peça ou material.
