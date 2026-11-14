@@ -78,6 +78,12 @@ O motociclista pode selecionar **uma ou mais opções** na mesma solicitação:
 
 O pedido só é oferecido a prestadores que declararam atender os serviços selecionados.
 
+## Fluxo de reboque
+
+- O reboque usa o mesmo ciclo da borracharia: solicitação, orçamento, pagamento, chat, rastreamento, chegada, comprovação, confirmação e avaliação.
+- Antes de ficar elegível, o prestador de reboque declara sua capacidade e equipamento compatíveis com motocicletas.
+- Só recebe chamados de reboque compatíveis com o que declarou atender.
+
 ## Comissão de reboque
 
 - Sobre o valor do serviço de reboque incide comissão de **15%** para a plataforma.
