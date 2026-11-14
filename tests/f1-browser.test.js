@@ -118,9 +118,9 @@ function withGPSExif(jpeg) {
   tiff.writeUInt16LE(1, 28);           // GPSLatitudeRef
   tiff.writeUInt16LE(2, 30);           // ASCII
   tiff.writeUInt32LE(2, 32);
-  tiff.write("S\\0", 36, "binary");
+  tiff[36] = 0x53; tiff[37] = 0; // GPS latitude sul (fictícia)
   tiff.writeUInt32LE(0, 40);
-  const payload = Buffer.concat([Buffer.from("Exif\\0\\0", "binary"), tiff]);
+  const payload = Buffer.concat([Buffer.from([0x45, 0x78, 0x69, 0x66, 0, 0]), tiff]);
   const length = payload.length + 2;
   return Buffer.concat([
     jpeg.subarray(0, 2), Buffer.from([0xff, 0xe1, length >> 8, length & 255]),
@@ -139,7 +139,7 @@ test("Chrome real: conversão da foto elimina marcador EXIF e IFD de GPS", async
       return canvas.toDataURL("image/jpeg", 0.9).split(",")[1];
     });
     const original = withGPSExif(Buffer.from(plainBase64, "base64"));
-    assert.ok(original.includes(Buffer.from("Exif\\0\\0", "binary")));
+    assert.ok(original.includes(Buffer.from([0x45, 0x78, 0x69, 0x66, 0, 0])));
     const converted = await page.evaluate(async bytes => {
       const photo = new File([new Uint8Array(bytes)], "exif-gps.jpg", { type: "image/jpeg" });
       const result = await window.SMRequestF1.preparePrivatePhoto(photo);
@@ -152,7 +152,7 @@ test("Chrome real: conversão da foto elimina marcador EXIF e IFD de GPS", async
     assert.equal(converted.type, "image/jpeg");
     assert.ok(converted.size > 0 && converted.size <= 5 * 1024 * 1024);
     assert.equal(sanitized.readUInt16BE(0), 0xffd8);
-    assert.equal(sanitized.includes(Buffer.from("Exif\\0\\0", "binary")), false);
+    assert.equal(sanitized.includes(Buffer.from([0x45, 0x78, 0x69, 0x66, 0, 0])), false);
     assert.equal(sanitized.includes(Buffer.from([0x25, 0x88])), false, "IFD GPS permaneceu na imagem");
     assert.deepEqual(external, []);
   } finally {
