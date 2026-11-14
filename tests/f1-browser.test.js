@@ -100,3 +100,78 @@ test("Chrome desktop: foto de formato não permitido é recusada pela validaçã
     await browser.close();
   }
 });
+
+
+// Monta um JPEG válido com IFD GPS em EXIF, sem foto nem localização pessoal.
+// Testa o mesmo preparePrivatePhoto usado no aplicativo, não uma cópia da lógica.
+function withGPSExif(jpeg) {
+  assert.equal(jpeg.readUInt16BE(0), 0xffd8, "A origem deve ser JPEG");
+  const tiff = Buffer.alloc(44);
+  tiff.write("II", 0, "ascii");
+  tiff.writeUInt16LE(42, 2); tiff.writeUInt32LE(8, 4);
+  tiff.writeUInt16LE(1, 8);             // uma tag no IFD principal
+  tiff.writeUInt16LE(0x8825, 10);      // tag GPSInfo IFD pointer
+  tiff.writeUInt16LE(4, 12);           // tipo LONG
+  tiff.writeUInt32LE(1, 14); tiff.writeUInt32LE(26, 18);
+  tiff.writeUInt32LE(0, 22);           // sem próximo IFD
+  tiff.writeUInt16LE(1, 26);
+  tiff.writeUInt16LE(1, 28);           // GPSLatitudeRef
+  tiff.writeUInt16LE(2, 30);           // ASCII
+  tiff.writeUInt32LE(2, 32);
+  tiff.write("S\\0", 36, "binary");
+  tiff.writeUInt32LE(0, 40);
+  const payload = Buffer.concat([Buffer.from("Exif\\0\\0", "binary"), tiff]);
+  const length = payload.length + 2;
+  return Buffer.concat([
+    jpeg.subarray(0, 2), Buffer.from([0xff, 0xe1, length >> 8, length & 255]),
+    payload, jpeg.subarray(2)
+  ]);
+}
+
+test("Chrome real: conversão da foto elimina marcador EXIF e IFD de GPS", async () => {
+  const { browser, page, external } = await visit({ width: 1280, height: 800 });
+  try {
+    const plainBase64 = await page.evaluate(() => {
+      const canvas = document.createElement("canvas");
+      canvas.width = 2; canvas.height = 2;
+      const context = canvas.getContext("2d");
+      context.fillStyle = "#ddd"; context.fillRect(0, 0, 2, 2);
+      return canvas.toDataURL("image/jpeg", 0.9).split(",")[1];
+    });
+    const original = withGPSExif(Buffer.from(plainBase64, "base64"));
+    assert.ok(original.includes(Buffer.from("Exif\\0\\0", "binary")));
+    const converted = await page.evaluate(async bytes => {
+      const photo = new File([new Uint8Array(bytes)], "exif-gps.jpg", { type: "image/jpeg" });
+      const result = await window.SMRequestF1.preparePrivatePhoto(photo);
+      return {
+        type: result.type, size: result.size,
+        bytes: Array.from(new Uint8Array(await result.arrayBuffer()))
+      };
+    }, Array.from(original));
+    const sanitized = Buffer.from(converted.bytes);
+    assert.equal(converted.type, "image/jpeg");
+    assert.ok(converted.size > 0 && converted.size <= 5 * 1024 * 1024);
+    assert.equal(sanitized.readUInt16BE(0), 0xffd8);
+    assert.equal(sanitized.includes(Buffer.from("Exif\\0\\0", "binary")), false);
+    assert.equal(sanitized.includes(Buffer.from([0x25, 0x88])), false, "IFD GPS permaneceu na imagem");
+    assert.deepEqual(external, []);
+  } finally {
+    await browser.close();
+  }
+});
+
+test("Chrome real: arquivo com MIME de JPEG mas bytes corrompidos é recusado", async () => {
+  const { browser, page } = await visit({ width: 1280, height: 800 });
+  try {
+    const message = await page.evaluate(async () => {
+      const file = new File([new Uint8Array([1, 2, 3, 4])], "falso.jpg", {type: "image/jpeg"});
+      try {
+        await window.SMRequestF1.preparePrivatePhoto(file);
+        return "ACEITO";
+      } catch (e) { return e.message; }
+    });
+    assert.match(message, /Não foi possível ler a foto|Foto ilegível/);
+  } finally {
+    await browser.close();
+  }
+});
