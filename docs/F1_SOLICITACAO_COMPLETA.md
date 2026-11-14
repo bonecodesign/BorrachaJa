@@ -33,8 +33,29 @@ O arquivo `tests/f1-app-flow.test.js` executa o código real `live-app-current.j
 
 **Atenção:** esses testes não exercitam navegadores reais, autenticação HTTP, Storage real, decodificação de imagens com EXIF, ou o fluxo de pagamento. O ensaio PostgreSQL/RLS cobre apenas o banco isolado; continua pendente a homologação Supabase real em ambiente separado.
 
+
+## Pré-visualização local segura da F1
+
+O arquivo `docs/F1_PREVIEW.html` apresenta os controles reais planejados, incluindo serviços múltiplos, foto, dados da moto e revisão de um resumo, **sem conectar ao Supabase ou enviar fotos**.
+
+Para abrir localmente, na pasta do projeto execute:
+
+```bash
+python3 -m http.server 8080
+```
+
+Em seguida, acesse `http://localhost:8080/docs/F1_PREVIEW.html`. Usar apenas dados fictícios. A foto é exibida temporariamente no próprio navegador por URL local; a prévia não cria solicitações, não gera pagamentos e não realiza despacho. O comportamento foi conferido estaticamente e por testes de sintaxe; **ainda falta a revisão visual em navegador/dispositivo real**.
+
+### Resultado dos testes da branch
+
+- `node --test tests/request-f1.test.js tests/f1-app-flow.test.js tests/f1-preview.test.js`: **23/23 aprovados** na execução automatizada.
+- `sql-isolado-f1`: migration e ensaio de RLS passaram em PostgreSQL 17 descartável.
+- `sw.js`: cache atualizado para conter `request-f1.js`, com verificação de sintaxe pela CI.
+- `config.js`: trava `f1TestRequestsEnabled: false`; tentativa forçada de envio é bloqueada pela própria aplicação.
+- Nenhuma alteração foi aplicada ao Supabase ativo, nenhuma branch Supabase foi criada e não houve custos novos de infraestrutura autorizados.
+
 ## Testes disponíveis
-- `node --test tests/request-f1.test.js tests/f1-app-flow.test.js`
+- `node --test tests/request-f1.test.js tests/f1-app-flow.test.js tests/f1-preview.test.js`
 - `node --check request-f1.js`
 - `node --check live-app-current.js`
 - Workflow do GitHub Actions `F1 - testes sem pagamentos`.
