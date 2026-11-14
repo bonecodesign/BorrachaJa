@@ -1,5 +1,7 @@
 -- F1: testes reais de DDL e RLS no PostgreSQL isolado do CI (NAO no Supabase ativo).
 \set ON_ERROR_STOP on
+-- Todos os testes/fixtures ficam na mesma transacao e sao descartados.
+begin;
 insert into public.providers (id, owner_id) values
 ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa','22222222-2222-4222-8222-222222222222'),
 ('bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb','33333333-3333-4333-8333-333333333333');
@@ -175,3 +177,4 @@ begin
 end $assert$;
 reset role;
 select 'F1: migration + RLS fixtures PASSARAM (PostgreSQL isolado)' as resultado;
+rollback;
