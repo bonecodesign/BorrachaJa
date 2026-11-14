@@ -65,6 +65,19 @@ O projeto está em fase de MVP. Deve usar planos gratuitos quando possível, sem
 - **10 ausências em 30 dias** levam o perfil à revisão administrativa; não há bloqueio automático.
 - A regra depende de notificação entregue e registrada; seu acionamento fica pendente da implementação e homologação dos canais de aviso.
 
+## Tipos de solicitação
+
+O motociclista pode selecionar **uma ou mais opções** na mesma solicitação:
+
+- Pneu furado / reparo;
+- Troca de câmara;
+- Troca de pneu;
+- Calibragem ou válvula;
+- Reboque de moto;
+- Outro problema, com descrição e foto.
+
+O pedido só é oferecido a prestadores que declararam atender os serviços selecionados.
+
 ## Ordem do atendimento
 
 1. O motociclista solicita o serviço com foto do problema e dados da motocicleta.
