@@ -14,6 +14,27 @@ begin
   end if;
 end $verify$;
 
+-- Confirma acesso necessario a novos campos sem quebrar sigilo historico.
+do $grants$
+begin
+  if not (
+    has_column_privilege('authenticated','public.service_requests','motorcycle_brand','SELECT')
+    and has_column_privilege('authenticated','public.service_requests','motorcycle_model','SELECT')
+    and has_column_privilege('authenticated','public.service_requests','motorcycle_year','SELECT')
+    and has_column_privilege('authenticated','public.service_requests','service_types','SELECT')
+    and has_column_privilege('authenticated','public.service_requests','photo_path','SELECT')
+  ) then
+    raise exception 'Os novos campos F1 nao podem ser lidos pelo app autenticado';
+  end if;
+  if has_table_privilege('authenticated','public.service_requests','SELECT')
+    or has_column_privilege('authenticated','public.service_requests','address_details','SELECT')
+    or has_column_privilege('authenticated','public.service_requests','latitude','SELECT')
+    or has_column_privilege('authenticated','public.service_requests','longitude','SELECT')
+  then
+    raise exception 'Exposicao indevida de endereco, GPS ou leitura geral da tabela';
+  end if;
+end $grants$;
+
 set role authenticated;
 select set_config('request.jwt.claim.sub','11111111-1111-4111-8111-111111111111',false);
 
