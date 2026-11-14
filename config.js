@@ -3,8 +3,8 @@
 // JAMAIS inserir senhas, service_role ou sb_secret_* neste arquivo.
 window.BJ_CONFIG = {
   supabaseUrl: 'https://yivkqyjdeouxnwtwfekc.supabase.co',
-  // F1 bloqueada ate homologacao de Storage, RLS e schema num ambiente separado.
-  // Ativar apenas na configuracao do ambiente de homologacao, nunca neste piloto ativo.
+  // F1 bloqueada até testes Auth/Storage reais no único Supabase e liberação específica.
+  // O esquema F1 já está no banco; manter o envio desligado até a homologação.
   f1TestRequestsEnabled: false,
   supabasePublishableKey: 'sb_publishable_SKToaitJDdgDAYUrwChkbg__ntPtZd3'
 };
