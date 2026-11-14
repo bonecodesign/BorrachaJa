@@ -29,7 +29,7 @@ async function flush() {
   for (let i=0;i<8;i++) await new Promise(resolve => setImmediate(resolve));
 }
 
-function makeHarness({ confirm=true, uploadFails=false, insertFails=false }={}) {
+function makeHarness({ confirm=true, uploadFails=false, insertFails=false, f1Enabled=true }={}) {
   const sent={ uploads:[], requests:[], quotes:[], errors:[], signed:[], confirmCalls:0 };
   let rejectUpload=uploadFails;
   let rejectInsert=insertFails;
@@ -122,7 +122,8 @@ function makeHarness({ confirm=true, uploadFails=false, insertFails=false }={}) 
     }
   };
   const win={
-    BJ_CONFIG:{supabaseUrl:"https://fake.invalid",supabasePublishableKey:"sb_publishable_test"},
+    BJ_CONFIG:{supabaseUrl:"https://fake.invalid",supabasePublishableKey:"sb_publishable_test",
+      f1TestRequestsEnabled:f1Enabled},
     supabase:{createClient:()=>db},SMRequestF1:F1,
     scrollTo(){},
     setInterval(){},
@@ -235,6 +236,15 @@ test("F1: reboque indisponível não envia arquivos nem cria pedidos",async()=>{
   const h=makeHarness();await h.prepare();
   const form=await h.submit(validFields({services:["pneu_furado","reboque_moto"]}));
   assert.match(form.notice.textContent,/Reboque será liberado/);
+  assert.equal(h.sent.uploads.length,0);
+  assert.equal(h.sent.requests.length,0);
+});
+
+test("F1: trava de homologação impede pedido mesmo por submissão forçada",async()=>{
+  const h=makeHarness({f1Enabled:false});await h.prepare();
+  assert.match(h.container.innerHTML,/disabled aria-disabled="true"/);
+  const form=await h.submit(validFields());
+  assert.match(form.notice.textContent,/F1 desativada/);
   assert.equal(h.sent.uploads.length,0);
   assert.equal(h.sent.requests.length,0);
 });
