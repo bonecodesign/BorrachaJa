@@ -411,41 +411,10 @@
     }
   }
   async function preparePrivatePhoto(file) {
-    F1.validatePhoto(file);
-    let image, objectUrl;
-    try {
-      if (typeof createImageBitmap === "function") image = await createImageBitmap(file);
-      else {
-        objectUrl = URL.createObjectURL(file);
-        image = new Image();
-        await new Promise((resolve, reject) => {
-          image.onload = resolve;
-          image.onerror = () => reject(new Error("Foto ilegível."));
-          image.src = objectUrl;
-        });
-      }
-      const width = image.width, height = image.height;
-      if (!width || !height) throw new Error("Foto sem dimensões válidas.");
-      const scale = Math.min(1, 1600 / Math.max(width, height));
-      const canvas = document.createElement("canvas");
-      canvas.width = Math.max(1, Math.round(width * scale));
-      canvas.height = Math.max(1, Math.round(height * scale));
-      const context = canvas.getContext("2d");
-      if (!context) throw new Error("Não foi possível preparar a foto.");
-      context.fillStyle = "#fff";
-      context.fillRect(0, 0, canvas.width, canvas.height);
-      context.drawImage(image, 0, 0, canvas.width, canvas.height);
-      const jpeg = await new Promise(resolve => canvas.toBlob(resolve, "image/jpeg", 0.82));
-      if (!jpeg || jpeg.type !== "image/jpeg" || jpeg.size > F1.MAX_UPLOAD_BYTES)
-        throw new Error("Não foi possível gerar foto JPG de até 5 MB.");
-      return jpeg;
-    } catch (error) {
-      if (error instanceof Error && /Foto|foto|imagem|JPG|MB/.test(error.message)) throw error;
-      throw new Error("Não foi possível ler a foto. Escolha outra imagem JPG, PNG ou WebP.");
-    } finally {
-      if (image && typeof image.close === "function") image.close();
-      if (objectUrl) URL.revokeObjectURL(objectUrl);
-    }
+    return F1.preparePrivatePhoto(file, {
+      createImageBitmap: typeof createImageBitmap === "function" ? createImageBitmap : null,
+      document, URL, Image: typeof Image === "function" ? Image : null
+    });
   }
   document.addEventListener("click", async event => {
     const target = event.target.closest("[data-page], [data-action]");
