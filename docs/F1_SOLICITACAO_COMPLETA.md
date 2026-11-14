@@ -19,8 +19,22 @@
 5. Promover a migration aprovada em janela controlada **antes** de publicar a versão que consulta as colunas novas. Atenção: as cinco colunas F1 são `NOT NULL` e o servidor exige foto existente; a versão antiga do formulário também não poderá criar pedidos depois da migration. Fazer virada coordenada, com janela de indisponibilidade controlada se necessário; não liberar parcialmente.
 6. Confirmar que o acesso ao endereço exato continua bloqueado antes do pagamento; a foto pode ser vista apenas por cliente e prestador atualmente designado.
 
+## Gate de homologação e proteção contra deploy prematuro
+
+- `config.js` contém `f1TestRequestsEnabled: false` por padrão. O formulário da F1 permanece visível para revisão, porém o envio é desabilitado. A função de submissão verifica novamente essa opção, inclusive se o usuário tentar forçar o evento.
+- **Somente habilitar `f1TestRequestsEnabled: true` numa configuração separada de homologação**, após aplicar a migration e testar Storage/Auth/RLS. Esse controle é uma trava de interface, não substitui regras de acesso no banco.
+- O cache do PWA (`sw.js`) passou a incluir `request-f1.js` e mudou de versão. Evita que uma instalação antiga use a tela nova com módulo F1 ausente.
+- O Supabase ativo continua sem migration F1 e sem bucket de fotos; nenhuma criação ou alteração de recursos remotos ocorreu nesta etapa.
+- Antes de ativar qualquer pedido, confirmar a coerência entre a versão do app, `NOT NULL` da migration e a compatibilidade com a versão antiga; manter `f1TestRequestsEnabled: false` durante a revisão.
+
+## Nova bateria de testes da interface com Supabase simulado
+
+O arquivo `tests/f1-app-flow.test.js` executa o código real `live-app-current.js` em um DOM mínimo simulado por Node.js, usando um falso Supabase sem HTTP e sem serviços pagos. Abrange criação de pedido e upload, cancelamento na revisão, falha de upload, falha na inserção e retry sem duplicar foto, proteção contra alteração da foto depois de enviada, rejeição de reboque e bloqueio pelo gate de homologação. Os testes unitários do módulo também rejeitam marca/modelo longos, sem truncar silenciosamente.
+
+**Atenção:** esses testes não exercitam navegadores reais, autenticação HTTP, Storage real, decodificação de imagens com EXIF, ou o fluxo de pagamento. O ensaio PostgreSQL/RLS cobre apenas o banco isolado; continua pendente a homologação Supabase real em ambiente separado.
+
 ## Testes disponíveis
-- `node --test tests/request-f1.test.js`
+- `node --test tests/request-f1.test.js tests/f1-app-flow.test.js`
 - `node --check request-f1.js`
 - `node --check live-app-current.js`
 - Workflow do GitHub Actions `F1 - testes sem pagamentos`.
