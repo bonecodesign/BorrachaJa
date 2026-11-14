@@ -45,7 +45,40 @@ for insert to authenticated
 with check (
   bucket_id = 'request-photos' and
   (storage.foldername(name))[1] = (select auth.uid())::text and
-  name ~ '^[0-9a-f-]{36}/[0-9a-f-]{36}\\.jpg$'
+  name ~ '^[0-9a-f-]{36}/[0-9a-f-]{36}\.jpg
+);
+
+-- Dono ou prestador designado podem ler a foto para orcamento.
+-- RLS de service_requests continua limitando a visibilidade do pedido.
+create policy "f1_request_photo_participants_read" on storage.objects
+for select to authenticated
+using (
+  bucket_id = 'request-photos' and (
+    (storage.foldername(name))[1] = (select auth.uid())::text
+    or exists (
+      select 1 from public.service_requests r
+      join public.providers p on p.id = r.provider_id
+      where r.photo_path = storage.objects.name
+        and p.owner_id = (select auth.uid())
+    )
+  )
+);
+
+-- Dono pode limpar uploads nao utilizados antes de criar o pedido.
+create policy "f1_request_photo_author_delete" on storage.objects
+for delete to authenticated
+using (
+  bucket_id = 'request-photos' and
+  (storage.foldername(name))[1] = (select auth.uid())::text
+  and not exists (
+    select 1 from public.service_requests r
+    where r.photo_path = storage.objects.name
+      and r.customer_id = (select auth.uid())
+  )
+);
+
+commit;
+
 );
 
 -- Dono ou prestador designado podem ler a foto para orcamento.
