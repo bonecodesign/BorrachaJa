@@ -12,11 +12,11 @@
 - Estado `requested` continua de **teste**. Não altera `payment_records`, comissão, chat, repasse, status financeiros nem prestadores.
 
 ## Ordem obrigatória antes de integrar à `main`
-1. Revisar a migration `supabase/migrations/20261114013000_f1_solicitacao_dados_foto.sql`, incluindo políticas Storage, RLS, limites e backup. Esta migration **não foi aplicada** no Supabase remoto.
-2. Aplicá-la primeiro em **ambiente de homologação**, não diretamente no banco ativo, e verificar RLS com contas de cliente, prestador designado e terceiro.
+1. Revisar e aprovar a migration `supabase/migrations/20261114013000_f1_solicitacao_dados_foto.sql`, incluindo políticas Storage, RLS, limites e backup. Corrigida na branch após uma versão inválida. A migration **não foi aplicada** no Supabase remoto.
+2. Aplicá-la em um **Supabase de homologação separado**, não diretamente no banco ativo; executar testes HTTP com Auth real, cliente, prestador designado e terceiro. O ensaio em PostgreSQL 17 isolado já foi realizado, mas não substitui esta etapa.
 3. Revisar privacidade, retenção, limpeza de fotos órfãs e proteção contra spam/limites de upload.
 4. Rodar testes HTTP/E2E com 2 contas e dispositivo real antes de aceitar deploy; validar requisições duplicadas após falha de rede.
-5. Promover a migration aprovada em janela controlada **antes** de publicar a versão que consulta as colunas novas. Sem migration, a UI poderá mostrar erro de banco/upload: NÃO liberar parcialmente.
+5. Promover a migration aprovada em janela controlada **antes** de publicar a versão que consulta as colunas novas. Atenção: as cinco colunas F1 são `NOT NULL` e o servidor exige foto existente; a versão antiga do formulário também não poderá criar pedidos depois da migration. Fazer virada coordenada, com janela de indisponibilidade controlada se necessário; não liberar parcialmente.
 6. Confirmar que o acesso ao endereço exato continua bloqueado antes do pagamento; a foto pode ser vista apenas por cliente e prestador atualmente designado.
 
 ## Testes disponíveis
@@ -42,3 +42,15 @@
 - Antes de liberar ao público, revisar os avisos do Supabase sobre `SECURITY DEFINER` e concluir testes E2E e políticas de dados.
 
 **Não fazer merge automático. Revisão humana necessária.**
+
+## Resultado da revisão e execução isolada
+
+- **Problema corrigido:** migration anterior tinha expressão regular interrompida e trechos SQL duplicados; o arquivo foi reescrito e reaplicado com sucesso no banco PostgreSQL 17 descartável do GitHub Actions.
+- **Banco isolado, com fixtures mínimas:** `tests/f1-stage-setup.sql` simula Auth, Storage, prestadores e solicitações; `tests/f1-stage-rls.sql` executa a migration real e confirma que cliente consulta a própria foto, prestador designado recebe acesso, terceiro/anon não consultam, troca de prestador retira acesso anterior e apenas fotos não vinculadas podem ser excluídas.
+- **Validação no servidor:** foto existente é verificada por trigger `SECURITY INVOKER`; os campos F1 são obrigatórios; caminho da foto deve coincidir com o ID do cliente e o `request_key`.
+- **CI:** job `validar-f1` com 11 testes JS e checagem de sintaxe, e job `sql-isolado-f1` com PostgreSQL 17 e RLS, ambos com sucesso na execução inicial de validação da migration.
+- **Limitação fundamental:** a conta Supabase vinculada apresenta somente o projeto `Salva Motoca`, sem branch de desenvolvimento existente. Não foi criada infraestrutura que gere cobrança sem autorização. **Não houve teste real HTTP de upload, Auth e Storage Supabase.**
+- **Retrabalho evitado no formulário:** proteção contra alteração silenciosa da foto após upload e recuperação de tentativa de upload idempotente quando a primeira resposta falhar; ainda faltam testes E2E de falha real de rede.
+- **Segurança remanescente:** revisão de todas as permissões e dos avisos de `SECURITY DEFINER` já existentes no Supabase, testes Android/desktop, limitação de taxa e limpeza de fotos órfãs antes de implantação.
+
+**Próximo gate:** executar esta migration e o aplicativo F1 em um Supabase de homologação independente, com contas de teste consentidas e sem dados reais. O PostgreSQL descartável é ensaio de banco, não homologação operacional. A `main` continua preservada.
