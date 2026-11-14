@@ -39,7 +39,7 @@ A migration já aplicada **não deve ser reaplicada**, e seu arquivo histórico 
 ## Testes automatizados
 
 - **25 testes JS**: validações, fluxos simulados do app, upload, recuperação, cancelamento e bloqueio pela flag.
-- **3 testes em Chrome real**: prévia em desktop, largura móvel de 375 px, seleção de serviços, foto fictícia, bloqueio de reboque, validação de tipo e ausência de solicitações de rede.
+- **5 testes em Chrome real**: prévia em desktop, largura móvel de 375 px, seleção de serviços, foto fictícia, bloqueio de reboque, validação de tipo, remoção de EXIF/GPS por processamento real e rejeição de JPEG corrompido, sem solicitações de rede.
 - **PostgreSQL 17 descartável**: migration, RLS com perfis de teste, preservação de pedidos legados, rejeição de dados F1 parciais, visibilidade por usuário e reversão de esquema sem dados.
 - **GitHub Actions:** jobs `validar-f1`, `navegador-f1` e `sql-isolado-f1` concluídos com sucesso na execução `43597659026`. URL: https://github.com/bonecodesign/salvamotoca/actions/runs/43597659026.
 
@@ -62,7 +62,7 @@ O Supabase retornou seis avisos `authenticated_security_definer_function_executa
 - Também foram encontrados quatro alertas informativos de tabelas com RLS habilitada sem políticas; a finalidade privada delas deve continuar preservada.
 - Referências: https://supabase.com/docs/guides/database/database-linter?lint=0029_authenticated_security_definer_function_executable e https://supabase.com/docs/guides/database/database-linter?lint=0008_rls_enabled_no_policy.
 
-A flag `f1TestRequestsEnabled: false` **é uma trava do aplicativo, não uma garantia de bloqueio da API**. O bucket de fotos e a estrutura de banco já existem no projeto remoto: antes de promover o uso público, revisar limites de upload, proteção contra spam, orfandade e acesso via clientes diretos.
+A preparação da foto foi centralizada em `request-f1.js` (`preparePrivatePhoto`), usada pela interface do pedido e diretamente pelos testes do Chrome. O teste gera JPEG sintético com IFD de GPS e confirma que o JPG reprocessado não contém o marcador EXIF; o processamento real também rejeita arquivos corrompidos com MIME falsificado. Esse ensaio não substitui Android físico.\n\nA flag `f1TestRequestsEnabled: false` **é uma trava do aplicativo, não uma garantia de bloqueio da API**. O bucket de fotos e a estrutura de banco já existem no projeto remoto: antes de promover o uso público, revisar limites de upload, proteção contra spam, orfandade e acesso via clientes diretos.
 
 ## Pendências objetivas para homologação
 
@@ -80,3 +80,7 @@ A flag `f1TestRequestsEnabled: false` **é uma trava do aplicativo, não uma gar
 - Não criar outro Supabase nem contratar serviços.
 - Não considerar o teste de fixtures PostgreSQL como prova de autorização real do Supabase Auth/Storage.
 - A `main` e o PR continuam separados: a estrutura remota existir não significa que a nova interface esteja no ar.
+
+## Procedimento operacional de homologação
+
+O roteiro detalhado para **backup recuperável, ensaio real de Auth/Storage com contas de teste, acesso por perfis, limpeza via API, restrições de custo e Android físico** está em `docs/F1_HOMOLOGACAO_SUPABASE_UNICO.md`. Preparar esse procedimento não equivale a executá-lo. O acesso HTTP direto do ambiente de execução estava indisponível; apenas consultas de banco via conector, o CI do GitHub e testes Chrome locais foram executados.
