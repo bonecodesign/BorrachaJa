@@ -78,6 +78,12 @@ O motociclista pode selecionar **uma ou mais opções** na mesma solicitação:
 
 O pedido só é oferecido a prestadores que declararam atender os serviços selecionados.
 
+## Comissão de reboque
+
+- Sobre o valor do serviço de reboque incide comissão de **15%** para a plataforma.
+- Deslocamento, tarifa de processamento e extras não integram essa base de cálculo.
+- A regra só será ativada junto com pagamentos reais homologados.
+
 ## Controle de preços no piloto
 
 - Não há tabela fixa de preços nesta fase.

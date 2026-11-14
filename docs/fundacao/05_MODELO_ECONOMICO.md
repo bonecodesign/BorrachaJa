@@ -6,7 +6,7 @@
 
 - **Mapa e consulta:** gratuitos, sem cobrança pela ida direta à oficina.
 - **Borracharia delivery intermediada:** comissão de **15% aprovada internamente em 12/11/2026** sobre o valor do serviço efetivamente pago e liquidado pelo aplicativo (SM-DEC-014). A aplicação prática permanece condicionada a contratos, regras de estorno, tributação e integração financeira homologada.
-- **Reboque:** já está implementado no produto, mas não possui checkout nem cobrança real habilitados; sua ativação comercial depende de homologação.
+- **Reboque:** já está implementado no produto, mas não possui checkout nem cobrança real habilitados; sua ativação comercial depende de homologação. A comissão aprovada é de **15% sobre o valor do serviço de reboque**, sem incluir deslocamento, tarifa de processamento ou extras.
 - **Preço de serviço:** definido pelo prestador em orçamento discriminado; serviços, deslocamento obrigatório e peças/materiais aparecem separadamente. Cliente aceita ou recusa o total. No piloto não há tabela fixa: valores potencialmente abusivos ou incoerentes podem ser encaminhados para revisão humana, sem ajuste automático.
 - **Pagamento:** Pix/cartões e split ainda não conectados nem homologados.
 - **Cancelamento pós-pagamento:** se o prestador cancelar, reembolso integral ao cliente, inclusive tarifa de processamento; se o cliente cancelar antes de o prestador marcar “em deslocamento”, reembolso integral; depois disso, valor retido até mediação, sem repasse automático.

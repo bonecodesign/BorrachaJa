@@ -6,7 +6,7 @@
 
 O Salva Motoca! é um marketplace em construção para o segmento de reparos de pneus de motocicletas. O produto combina um mapa gratuito de borracharias verificadas com um fluxo de solicitação delivery no local do problema. O prestador recebe chamado quando está homologado, habilitado e online; define seu próprio orçamento; o cliente aceita ou recusa. A plataforma mantém o histórico de ofertas e tenta o próximo elegível quando há recusa.
 
-**Modelo econômico aprovado internamente:** comissão de **15% sobre o valor dos serviços de borracharia delivery efetivamente pagos pelo aplicativo**. Decisão comercial aprovada pelo responsável pelo projeto em 12/11/2026 (SM-DEC-014). Sua execução depende de validação jurídica, tributária, contratual e de meios de pagamento. Consulta ao mapa e visita direta ao estabelecimento não geram comissão. O reboque já integra o produto, mas seu pagamento real e sua política comercial permanecem desativados até homologação.
+**Modelo econômico aprovado internamente:** comissão de **15% sobre o valor dos serviços delivery de borracharia e reboque efetivamente pagos pelo aplicativo**. Decisão comercial aprovada pelo responsável pelo projeto em 12/11/2026 (SM-DEC-014). Sua execução depende de validação jurídica, tributária, contratual e de meios de pagamento. Consulta ao mapa e visita direta ao estabelecimento não geram comissão. O reboque já integra o produto, mas seu pagamento real e sua política comercial permanecem desativados até homologação.
 
 ## 2. Problema e oportunidade
 
