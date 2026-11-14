@@ -13,6 +13,14 @@ alter table public.service_requests
   add column service_types text[],
   add column photo_path text;
 
+-- O projeto atual usa SELECT por coluna para proteger endereco e GPS.
+-- Sem este GRANT, PostgREST e a politica de leitura da foto falham com 42501.
+-- Restrito aos novos dados da moto/foto; RLS existente continua limitando as linhas.
+-- NUNCA conceder SELECT geral na tabela nem liberar address_details/latitude/longitude.
+grant select (
+  motorcycle_brand, motorcycle_model, motorcycle_year, service_types, photo_path
+) on public.service_requests to authenticated;
+
 -- Expand/contract: todos os dados F1 sao nulos (cliente legado) OU todos preenchidos.
 -- Essa check impede pedidos F1 parciais sem interromper a aplicacao atual.
 alter table public.service_requests
