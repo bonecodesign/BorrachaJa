@@ -16,7 +16,7 @@
   const MAX_ORIGINAL_BYTES = 8 * 1024 * 1024;
   const MAX_UPLOAD_BYTES = 5 * 1024 * 1024;
   const MIME_TYPES = ["image/jpeg", "image/png", "image/webp"];
-  const clean = (value, max) => String(value ?? "").trim().replace(/\s+/g, " ").slice(0, max);
+  const clean = value => String(value ?? "").trim().replace(/\s+/g, " ");
   function validatePhoto(file) {
     if (!file || typeof file.size !== "number") throw new Error("Envie uma foto do problema.");
     if (!MIME_TYPES.includes(file.type)) throw new Error("Use uma foto JPG, PNG ou WebP.");
@@ -24,10 +24,11 @@
     return true;
   }
   function validateRequest(data, yearNow) {
-    const brand = clean(data.brand, 70), model = clean(data.model, 90);
+    const brand = clean(data.brand), model = clean(data.model);
     const yearString = String(data.year ?? "").trim();
     const currentYear = Number.isInteger(yearNow) ? yearNow : new Date().getFullYear();
-    if (brand.length < 2 || model.length < 2) throw new Error("Informe marca e modelo da motocicleta.");
+    if (brand.length < 2 || brand.length > 70 || model.length < 2 || model.length > 90)
+      throw new Error("Informe marca (2 a 70 caracteres) e modelo (2 a 90 caracteres) válidos.");
     if (!/^\d{4}$/.test(yearString) || Number(yearString) < 1950 || Number(yearString) > currentYear + 1) {
       throw new Error("Informe um ano válido da motocicleta.");
     }
