@@ -1,7 +1,9 @@
--- F1 / Salva Motoca! -- MIGRACAO PROPOSTA (NAO APLICAR DIRETAMENTE NA PRODUCAO).
--- Pre-requisitos: Supabase com storage.objects/storage.buckets, usuarios com Auth, backup e testes de RLS.
--- Aplicar em ambiente de homologacao ANTES de implantar o frontend F1. DB antigo nao aceita o novo payload.
--- Nao altera pagamentos, despacho, reboque comercial ou o status de prestadores.
+-- F1 / Salva Motoca! -- MIGRACAO ADITIVA PROPOSTA; UNICO PROJETO SUPABASE.
+-- NUNCA executar automaticamente no projeto ativo: exige revisao, backup e janela aprovada.
+-- Pre-requisitos: Supabase Storage/Auth, RLS revisado e testes PostgreSQL no GitHub Actions.
+-- Adiciona novos campos como opcionais para manter o app antigo e registros legados validos.
+-- Pedidos F1 exigem o conjunto COMPLETO de campos e foto privada; pedidos legados continuam aceitos.
+-- Nao ativa despachos, pagamentos, reboque comercial, novas contas ou prestadores.
 begin;
 
 alter table public.service_requests
@@ -11,33 +13,45 @@ alter table public.service_requests
   add column service_types text[],
   add column photo_path text;
 
--- F1 e exigida no banco. Ambiente de testes atual nao tem pedidos persistidos.
--- Se houver pedidos legados, NAO executar sem estrategia de migracao e validacao humana.
+-- Expand/contract: todos os dados F1 sao nulos (cliente legado) OU todos preenchidos.
+-- Essa check impede pedidos F1 parciais sem interromper a aplicacao atual.
 alter table public.service_requests
-  alter column motorcycle_brand set not null,
-  alter column motorcycle_model set not null,
-  alter column motorcycle_year set not null,
-  alter column service_types set not null,
-  alter column photo_path set not null;
-
-alter table public.service_requests
+  add constraint f1_payload_all_or_none_check check (
+    (
+      motorcycle_brand is null
+      and motorcycle_model is null
+      and motorcycle_year is null
+      and service_types is null
+      and photo_path is null
+    ) or (
+      motorcycle_brand is not null
+      and motorcycle_model is not null
+      and motorcycle_year is not null
+      and service_types is not null
+      and photo_path is not null
+    )
+  ),
   add constraint f1_vehicle_data_check check (
-    char_length(btrim(motorcycle_brand)) between 2 and 70
-    and char_length(btrim(motorcycle_model)) between 2 and 90
-    and motorcycle_year between 1950 and 2100
+    (motorcycle_brand is null or char_length(btrim(motorcycle_brand)) between 2 and 70)
+    and (motorcycle_model is null or char_length(btrim(motorcycle_model)) between 2 and 90)
+    and (motorcycle_year is null or motorcycle_year between 1950 and 2100)
   ),
   add constraint f1_selected_service_types_check check (
-    cardinality(service_types) between 1 and 6
-    and array_position(service_types, null) is null
-    and service_types <@ array[
-      'pneu_furado', 'troca_camara', 'troca_pneu',
-      'calibragem_valvula', 'reboque_moto', 'outro'
-    ]::text[]
-    and not ('reboque_moto' = any(service_types))
+    service_types is null or (
+      cardinality(service_types) between 1 and 6
+      and array_position(service_types, null) is null
+      and service_types <@ array[
+        'pneu_furado', 'troca_camara', 'troca_pneu',
+        'calibragem_valvula', 'reboque_moto', 'outro'
+      ]::text[]
+      and not ('reboque_moto' = any(service_types))
+    )
   ),
   add constraint f1_photo_path_owned_by_customer check (
-    request_key is not null
-    and photo_path = customer_id::text || '/' || request_key::text || '.jpg'
+    photo_path is null or (
+      request_key is not null
+      and photo_path = customer_id::text || '/' || request_key::text || '.jpg'
+    )
   );
 
 -- Acesso a fotos e privado e exige as politicas RLS abaixo.
@@ -95,6 +109,10 @@ security invoker
 set search_path = ''
 as $$
 begin
+  -- Pedidos legados sem F1 continuam disponiveis durante a transicao.
+  if new.photo_path is null then
+    return new;
+  end if;
   if not exists (
     select 1 from storage.objects o
     where o.bucket_id = 'request-photos'
