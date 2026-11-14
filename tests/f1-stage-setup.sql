@@ -18,7 +18,10 @@ create table public.service_requests (
   id uuid primary key,
   request_key uuid not null unique,
   customer_id uuid not null,
-  provider_id uuid
+  provider_id uuid,
+  address_details text,
+  latitude numeric,
+  longitude numeric
 );
 create table storage.buckets (
   id text primary key, name text not null, public boolean not null,
@@ -47,6 +50,9 @@ grant usage on schema auth,storage,public to authenticated,anon;
 grant execute on function auth.uid() to authenticated,anon;
 grant execute on function storage.foldername(text) to authenticated,anon;
 grant select on public.providers to authenticated;
-grant select,insert on public.service_requests to authenticated;
+-- Espelha privilegios do projeto real: SELECT apenas por coluna,
+-- sem leitura direta de endereco, latitude, longitude ou request_key.
+grant select (id,customer_id,provider_id) on public.service_requests to authenticated;
+grant insert on public.service_requests to authenticated;
 grant select,insert,delete on storage.objects to authenticated;
 grant select on storage.objects to anon;
