@@ -45,6 +45,43 @@ values (
  '11111111-1111-4111-8111-111111111111/aaaaaaaa-1111-4111-8111-111111111111.jpg'
 );
 
+-- Estrategia de um Supabase: o aplicativo antigo pode continuar gravando sem campos F1.
+insert into public.service_requests (id, request_key, customer_id, provider_id)
+values ('12121212-1212-4212-8212-121212121212',
+        '13131313-1313-4313-8313-131313131313',
+        '11111111-1111-4111-8111-111111111111',
+        'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa');
+
+do $verify_legacy$
+begin
+  if not exists (
+    select 1 from public.service_requests
+    where id = '12121212-1212-4212-8212-121212121212'
+      and motorcycle_brand is null and motorcycle_model is null
+      and motorcycle_year is null and service_types is null and photo_path is null
+  ) then
+    raise exception 'Pedido legado nao foi preservado na migration aditiva';
+  end if;
+end $verify_legacy$;
+
+-- Dados F1 incompletos sao recusados, sem impor colunas F1 a pedidos antigos.
+do $verify_partial$
+begin
+  begin
+    insert into public.service_requests (
+      id, request_key, customer_id, provider_id, motorcycle_brand
+    ) values (
+      '14141414-1414-4414-8414-141414141414',
+      '15151515-1515-4515-8515-151515151515',
+      '11111111-1111-4111-8111-111111111111',
+      'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa',
+      'Honda'
+    );
+    raise exception 'Falha: pedido F1 parcial aceito indevidamente';
+  exception when check_violation then null;
+  end;
+end $verify_partial$;
+
 -- Foto inexistente deve ser rejeitada pelo trigger invoker.
 do $assert$
 begin
