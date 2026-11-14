@@ -158,6 +158,7 @@ function makeHarness({ confirm=true, uploadFails=false, insertFails=false }={}) 
     async submit(fields){
       const form={
         id:"request-form",isConnected:true,fields,
+        classList:{contains(){return false;}},
         prepend(node){this.notice=node;}
       };
       formListeners.submit({preventDefault(){},target:form});
