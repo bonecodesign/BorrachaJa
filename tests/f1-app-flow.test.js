@@ -30,7 +30,7 @@ async function flush() {
 }
 
 function makeHarness({ confirm=true, uploadFails=false, insertFails=false, f1Enabled=true }={}) {
-  const sent={ uploads:[], requests:[], quotes:[], errors:[], signed:[], confirmCalls:0 };
+  const sent={ uploads:[], requests:[], quotes:[], errors:[], signed:[], orderSelects:[], confirmCalls:0 };
   let rejectUpload=uploadFails;
   let rejectInsert=insertFails;
   const docListeners={}, formListeners={};
@@ -51,7 +51,10 @@ function makeHarness({ confirm=true, uploadFails=false, insertFails=false, f1Ena
     const query={
       // Thenable: Supabase query sem .limit() tambem executa quando aguardada.
       then(resolve,reject){return Promise.resolve({data:records[name]||[],error:null}).then(resolve,reject);},
-      select(){return this;},
+      select(columns){
+        if (name === "service_requests") sent.orderSelects.push(columns);
+        return this;
+      },
       eq(){return this;},
       in(){return this;},
       order(){return this;},
@@ -247,4 +250,22 @@ test("F1: trava de homologação impede pedido mesmo por submissão forçada",as
   assert.match(form.notice.textContent,/F1 desativada/);
   assert.equal(h.sent.uploads.length,0);
   assert.equal(h.sent.requests.length,0);
+});
+
+
+test("F1 desligada: painel consulta apenas colunas existentes no banco atual", async () => {
+  const h = makeHarness({f1Enabled:false});
+  await h.prepare();
+  assert.ok(h.sent.orderSelects.length > 0);
+  for(const columns of h.sent.orderSelects) {
+    assert.match(columns, /problem_description/);
+    assert.doesNotMatch(columns, /motorcycle_brand|motorcycle_model|motorcycle_year|service_types|photo_path/);
+  }
+});
+
+test("F1 habilitada em simulacao: painel inclui apenas novos campos previstos", async () => {
+  const h = makeHarness({f1Enabled:true});
+  await h.prepare();
+  assert.ok(h.sent.orderSelects.some(x => x.includes("photo_path")));
+  assert.ok(h.sent.orderSelects.every(x => !/address_details|latitude|longitude/.test(x)));
 });
