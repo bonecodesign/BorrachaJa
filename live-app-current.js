@@ -52,6 +52,8 @@
     esc(field) + '" type="' + esc(type) + '" placeholder="' + esc(placeholder || "") + '" ' +
     (required ? "required" : "") + "></label>";
   const nav = page => {
+    // Nao manter URLs assinadas de fotos ao sair da tela de pedidos.
+    if (page !== "orders") state.photoPreview = {};
     state.page = page;
     state.error = ""; state.message = "";
     render();
@@ -313,13 +315,19 @@
     const sessionResult = await db.auth.getSession();
     if (sessionResult.error) throw sessionResult.error;
     if (!sessionResult.data?.session) {
-      state.user = null; state.profile = null; state.ownProvider = null; state.ownPresence = null; state.ownPresence = null;
+      state.user = null; state.profile = null; state.ownProvider = null; state.ownPresence = null;
       state.orders = []; state.quotes = []; state.photoPreview = {};
+      state.requestKey = null; state.uploadedPhotoKey = null; state.uploadedPhotoSignature = null;
       return;
     }
     const { data, error } = await db.auth.getUser();
     if (error) throw error;
+    const previousUserId = state.user?.id || null;
     state.user = data?.user || null; state.profile = null; state.ownProvider = null; state.ownPresence = null;
+    if (previousUserId !== (state.user?.id || null)) {
+      state.requestKey = null; state.uploadedPhotoKey = null;
+      state.uploadedPhotoSignature = null; state.photoPreview = {};
+    }
     if (!state.user) { state.orders = []; state.quotes = []; state.photoPreview = {}; return; }
     const [profile, provider] = await Promise.all([
       db.from("app_profiles").select("user_id,display_name").eq("user_id", state.user.id).maybeSingle(),
@@ -342,8 +350,14 @@
       if (created.error) throw created.error;
       state.profile = { user_id: state.user.id, display_name: validName };
     }
+    // So consultar colunas F1 depois da homologacao e ativacao explicita.
+    // O banco antigo nao contem esses campos; o painel legado deve continuar funcionando.
+    const legacyColumns = "id,customer_id,category_id,provider_id,problem_description,status,created_at,updated_at";
+    const f1Columns = "motorcycle_brand,motorcycle_model,motorcycle_year,service_types,photo_path";
+    const selectColumns = config.f1TestRequestsEnabled === true
+      ? legacyColumns + "," + f1Columns : legacyColumns;
     const { data: orders, error: ordersError } = await db.from("service_requests")
-      .select("id,customer_id,category_id,provider_id,problem_description,motorcycle_brand,motorcycle_model,motorcycle_year,service_types,photo_path,status,created_at,updated_at")
+      .select(selectColumns)
       .order("created_at", { ascending: false }).limit(50);
     if (ordersError) throw ordersError;
     state.orders = orders || [];
