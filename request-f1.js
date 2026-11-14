@@ -53,5 +53,52 @@
     }
     return userId + "/" + uploadId + ".jpg";
   }
-  return Object.freeze({ SERVICE_TYPES, MAX_ORIGINAL_BYTES, MAX_UPLOAD_BYTES, validatePhoto, validateRequest, makePhotoPath });
+  // Redesenha os pixels da imagem, removendo EXIF/GPS antes do upload.
+  // Injeção opcional de dependências permite testar o processamento real sem API de rede.
+  async function preparePrivatePhoto(file, env = {}) {
+    validatePhoto(file);
+    const decode = env.createImageBitmap ?? (typeof createImageBitmap === "function" ? createImageBitmap : null);
+    const dom = env.document ?? (typeof document !== "undefined" ? document : null);
+    const objectUrls = env.URL ?? (typeof URL !== "undefined" ? URL : null);
+    const ImageCtor = env.Image ?? (typeof Image !== "undefined" ? Image : null);
+    let image, objectUrl;
+    try {
+      if (decode) image = await decode(file);
+      else {
+        if (!objectUrls || !ImageCtor) throw new Error("Foto ilegível.");
+        objectUrl = objectUrls.createObjectURL(file);
+        image = new ImageCtor();
+        await new Promise((resolve, reject) => {
+          image.onload = resolve;
+          image.onerror = () => reject(new Error("Foto ilegível."));
+          image.src = objectUrl;
+        });
+      }
+      const width = image.width, height = image.height;
+      if (!Number.isFinite(width) || !Number.isFinite(height) || width < 1 || height < 1) {
+        throw new Error("Foto sem dimensões válidas.");
+      }
+      const scale = Math.min(1, 1600 / Math.max(width, height));
+      if (!dom) throw new Error("Não foi possível preparar a foto.");
+      const canvas = dom.createElement("canvas");
+      canvas.width = Math.max(1, Math.round(width * scale));
+      canvas.height = Math.max(1, Math.round(height * scale));
+      const context = canvas.getContext("2d");
+      if (!context) throw new Error("Não foi possível preparar a foto.");
+      context.fillStyle = "#fff";
+      context.fillRect(0, 0, canvas.width, canvas.height);
+      context.drawImage(image, 0, 0, canvas.width, canvas.height);
+      const jpeg = await new Promise(resolve => canvas.toBlob(resolve, "image/jpeg", 0.82));
+      if (!jpeg || jpeg.type !== "image/jpeg" || jpeg.size < 1 || jpeg.size > MAX_UPLOAD_BYTES)
+        throw new Error("Não foi possível gerar foto JPG de até 5 MB.");
+      return jpeg;
+    } catch (error) {
+      if (error instanceof Error && /Foto|foto|imagem|JPG|MB/.test(error.message)) throw error;
+      throw new Error("Não foi possível ler a foto. Escolha outra imagem JPG, PNG ou WebP.");
+    } finally {
+      if (image && typeof image.close === "function") image.close();
+      if (objectUrl) objectUrls.revokeObjectURL(objectUrl);
+    }
+  }
+  return Object.freeze({ SERVICE_TYPES, MAX_ORIGINAL_BYTES, MAX_UPLOAD_BYTES, validatePhoto, validateRequest, makePhotoPath, preparePrivatePhoto });
 });
