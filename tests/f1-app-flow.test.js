@@ -49,6 +49,8 @@ function makeHarness({ confirm=true, uploadFails=false, insertFails=false }={}) 
     service_categories:categories,service_requests:[],service_quotes:[]};
   function from(name) {
     const query={
+      // Thenable: Supabase query sem .limit() tambem executa quando aguardada.
+      then(resolve,reject){return Promise.resolve({data:records[name]||[],error:null}).then(resolve,reject);},
       select(){return this;},
       eq(){return this;},
       in(){return this;},
