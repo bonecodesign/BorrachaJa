@@ -155,10 +155,12 @@
       '<button class="btn full" data-page="login">Entrar ou cadastrar</button></div>';
     const p = state.directory.find(row => row.id === state.selected);
     if (!p || !deliveryIds().has(p.id) || !state.onlineIds.has(p.id)) return '<div class="notice">O prestador está offline ou indisponível para novos pedidos. Atualize a lista.</div>';
+    const f1Enabled = config.f1TestRequestsEnabled === true;
     const options = Object.entries(F1.SERVICE_TYPES).map(([code, title]) =>
       '<label class="fieldrow"><input type="checkbox" name="services" value="' + esc(code) + '">' +
       esc(title) + (code === "reboque_moto" ? ' — integração em desenvolvimento (não envia)' : '') + '</label>').join('');
     return header("Solicitar orçamento", p.display_name + " — ambiente de testes, sem atendimento real") +
+      (!f1Enabled ? '<div class="notice" role="status">F1 em revisão: o envio de fotos e pedidos está desativado até a homologação da migração e da segurança em ambiente separado.</div>' : '') +
       '<form id="request-form" class="card form">' +
       '<fieldset><legend><b>Qual serviço você precisa?</b> (selecione um ou mais)</legend>' + options + '</fieldset>' +
       '<label class="fieldrow"><span class="label">Marca da moto</span><input class="field" type="text" name="brand" maxlength="70" placeholder="Ex.: Honda" required></label>' +
@@ -172,7 +174,7 @@
       '<label class="fieldrow"><span class="label">Endereço do atendimento (restrito)</span>' +
       '<textarea name="address" minlength="6" maxlength="280" required class="field" placeholder="Rua, número e referência"></textarea></label>' +
       '<p class="notice">Somente TESTES: não envie dados ou localizações reais nesta fase. A foto poderá ser vista pelo prestador designado para preparar o orçamento; endereço exato continua restrito antes do pagamento. Nenhum socorro ou pagamento é ativado.</p>' +
-      '<button class="btn full" type="submit">Revisar e criar pedido de teste</button></form>';
+      '<button class="btn full" type="submit"' + (f1Enabled ? '' : ' disabled aria-disabled="true"') + '>Revisar e criar pedido de teste</button></form>';
   }
   function renderLogin() {
     return header("Entrar", "A conta é necessária para cadastros e solicitações de teste.") +
@@ -559,6 +561,8 @@
       await refreshIdentity(); nav("profile"); state.message = "Cadastro e serviços enviados. Aguarde homologação.";
     });
     if (form.id === "request-form") submitForm(form, async data => {
+      if (config.f1TestRequestsEnabled !== true)
+        throw new Error("F1 desativada até a homologação do ambiente de testes.");
       if (!state.user || !F1) throw new Error("Faça login para criar o pedido.");
       const provider = state.directory.find(p => p.id === state.selected);
       const category = deliveryCategory();
