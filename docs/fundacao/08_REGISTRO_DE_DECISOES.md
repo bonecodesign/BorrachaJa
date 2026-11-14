@@ -46,6 +46,7 @@ Aprovado significa **definido pelo responsável do produto**, não necessariamen
 | SM-DEC-037 | Prestador marca “cheguei”; motociclista é avisado e rastreamento em tempo real é encerrado; divergências sobre a chegada seguem para suporte, sem alterar a confirmação bilateral de conclusão | **Aprovada expressamente em 13/11/2026**; exige registro auditável de data/hora e teste em dispositivos reais |
 | SM-DEC-038 | Antes de declarar o serviço concluído, prestador registra resumo curto obrigatório e pode anexar foto do resultado quando fizer sentido; motociclista vê antes de confirmar/contestar; imagem não deve conter dados desnecessários | **Aprovada expressamente em 13/11/2026**; exige controles de privacidade, segurança e retenção |
 | SM-DEC-039 | Após o resumo do prestador, motociclista tem 5 minutos para confirmar no app e então avalia o prestador; em caso de divergência, aciona o chat para suporte, que permanece aberto até a resolução | **Aprovada expressamente em 13/11/2026**; exige cronômetro, notificações e fluxo de suporte auditável |
+| SM-DEC-040 | Pedido permite selecionar uma ou mais opções: pneu furado/reparo, troca de câmara, troca de pneu, calibragem/válvula, reboque de moto e outro problema com descrição/foto; prestador só recebe solicitações compatíveis com os serviços que declarou atender | **Aprovada expressamente em 13/11/2026**; requer taxonomia e compatibilidade de serviços na implementação |
 
 ## Definições técnicas adotadas, ajustáveis após testes
 
@@ -61,7 +62,7 @@ Aprovado significa **definido pelo responsável do produto**, não necessariamen
 | --- | --- | --- |
 | SM-OPEN-001 | Pessoa jurídica, razão social, CNPJ e contatos oficiais | Contratos, notas e canal de atendimento |
 | SM-OPEN-002 | Escolha/homologação de PSP, Pix/cartões, custo efetivo, split e liquidação compatíveis com a retenção/repasses aprovados | Implementar sem taxas-surpresa e com transparência |
-| SM-OPEN-003 | Critérios complementares, checagem e guarda segura dos dados de homologação | Segurança, privacidade e legalidade |
+| SM-OPEN-003 | Critérios complementares, checagem, catálogo de serviços e guarda segura dos dados de homologação | Segurança, privacidade e legalidade |
 | SM-OPEN-004 | Parâmetros de distância, etapas de expansão, limite operacional e validação da área declarada | Chamados viáveis sem impor deslocamento inviável |
 | SM-OPEN-005 | Implementação, consentimento e homologação em dispositivos reais das notificações | Garantir que o prazo de resposta seja justo e auditável |
 | SM-OPEN-006 | Política de preço mínimo e deslocamento por área | Definir previsibilidade sem criar cobrança automática |
@@ -100,6 +101,7 @@ Aprovado significa **definido pelo responsável do produto**, não necessariamen
 - **13/11/2026 — SM-DEC-037:** prestador marca “cheguei”; motociclista é avisado e o rastreamento é encerrado. Divergências vão para suporte.
 - **13/11/2026 — SM-DEC-038:** antes de concluir, prestador registra resumo obrigatório e pode anexar foto do resultado quando necessária; motociclista vê antes de confirmar/contestar.
 - **13/11/2026 — SM-DEC-039:** motociclista confirma em até 5 minutos e avalia o prestador em seguida. Divergência abre chat para suporte até a resolução.
+- **13/11/2026 — SM-DEC-040:** motociclista seleciona uma ou mais opções de serviço; o prestador só recebe pedidos compatíveis com o que declarou atender.
 
 ## Controle de alteração
 
