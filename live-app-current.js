@@ -161,8 +161,8 @@
     return header("Solicitar orçamento", p.display_name + " — ambiente de testes, sem atendimento real") +
       '<form id="request-form" class="card form">' +
       '<fieldset><legend><b>Qual serviço você precisa?</b> (selecione um ou mais)</legend>' + options + '</fieldset>' +
-      label("Marca da moto", "text", "brand", "Ex.: Honda", true) +
-      label("Modelo da moto", "text", "model", "Ex.: CG 160", true) +
+      '<label class="fieldrow"><span class="label">Marca da moto</span><input class="field" type="text" name="brand" maxlength="70" placeholder="Ex.: Honda" required></label>' +
+      '<label class="fieldrow"><span class="label">Modelo da moto</span><input class="field" type="text" name="model" maxlength="90" placeholder="Ex.: CG 160" required></label>' +
       '<label class="fieldrow"><span class="label">Ano da moto</span><input class="field" type="number" name="year" min="1950" max="' + (new Date().getFullYear()+1) + '" step="1" placeholder="Ex.: 2024" required></label>' +
       '<label class="fieldrow"><span class="label">Foto do problema (obrigatória)</span>' +
       '<input class="field" type="file" name="photo" accept="image/jpeg,image/png,image/webp" required>' +
